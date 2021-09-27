@@ -8,8 +8,9 @@ from .managers import MyAdsManager
 class MyAd(models.Model):
 
     CATEGORIES = (
-        ('a', 'Navbar Ad. Image size 728*90'),
-        ('b', 'Main Ad')
+        ('a', 'Navbar Ads. Image size 728*90'),
+        ('b', 'Main Ads'),
+        ('c', 'Page Ads')
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

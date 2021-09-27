@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'frontend',
     'myAds',
     'articles',
+    'companies',
+    'jobPostings'
 ]
 
 MIDDLEWARE = [

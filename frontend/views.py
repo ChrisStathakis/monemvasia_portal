@@ -2,6 +2,10 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.shortcuts import get_object_or_404
 
 from articles.models import Article, ArticleCategory
+from myAds.models import MyAd
+from articles.models import Article
+
+import random
 
 
 class HomepageView(TemplateView):
@@ -9,7 +13,10 @@ class HomepageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomepageView, self).get_context_data(**kwargs)
-
+        context['page_title'] = 'Αρχική Σελίδα'
+        featured_articles = Article.my_query.featured()
+        context['featured_articles'] = featured_articles[1:4]
+        context['main_article'] = featured_articles.first() if featured_articles.exists() else None
         return context
 
 

@@ -3,7 +3,7 @@ from django.utils.text import slugify
 from django.shortcuts import reverse
 
 from frontend.models import City
-from .managers import CategoryManager
+from .managers import CategoryManager, ArticleManager
 
 
 class ArticleCategory(models.Model):
@@ -35,15 +35,19 @@ class ArticleCategory(models.Model):
 
 
 class Article(models.Model):
+    featured = models.BooleanField(default=False)
     publish = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     edited = models.DateTimeField(auto_now=True)
     published = models.DateTimeField(blank=True, null=True)
-    category = models.ManyToManyField(ArticleCategory, blank=True)
+    category = models.ManyToManyField(ArticleCategory, blank=True, related_name='articles')
     city = models.ManyToManyField(City, blank=True)
     title = models.CharField(max_length=240)
     text = models.TextField()
     slug = models.SlugField(blank=True, null=True, allow_unicode=True, max_length=240, db_index=True)
+
+    my_query = ArticleManager()
+    objects = models.Manager()
 
     def save(self, *args, **kwargs):
         if not self.slug:
