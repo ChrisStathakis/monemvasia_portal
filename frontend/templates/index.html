@@ -1,6 +1,7 @@
 <!DOCTYPE html> {% load static %}
 <html>
     {% include 'include/head.html' %}
+
 	<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 500}">
 		<div class="loading-overlay">
 			<div class="bounce-loader">
@@ -24,14 +25,16 @@
 									<div class="thumb-info-wrapper thumb-info-wrapper-opacity-6">
 										<img src="{{ main_article.image.url }}" class="img-fluid" alt="{{ main_article.title }}">
 										<div class="thumb-info-title bg-transparent p-4">
-											<div class="thumb-info-type bg-color-dark px-2 mb-1">{{ main_article.title }}</div>
+											<div class="thumb-info-type bg-color-dark px-2 mb-1">{{ main_article.category.first }}</div>
 											<div class="thumb-info-inner mt-1">
 												<h2 class="font-weight-bold text-color-light line-height-2 text-5 mb-0">
-                                                    {{ main_article.category }}
+                                                    {{ main_article.title }}
                                                 </h2>
 											</div>
 											<div class="thumb-info-show-more-content">
-												<p class="mb-0 text-1 line-height-9 mb-1 mt-2 text-light opacity-5">Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+												<p class="mb-0 text-1 line-height-9 mb-1 mt-2 text-light opacity-5">
+                                                    {{ main_article.text|safe|truncatechars_html:100 }}
+                                                </p>
 											</div>
 										</div>
 									</div>
@@ -45,16 +48,16 @@
 								<div class="row align-items-center pb-1">
 									<div class="col-sm-5">
 										<a href="{{ article.get_absolute_url }}">
-											<img src="{{ article.image.url }}" class="img-fluid border-radius-0" alt="Simple Ways to Have a Pretty Face">
+											<img src="{{ article.image.url }}" class="img-fluid border-radius-0" alt="{{ article.title }}">
 										</a>
 									</div>
 									<div class="col-sm-7 ps-sm-1">
 										<div class="thumb-info-caption-text">
 											<div class="thumb-info-type text-light text-uppercase d-inline-block bg-color-dark px-2 m-0 mb-1 float-none">
-												<a href="{{ article.get_absolute_url }}" class="text-decoration-none text-color-light">{{ article.title }}</a>
+												<a href="{{ article.get_absolute_url }}" class="text-decoration-none text-color-light">{{ article.category.first }}</a>
 											</div>
 											<h2 class="d-block line-height-2 text-4 text-dark font-weight-bold mt-1 mb-0">
-												<a href="{{ article.get_absolute_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">Simple Ways to Have a Pretty Face</a>
+												<a href="{{ article.get_absolute_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">{{ article.title }}</a>
 											</h2>
 										</div>
 									</div>
@@ -72,7 +75,7 @@
                             {% for category in categories %}
                                 <div class="text-center py-3 mb-4">
                                     <a href="{{ category.get_absolute_url }}" target="_blank" class="d-block">
-                                        <img alt="Porto" class="img-fluid ps-3" src="{% static 'assets/' %}img/blog/blog-ad-3.jpg" />
+                                        <img alt="Porto" class="img-fluid ps-3" src="{{ category.article_ad.image.url }}" />
                                     </a>
                                 </div>
                                 <div class="heading heading-border heading-middle-border">
@@ -85,8 +88,8 @@
                                         <article class="thumb-info thumb-info-no-zoom bg-transparent border-radius-0 pb-2 mb-2">
                                             <div class="row">
                                                 <div class="col">
-                                                    <a href="blog-post.html">
-                                                        <img src="img/blog/default/blog-67.jpg" class="img-fluid border-radius-0" alt="Why should I buy a smartwatch?">
+                                                    <a href="{{ category.favorite_article.get_absolute_url }}">
+                                                        <img src="{{ category.favorite_article.image.url }}" class="img-fluid border-radius-0" alt="{{ category.favorite_article.title }}">
                                                     </a>
                                                 </div>
                                             </div>
@@ -94,10 +97,10 @@
                                                 <div class="col">
                                                     <div class="thumb-info-caption-text">
                                                         <div class="d-inline-block text-default text-1 mt-2 float-none">
-                                                            <a href="blog-post.html" class="text-decoration-none text-color-default">January 12, 2020</a>
+                                                            <a href="{{ category.favorite_article.get_absolute_url }}" class="text-decoration-none text-color-default">{{  category.favorite_article.timestamp }}</a>
                                                         </div>
                                                         <h4 class="d-block line-height-2 text-4 text-dark font-weight-bold mb-0">
-                                                            <a href="blog-post.html" class="text-decoration-none text-color-dark text-color-hover-primary">Why should I buy a smartwatch?</a>
+                                                            <a href="{{ category.favorite_article.get_absolute_url }}" class="text-decoration-none text-color-dark text-color-hover-primary">{{ category.favorite_article.title }}</a>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -422,27 +425,19 @@
 							<div class="pb-2">
 
 								<div class="mb-4 pb-2">
+                                     {% for company in companies %}
 									<article class="thumb-info thumb-info-no-zoom bg-transparent border-radius-0 pb-2 mb-2">
+
 										<div class="row">
 											<div class="col">
-												<a href="blog-post.html">
-													<img src="img/blog/default/blog-65.jpg" class="img-fluid border-radius-0" alt="Main Reasons To Stop Texting And Driving">
+												<a href="">
+													<img  width="200" height="200" src="{{ company.image.url }}" class="img-fluid border-radius foo" alt="Main Reasons To Stop Texting And Driving">
 												</a>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col">
-												<div class="thumb-info-caption-text">
-													<div class="d-inline-block text-default text-1 mt-2 float-none">
-														<a href="blog-post.html" class="text-decoration-none text-color-default">January 12, 2020</a>
-													</div>
-													<h4 class="d-block line-height-2 text-4 text-dark font-weight-bold mb-0">
-														<a href="blog-post.html" class="text-decoration-none text-color-dark text-color-hover-primary">Main Reasons To Stop Texting And Driving</a>
-													</h4>
-												</div>
-											</div>
-										</div>
+
 									</article>
+                                    {% endfor %}
 								</div>
 
 								<div class="mb-4 pb-2">

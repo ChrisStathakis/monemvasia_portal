@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
 
-</body>
-</html>
+
+{% block content %}
+    <div role="main" class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 align-self-center p-static order-2 text-center">
+                        <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                        <span class="sub-title text-dark">Check out our Latest News!</span>
+                    </div>
+                    <div class="col-md-12 align-self-center order-1">
+                        <ul class="breadcrumb d-block text-center">
+                            <li><a href="#">Home</a></li>
+                            <li class="active">Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+				<div class="container py-4">
+
+					<div class="row">
+						<div class="col">
+							<div class="blog-posts">
+
+								<div class="row">
+                                    {% for article in object_list %}
+									<div class="col-md-4 col-lg-3">
+										<article class="post post-medium border-0 pb-0 mb-5">
+											<div class="post-image">
+												<a href="{{ article.get_absolute_url }}">
+													<img src="{{ article.image.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+												</a>
+											</div>
+
+											<div class="post-content">
+
+												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+                                                    <a href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:40 }}</a>
+                                                </h2>
+												<p>{{ article.text|safe|truncatechars:80 }}</p>
+
+												<div class="post-meta">
+													<span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
+													<span><i class="far fa-folder"></i> {% for category in categories %}  <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>, {% endfor %}  </span>
+													<span><i class="far fa-calendar"></i> <a href="#">{{ article.published|date }}</a></span>
+													<span class="d-block mt-2"><a href="{{ article.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+												</div>
+
+											</div>
+										</article>
+									</div>
+                                    {% endfor %}
+
+
+								</div>
+
+								<div class="row">
+									<div class="col">
+										<ul class="pagination float-end">
+											<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+											<li class="page-item active"><a class="page-link" href="#">1</a></li>
+											<li class="page-item"><a class="page-link" href="#">2</a></li>
+											<li class="page-item"><a class="page-link" href="#">3</a></li>
+											<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+{% endblock %}

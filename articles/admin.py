@@ -25,15 +25,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'timestamp', 'publish']
-    list_filter = ['publish', 'category', 'city']
+    list_display = ['title', 'timestamp', 'category_favorite', 'category_featured', 'featured','publish']
+    list_filter = ['publish', 'category', 'city', 'category_favorite', 'category_featured', 'featured']
     readonly_fields = ['timestamp', 'published', 'edited', ]
     inlines = [PhotosInline, ]
     fieldsets = (
         ('publish', {
             'fields': (
-                ('timestamp', 'published'),
-                ('featured', 'publish', 'edited'),
+                ('timestamp', 'published', 'edited',),
+                ('publish', 'featured', 'category_favorite', 'category_featured',),
                 'title'
             )
         }),

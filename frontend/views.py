@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from articles.models import Article, ArticleCategory
 from myAds.models import MyAd
 from articles.models import Article
-
+from companies.models import Company
 import random
 
 
@@ -15,8 +15,9 @@ class HomepageView(TemplateView):
         context = super(HomepageView, self).get_context_data(**kwargs)
         context['page_title'] = 'Αρχική Σελίδα'
         featured_articles = Article.my_query.featured()
-        context['featured_articles'] = featured_articles[1:4]
+        context['featured_articles'] = featured_articles[1:]
         context['main_article'] = featured_articles.first() if featured_articles.exists() else None
+        context['companies'] = Company.my_query.active()
         return context
 
 
@@ -25,11 +26,21 @@ class CategoryListView(ListView):
     template_name = 'list_view.html'
     paginate_by = 32
 
-    def get_queryset(self):
-        slug = self.request.kwargs['slug']
+    def dispatch(self, request, *args, **kwargs):
+        slug = self.kwargs['slug']
         category = get_object_or_404(ArticleCategory, slug=slug)
-        qs = self.model.objects.filter(category=category)
+        self.category = category
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = self.model.objects.filter(category=self.category)
         return self.model.filter_data(self.request, qs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        context['categories'] = ArticleCategory.objects.filter(parent=self.category)
+        context['category'] = self.category
+        return context
 
 
 class SearchPageView(ListView):

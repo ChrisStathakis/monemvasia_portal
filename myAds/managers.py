@@ -7,7 +7,7 @@ class MyAdsManager(models.Manager):
         return self.filter(active=True)
 
     def navbar_ads(self):
-        return self.active().filter(category='a')[:3]
+        return self.active().filter(category='a')
 
     def page_ads(self):
         return self.active().filter(category='c')

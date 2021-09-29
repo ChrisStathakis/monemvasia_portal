@@ -1,6 +1,6 @@
 {% load static %}
 <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 122, 'stickySetTop': '-122px', 'stickyChangeLogo': false}">
-				<div class="header-body border-color-primary border-top-0 box-shadow-none">
+    <div class="header-body border-color-primary border-top-0 box-shadow-none">
 					<div class="header-container container z-index-2" style="min-height: 122px;">
 						<div class="header-row">
 							<div class="header-column">
@@ -15,8 +15,8 @@
 							</div>
 							<div class="header-column justify-content-end">
 								<div class="header-row h-100">
-									<a href="{{ navbar_ads_choice.url }}" {% if navbar_ads_choice.url_blank %} target="_blank" {% endif %} class="py-3 d-block">
-										<img alt="no image" class="img-fluid ps-3" src="{{ navbar_ads_choice.image }}" />
+									<a href="{{ navbar_ads_choice.image.url }}" {% if navbar_ads_choice.url_blank %} target="_blank" {% endif %} class="py-3 d-block">
+										<img alt="no image" class="img-fluid ps-3" src="{{ navbar_ads_choice.image.url }}" />
 									</a>
 								</div>
 							</div>
