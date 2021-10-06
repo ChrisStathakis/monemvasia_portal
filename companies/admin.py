@@ -34,13 +34,13 @@ class CompanyAdmin(admin.ModelAdmin):
             'fields': (
                 ('title', 'logo', 'image',),
                 ('phone', 'website', 'city', 'owner', ),
-                ('category', 'slug')
+                ('category', )
             )
         }),
         ('rest', {
             'fields': (
                 'description',
-                ('counter',)
+                ('counter', 'slug')
             )
         }),
 

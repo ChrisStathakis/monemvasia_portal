@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.shortcuts import get_object_or_404
 
-from companies.models import Company, CompanyCategory, City
+from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
 from jobPostings.models import JobPost
 
 
@@ -17,6 +17,17 @@ class HomepageView(TemplateView):
         context['last_five_jobs'] = JobPost.objects.all()[:5]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
 
+        return context
+
+
+class CompanyDetailView(DetailView):
+    model = Company
+    queryset = Company.my_query.active()
+    template_name = 'detail_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyDetailView, self).get_context_data(**kwargs)
+        context['detail'] = CompanyInformation.objects.get_or_create(company=self.object)
         return context
 
 
@@ -43,25 +54,34 @@ class CategoryListView(ListView):
 
 
 class CityListView(ListView):
-    template_name = 'list_view.html'
+    template_name = 'city_list_view.html'
     model = City
     queryset = City.objects.filter(active=True)
 
     def get_context_data(self, **kwargs):
         context = super(CityListView, self).get_context_data(**kwargs)
-
+        context['page_title'] = 'ΠΕΡΙΟΧΕΣ'
         return context
 
 
-class CityDetailView(DetailView):
-    template_name = 'detail_view.html'
-    model = City
-    queryset = City.objects.filter(active=True)
+class CityDetailView(ListView):
+    template_name = 'city_detail_view.html'
+    model = Company
+
+    def dispatch(self, request, *args, **kwargs):
+        slug = self.kwargs['slug']
+        category = get_object_or_404(City, slug=slug)
+        self.city = category
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.filter_data(self.request, self.city.company_set.all())
 
     def get_context_data(self, **kwargs):
         context = super(CityDetailView, self).get_context_data(**kwargs)
-
+        context['company_categories'] = BUSINESS_TYPE
         return context
+
 
 class SearchPageView(ListView):
     model = Company

@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from frontend.models import City
 
@@ -9,6 +10,13 @@ from .managers import CompanyManager
 import datetime
 
 User = get_user_model()
+
+BUSINESS_TYPE = (
+        ('1', 'ΕΜΠΟΡΙΟ'),
+        ('2', 'ΕΣΤΙΑΣΗ'),
+        ('3', 'ΥΠΗΡΕΣΙΕΣ'),
+        ('4', 'ΜΕΙΚΤΟ')
+    )
 
 
 def upload_to(instance, filename):
@@ -30,12 +38,7 @@ class Company(models.Model):
         ('2', 'Second. Subscription Cost: 40'),
         ('3', 'Third. Subscription Cost:  30')
     )
-    BUSINESS_TYPE = (
-        ('1', 'ΕΜΠΟΡΙΟ'),
-        ('2', 'ΕΣΤΙΑΣΗ'),
-        ('3', 'ΥΠΗΡΕΣΙΕΣ'),
-        ('4', 'ΜΕΙΚΤΟ')
-    )
+
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
     featured = models.BooleanField(default=False)
     first_choice = models.BooleanField(default=False)
@@ -70,9 +73,27 @@ class Company(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('company_view', kwargs={'slug': self.slug})
+
     @staticmethod
     def filter_data(request, qs):
         return qs
+
+
+class CompanyInformation(models.Model):
+    company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
+    background_image = models.ImageField(help_text='1970*550', blank=True)
+    logo_image = models.ImageField(help_text='718*982', blank=True)
+    small_image = models.ImageField(help_text='247*232', blank=True)
+    address = models.TextField(blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    cellphone = models.CharField(max_length=20, blank=True)
+    website = models.URLField(blank=True)
+
+
+    def __str__(self):
+        return self.company.title
 
 
 class CompanyItems(models.Model):
