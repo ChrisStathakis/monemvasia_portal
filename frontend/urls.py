@@ -1,6 +1,9 @@
 from django.urls import path
 
-from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView)
+from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView,
+
+                    CityListView, CityDetailView
+                    )
 
 
 urlpatterns = [
@@ -8,5 +11,8 @@ urlpatterns = [
     path('category/<str:slug>/', CategoryListView.as_view(), name='category'),
     path('search/', SearchPageView.as_view(), name='search'),
     path('article/<str:slug>/', ArticleDetailView.as_view(), name='article'),
-    path('contact/', ContactView.as_view(), name='contact')
+    path('contact/', ContactView.as_view(), name='contact'),
+
+    path('πολεις/', CityListView.as_view(), name='cities'),
+    path('πολη/<str:slug>/', CityDetailView.as_view(), name='city_detail')
 ]

@@ -41,10 +41,10 @@ INSTALLED_APPS = [
 
     'frontend',
     'myAds',
-    'articles',
+
     'companies',
     'jobPostings',
-
+    'articles',
     'tinymce',
 
 ]
@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'myAds.context_processors.get_ads',
-                'articles.context_processor.get_data',
+                'companies.context_processors.navbar_categories',
             ],
         },
     },
