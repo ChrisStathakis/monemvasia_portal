@@ -45,7 +45,6 @@ class Company(models.Model):
     category = models.ManyToManyField(CompanyCategory, null=True, blank=True)
     status = models.BooleanField(default=False)
     subscription_ends = models.DateField(null=True)
-    image = models.ImageField(upload_to='companies/images/', help_text='400*400', null=True)
     logo = models.ImageField(upload_to='companies/logo/', null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_OPTIONS, default='3')
     item_support = models.BooleanField(default=False)
@@ -53,10 +52,8 @@ class Company(models.Model):
     title = models.CharField(max_length=200)
     city = models.ForeignKey(City, blank=True, null=True, on_delete=models.SET_NULL)
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=200)
-    website = models.CharField(max_length=200)
-    description = HTMLField(blank=True, null=True)
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
+
     my_query = CompanyManager()
     objects = models.Manager()
 
@@ -90,7 +87,9 @@ class CompanyInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True)
     cellphone = models.CharField(max_length=20, blank=True)
     website = models.URLField(blank=True)
-
+    description = HTMLField(blank=True, null=True)
+    facebook_url = models.URLField(blank=True, null=True)
+    instagram_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.company.title
@@ -98,9 +97,24 @@ class CompanyInformation(models.Model):
 
 class CompanyItems(models.Model):
     title = models.CharField(max_length=200)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='products')
     image = models.ImageField()
     price = models.DecimalField(max_digits=20, decimal_places=2)
 
     def __str__(self) -> str:
         return self.title
+
+
+class CompanyService(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
+    title = models.CharField(max_length=250)
+    text = HTMLField()
+    price = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+
+    class Meta:
+        verbose_name_plural = 'ΥΠΗΡΕΣΙΕΣ'
+        verbose_name = 'ΥΠΗΡΕΣΙΑ'
+
+    def __str__(self):
+        return self.title
+

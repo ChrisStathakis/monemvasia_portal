@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, CompanyItems, CompanyCategory
+from .models import Company, CompanyItems, CompanyCategory, CompanyService
 
 
 @admin.register(CompanyCategory)
@@ -8,6 +8,12 @@ class CompanyCategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'parent']
     list_filter = ['parent', ]
     list_select_related = ['parent', ]
+
+
+@admin.register(CompanyService)
+class CompanyServiceAdmin(admin.ModelAdmin):
+    list_display = ['title', 'company']
+    list_filter = ['company']
 
 
 class CompanyItemsInline(admin.TabularInline):
@@ -32,8 +38,8 @@ class CompanyAdmin(admin.ModelAdmin):
         }),
         ('Info', {
             'fields': (
-                ('title', 'logo', 'image',),
-                ('phone', 'website', 'city', 'owner', ),
+                ('title', 'logo'),
+                ('city', 'owner', ),
                 ('category', )
             )
         }),

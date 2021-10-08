@@ -13,8 +13,8 @@
 		<meta name="author" content="okler.net">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static 'assets/' %}img/favicon.ico" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="{% static 'assets/' %}img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -23,31 +23,31 @@
 		<link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/fontawesome-free/css/all.min.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/animate/animate.compat.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/simple-line-icons/css/simple-line-icons.min.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/owl.carousel/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/owl.carousel/assets/owl.theme.default.min.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}vendor/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/animate/animate.compat.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/vendor/magnific-popup/magnific-popup.min.css' %}">
 
 		<!-- Theme CSS -->
-		<link rel="stylesheet" href="{% static 'assets/' %}css/theme.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}css/theme-elements.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}css/theme-blog.css">
-		<link rel="stylesheet" href="{% static 'assets/' %}css/theme-shop.css">
+		<link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/theme-elements.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/theme-blog.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/theme-shop.css' %}">
 
 		<!-- Demo CSS -->
-		<link rel="stylesheet" href="{% static 'assets/' %}css/demos/demo-resume.css">
+		<link rel="stylesheet" href="{% static 'assets/css/demos/demo-resume.css' %}">
 
 		<!-- Skin CSS -->
-		<link id="skinCSS" rel="stylesheet" href="{% static 'assets/' %}css/skins/skin-resume-green.css">
+		<link id="skinCSS" rel="stylesheet" href="{% static 'assets/css/skins/skin-resume-green.css' %}">
 
 		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="{% static 'assets/' %}css/custom.css">
+		<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
 
 		<!-- Head Libs -->
-		<script src="{% static 'assets/' %}vendor/modernizr/modernizr.min.js"></script>
+		<script src="{% static 'assets/vendor/modernizr/modernizr.min.js' %}"></script>
 
 	</head>
 	<body data-plugin-scroll-spy data-plugin-options="{'target': '.wrapper-spy'}">
@@ -81,6 +81,7 @@
 															<span class="custom-tooltip text-color-dark">Education</span>
 														</a>
 													</li>
+                                                    {% comment %}
 													<li>
 														<a data-hash href="#skills" class="nav-link text-color-dark bg-color-primary">
 															<i class="icon-graduation icons"></i>
@@ -99,16 +100,17 @@
 															<span class="custom-tooltip text-color-dark">Recommendations</span>
 														</a>
 													</li>
+													{% endcomment %}
 													<li>
 														<a data-hash href="#blog" class="nav-link text-color-dark bg-color-primary">
 															<i class="icon-bubbles icons"></i>
-															<span class="custom-tooltip text-color-dark">Blog</span>
+															<span class="custom-tooltip text-color-dark">ΠΡΟΪΟΝΤΑ</span>
 														</a>
 													</li>
 													<li>
 														<a data-hash href="#say-hello" class="nav-link text-color-dark bg-color-primary">
 															<i class="icon-envelope-open icons"></i>
-															<span class="custom-tooltip text-color-dark">Say Hello</span>
+															<span class="custom-tooltip text-color-dark">ΕΠΙΚΟΙΝΩΝΙΑ</span>
 														</a>
 													</li>
 												</ul>
@@ -128,52 +130,48 @@
 			<div role="main" class="main">
 
 			<div id="about-me">
-				<section class="section section-no-border section-parallax bg-transparent custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}"
-                         data-image-src="{% static 'assets/' %}img/demos/resume/about-me/about-me-bg-1.jpg">
+				<section class="section section-no-border section-parallax bg-transparent custom-section-padding-1 custom-position-1 custom-xs-bg-size-cover parallax-no-overflow m-0"
+                         data-plugin-parallax data-plugin-options="{'speed': 1.5}"
+                         data-image-src="{{ detail.background_image.url }}">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-4 position-relative custom-sm-margin-bottom-1">
-								<img src="{% static 'assets/' %}img/demos/resume/about-me/me.jpg" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
+								<img src="{{ detail.logo_image }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
 							</div>
 							<div class="col-lg-6 col-xl-5">
-								<h1 class="text-color-primary custom-font-size-1">Adam Doe</h1>
-								<p class="text-color-light font-weight-normal custom-font-size-2 custom-margin-bottom-1">Chief Product Officer at Okler Themes</p>
+								<h1 class="text-color-primary custom-font-size-1">{{ object }}</h1>
+								<p class="text-color-light font-weight-normal custom-font-size-2 custom-margin-bottom-1">{{ object.get_business_type_display }}</p>
 								<span class="custom-about-me-infos">
-									<span class="custom-text-color-1 text-uppercase">Greater New York area</span>
-									<span class="custom-text-color-1 text-uppercase mb-3">Information Technology &amp; Services</span>
+                                    {% for category in object.category.all %}
 									<span class="custom-text-color-1 text-uppercase">
 										<strong class="text-color-light">Previous: </strong>
-										Front-End Developer at Porto
-										<a data-hash href="#experience" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ms-2">View More</a>
+										    {{ category }}
+										<a data-hash href="{{ category.get_absolute_url }}" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ms-2">Περισσοτερα</a>
 									</span>
-									<span class="custom-text-color-1 text-uppercase">
-										<strong class="text-color-light">Education: </strong>
-										Porto School
-										<a data-hash href="#education" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ms-2">View More</a>
-									</span>
+                                    {% endfor %}
+
 								</span>
 							</div>
 							<div class="col-lg-2 col-xl-3 d-none d-lg-block">
-								<img src="{% static 'assets/' %}img/demos/resume/about-me/mouse.png" custom-anim class="img-fluid custom-image-pos-1" alt />
+								<img src="{% static 'assets/img/demos/resume/about-me/mouse.png' %}" custom-anim class="img-fluid custom-image-pos-1" alt />
 							</div>
 						</div>
 					</div>
 					<ul class="social-icons custom-social-icons">
+                        {% if detail.facebook_url %}
 						<li class="social-icons-facebook">
-							<a href="http://www.facebook.com/" target="_blank" title="Facebook">
+							<a href="{{ detail.facebook_url }}" target="_blank" title="Facebook">
 								<i class="fab fa-facebook-f"></i>
 							</a>
 						</li>
-						<li class="social-icons-twitter">
-							<a href="http://www.twitter.com/" target="_blank" title="Twitter">
-								<i class="fab fa-twitter"></i>
-							</a>
-						</li>
+                        {% endif %}
+						{% if detail.instagram_url %}
 						<li class="social-icons-youtube">
-							<a href="http://www.youtube.com/" target="_blank" title="Youtube">
-								<i class="fab fa-youtube"></i>
+							<a href="{{ detail.instagram_url }}" target="_blank" title="Youtube">
+								<i class="fab fa-instagram"></i>
 							</a>
 						</li>
+                    {% endif %}
 					</ul>
 				</section>
 
@@ -189,7 +187,7 @@
 								</a>
 							</div>
 							<div class="col-lg-2 text-center custom-xs-border-bottom p-0">
-								<a data-hash href="#say-hello" class="text-decoration-none">
+								<a data-hash href="#experience" class="text-decoration-none">
 									<span class="custom-nav-button custom-divisors text-color-dark">
 										<i class="icon-envelope-open icons text-color-primary"></i>
 										ΥΠΗΡΕΣΙΕΣ
@@ -220,15 +218,15 @@
 											<ul class="custom-list-style-1 p-0 mb-0">
 												<li>
 													<span class="text-color-dark">ΕΙΔΟΣ:</span>
-													<span class="custom-text-color-2">1990 October 2</span>
+													<span class="custom-text-color-2">{{ object.get_business_type_display }}</span>
 												</li>
 												<li>
 													<span class="text-color-dark">ΠΕΡΙΟΧΗ:</span>
-													<span class="custom-text-color-2">Single</span>
+													<span class="custom-text-color-2">{{ object.city }}</span>
 												</li>
 												<li>
 													<span class="text-color-dark">ΔΙΕΥΘΥΝΣΗ:</span>
-													<span class="custom-text-color-2">American</span>
+													<span class="custom-text-color-2">{{ detail.address }}</span>
 												</li>
 											</ul>
 										</div>
@@ -236,34 +234,30 @@
 											<ul class="custom-list-style-1 p-0 mb-0">
 												<li>
 													<span class="text-color-dark">ΤΗΛΕΦΩΝΟ:</span>
-													<span class="custom-text-color-2"><a class="custom-text-color-2" href="skype:yourskype?chat">yourskype</a></span>
+													<span class="custom-text-color-2"><a class="custom-text-color-2" href="skype:yourskype?chat">{{ detail.phone }}</a></span>
 												</li>
 												<li>
 													<span class="text-color-dark">ΚΙΝΗΤΟ:</span>
-													<span class="custom-text-color-2"><a class="custom-text-color-2" href="tel:123456789">123-456-789</a></span>
+													<span class="custom-text-color-2"><a class="custom-text-color-2" href="tel:123456789">{{ detail.cellphone }}</a></span>
 												</li>
 												<li>
 													<span class="text-color-dark">WEBSITE:</span>
-													<span class="custom-text-color-2"><a class="custom-text-color-2" href="mailto:me@domain.com">me@domain.com</a></span>
+													<span class="custom-text-color-2"><a class="custom-text-color-2" href="mailto:me@domain.com">{{ detail.website }}</a></span>
 												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
 
-								<h2 class="text-color-dark font-weight-extra-bold text-uppercase">About Me</h2>
+								<h2 class="text-color-dark font-weight-extra-bold text-uppercase">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</h2>
 
-								<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 
-								<div class="about-me-more" id="aboutMeMore">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique nec. Nulla lobortis leo eget metus dapibus sodales. Sed placerat vitae dui vitae vehicula. Quisque in tincidunt ligula, nec dignissim arcu. Praesent aliquam velit vel libero dictum, non sollicitudin lectus mollis. Morbi sollicitudin auctor gravida. Vivamus vitae dui non lorem euismod pretium. Morbi congue sem sed ex iaculis, nec mattis felis pretium. Nullam molestie libero id odio blandit sodales. Suspendisse non mauris et felis molestie placerat aliquet a risus. Aliquam ac leo tempus, hendrerit eros mollis, gravida est.</p>
 
-									<p>Proin euismod ipsum a tellus condimentum dapibus. Integer porttitor felis elit, eget rutrum ligula commodo quis. Praesent ultricies neque eu mi congue blandit. Nulla feugiat feugiat aliquet. Morbi sed mattis erat. Nullam scelerisque molestie eros, id tristique felis iaculis non. Duis pellentesque neque eget iaculis varius. Donec at nisl semper, aliquam est id, tincidunt lacus. Donec at erat purus.</p>
-
-									<p>Morbi tincidunt nunc non diam porta, at fermentum orci bibendum. Donec arcu nisi, ornare nec commodo vitae, sollicitudin sed magna. Cras sit amet justo et nulla pulvinar laoreet. Phasellus scelerisque, metus id posuere vulputate, diam tellus iaculis sapien, eget scelerisque ipsum libero convallis velit. Duis lorem ligula, faucibus quis tellus nec, fringilla ultricies leo. Etiam tempus congue magna. Suspendisse porta dictum tortor, eu volutpat ipsum eleifend nec. Aliquam dapibus lorem luctus, cursus libero imperdiet, mattis nunc. Sed in ipsum diam. Quisque efficitur metus purus, vitae fermentum lacus venenatis id.</p>
+								<div>
+								    {{ detail.description|safe }}
 								</div>
 
-								<a id="aboutMeMoreBtn" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1" href="#">View More</a>
+
 
 							</div>
 						</div>
@@ -275,12 +269,14 @@
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<h2 class="text-color-dark text-uppercase font-weight-extra-bold">Experience</h2>
+							<h2 class="text-color-dark text-uppercase font-weight-extra-bold">ΥΠΗΡΕΣΙΕΣ</h2>
 							<section class="timeline custom-timeline" id="timeline">
 								<div class="timeline-body">
-									<article class="timeline-box right custom-box-shadow-2">
+                                    {% for service in object.services.all %}
+									    <article class="timeline-box right custom-box-shadow-2">
 										<div class="row">
 											<div class="experience-info col-lg-3 col-sm-5 bg-color-primary">
+                                                {% comment %}
 												<span class="from text-color-light text-uppercase">
 													From
 													<span class="font-weight-semibold">Sep 2012</span>
@@ -290,64 +286,23 @@
 													<span class="font-weight-semibold">Present</span>
 												</span>
 												<p class="text-color-light">(3 Years 9 Months)</p>
+												{% endcomment %}
 												<span class="company text-color-light font-weight-semibold">
-													Okler Themes
-													<span class="company-location text-color-light font-weight-normal text-uppercase">Greater New York</span>
+													ΚΟΣΤΟΛΟΓΗΣΗ
+													<span class="company-location text-color-light font-weight-normal text-uppercase">{{ service.tag_price }}</span>
 												</span>
 											</div>
 											<div class="experience-description col-lg-9 col-sm-7 bg-color-light">
-												<h4 class="text-color-dark font-weight-semibold">Chief Product Officer</h4>
-												<p class="custom-text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique nec. Nulla lobortis leo eget metus dapibus sodales. Sed placerat vitae dui vitae vehicula. Quisque in tincidunt ligula, nec dignissim arcu.</p>
+												<h4 class="text-color-dark font-weight-semibold">{{ service.title }}</h4>
+												<p class="custom-text-color-2">
+                                                    {{ service.text|safe }}
+                                                </p>
 											</div>
 										</div>
 									</article>
-									<article class="timeline-box right custom-box-shadow-2">
-										<div class="row">
-											<div class="experience-info col-lg-3 col-sm-5 bg-color-primary">
-												<span class="from text-color-light text-uppercase">
-													From
-													<span class="font-weight-semibold">Sep 2012</span>
-												</span>
-												<span class="to text-color-light text-uppercase">
-													To
-													<span class="font-weight-semibold">Present</span>
-												</span>
-												<p class="text-color-light">(3 Years 9 Months)</p>
-												<span class="company text-color-light font-weight-semibold">
-													Okler Themes
-													<span class="company-location text-color-light font-weight-normal text-uppercase">Greater New York</span>
-												</span>
-											</div>
-											<div class="experience-description col-lg-9 col-sm-7 bg-color-light">
-												<h4 class="text-color-dark font-weight-semibold">Chief Product Officer</h4>
-												<p class="custom-text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique nec. Nulla lobortis leo eget metus dapibus sodales. Sed placerat vitae dui vitae vehicula. Quisque in tincidunt ligula, nec dignissim arcu.</p>
-											</div>
-										</div>
-									</article>
-									<article class="timeline-box right custom-box-shadow-2">
-										<div class="row">
-											<div class="experience-info col-lg-3 col-sm-5 bg-color-primary">
-												<span class="from text-color-light text-uppercase">
-													From
-													<span class="font-weight-semibold">Sep 2012</span>
-												</span>
-												<span class="to text-color-light text-uppercase">
-													To
-													<span class="font-weight-semibold">Present</span>
-												</span>
-												<p class="text-color-light">(3 Years 9 Months)</p>
-												<span class="company text-color-light font-weight-semibold">
-													Okler Themes
-													<span class="company-location text-color-light font-weight-normal text-uppercase">Greater New York</span>
-												</span>
-											</div>
-											<div class="experience-description col-lg-9 col-sm-7 bg-color-light">
-												<h4 class="text-color-dark font-weight-semibold">Chief Product Officer</h4>
-												<p class="custom-text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique nec. Nulla lobortis leo eget metus dapibus sodales. Sed placerat vitae dui vitae vehicula. Quisque in tincidunt ligula, nec dignissim arcu.</p>
-											</div>
-										</div>
-									</article>
-									<div class="timeline-bar"></div>
+                                    {% endfor %}
+
+
 								</div>
 							</section>
 						</div>
@@ -359,7 +314,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<h2 class="text-color-quaternary text-uppercase font-weight-extra-bold m-0">Education</h2>
+							<h2 class="text-color-quaternary text-uppercase font-weight-extra-bold m-0">ΕΚΠΑΙΔΕΥΣΗ</h2>
 							<div class="owl-carousel nav-bottom custom-dots-style-1 custom-dots-color-1 custom-dots-color-1-dark mb-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': true, 'nav': false}">
 								<div class="row">
 									<div class="col-lg-6 col-sm-6 pb-4">
@@ -421,98 +376,8 @@
 				</div>
 			</section>
 
-			<section id="skills" class="section section-no-border bg-color-light m-0">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-md-6 col-lg-8 mb-4 mb-md-0">
-							<div class="row">
-								<div class="col-lg-6">
-									<h2 class="text-color-dark text-uppercase font-weight-extra-bold">Skills & Language</h2>
-									<div class="progress-bars custom-progress-bars">
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Start Up</span>
-										</div>
 
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="60%"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Innovation</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="80%" data-appear-animation-delay="300"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Products</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="70%" data-appear-animation-delay="600"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>CSS</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="90%" data-appear-animation-delay="900"></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="progress-bars custom-progress-bars custom-md-margin-top-1">
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Javascript</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="60%"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Business</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="80%" data-appear-animation-delay="300"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>E-commerce</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="70%" data-appear-animation-delay="600"></div>
-										</div>
-										<div class="progress-label text-color-dark font-weight-semibold text-uppercase text-2">
-											<span>Creative</span>
-										</div>
-										<div class="progress mb-2">
-											<div class="progress-bar" data-appear-progress-animation="90%" data-appear-animation-delay="900"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="row">
-								<div class="col">
-									<div class="custom-box-details bg-color-light custom-box-shadow-1">
-										<h4 class="text-color-dark">Languages</h4>
-										<ul class="custom-list-style-1 p-0">
-											<li>
-												<span class="font-weight-semibold custom-max-width-1 text-color-dark"><img src="img/blank.gif" class="flag flag-us me-1" alt="English">English:</span>
-												<span class="custom-text-color-2">Advanced</span>
-											</li>
-											<li>
-												<span class="font-weight-semibold custom-max-width-1 text-color-dark"><img src="img/blank.gif" class="flag flag-es me-1" alt="Spanish">Spanish:</span>
-												<span class="custom-text-color-2">Advanced</span>
-											</li>
-											<li>
-												<span class="font-weight-semibold custom-max-width-1 text-color-dark"><img src="img/blank.gif" class="flag flag-fr me-1" alt="Française">French:</span>
-												<span class="custom-text-color-2">Basic</span>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
+            {% comment %}
 			<section id="portfolio" class="section section-no-border bg-color-secondary m-0">
 				<div class="container">
 					<div class="row">
@@ -666,15 +531,16 @@
 					</div>
 				</div>
 			</section>
-
+            {% endcomment %}
 			<section id="blog" class="section section-no-border bg-color-light m-0">
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<h2 class="text-color-quaternary font-weight-extra-bold text-uppercase">My Blog</h2>
+							<h2 class="text-color-quaternary font-weight-extra-bold text-uppercase">Προϊόντα</h2>
 
 							<div class="row">
-								<div class="col-lg-6 mb-5 mb-lg-0">
+                                {% for product in object.products.all %}
+								    <div class="col-lg-6 mb-5 mb-lg-0">
 									<article class="thumb-info custom-thumb-info-2 custom-box-shadow-1 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="0" data-appear-animation-duration="1s">
 										<div class="thumb-info-wrapper">
 											<a href="#">
@@ -713,50 +579,11 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-lg-6">
-									<article class="thumb-info custom-thumb-info-2 custom-box-shadow-1 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="0" data-appear-animation-duration="1s">
-										<div class="thumb-info-wrapper">
-											<a href="#">
-												<img src="img/demos/resume/blog/blog-2.jpg" alt class="img-fluid" />
-											</a>
-										</div>
-										<div class="thumb-info-caption">
-											<div class="thumb-info-caption-text">
-												<h4 class="mb-2">
-													<a href="#" class="text-decoration-none text-color-dark font-weight-semibold">
-														UI, UX Concepts
-													</a>
-												</h4>
-												<p class="custom-text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique...</p>
-											</div>
-											<hr class="solid m-0 mt-4 mb-2">
-											<div class="row justify-content-between">
-												<div class="col-auto custom-blog-post-date text-uppercase font-weight-semibold text-color-dark text-2">
-													July 12-2021
-												</div>
-												<div class="col-auto custom-blog-post-share text-uppercase font-weight-semibold text-color-dark text-2">
-													Share:
-													<ul class="mb-0">
-														<li>
-															<a class="item-facebook text-decoration-none text-uppercase" href="#" title="Share on Facebook">Facebook</a>
-														</li>
-														<li>
-															<a class="item-twitter text-decoration-none text-uppercase" href="#" title="Share on Twitter">Twitter</a>
-														</li>
-														<li>
-															<a class="item-google-plus text-decoration-none text-uppercase" href="#" title="Share on Google Plus">Google Plus</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</article>
-								</div>
+                                {% endfor %}
+
 							</div>
 						</div>
-						<div class="col-lg-12 col-sm-12 pt-4 mt-4 text-center">
-							<a class="btn btn-primary btn-outline custom-btn-style-2 font-weight-bold custom-border-radius-1 text-uppercase">View All</a>
-						</div>
+
 					</div>
 				</div>
 			</section>
@@ -837,15 +664,18 @@
 										<span class="custom-feature-box-icon">
 											<i class="icon-share icons text-color-light"></i>
 										</span>
-										<a href="http://www.facebook.com" class="d-flex text-decoration-none">
+                                        {% if detail.facebook_url %}
+										<a href="{{ facebook.url }}" class="d-flex text-decoration-none">
 											<span class="feature-box-info">
 												<span class="custom-label font-weight-semibold text-uppercase custom-text-color-1 line-height-5">Follow me</span>
 												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Facebook</strong>
 											</span>
 										</a>
+                                        {% endif %}
+
 										<a href="http://www.twitter.com" class="d-flex text-decoration-none">
 											<span class="feature-box-info custom-both-side-border mt-2">
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Twitter</strong>
+												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Instagram</strong>
 											</span>
 										</a>
 										<a href="http://www.linkedin.com" class="d-flex text-decoration-none">
@@ -875,35 +705,35 @@
 		</div>
 
 		<!-- Vendor -->
-		<script src="{% static 'assets/' %}vendor/jquery/jquery.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.appear/jquery.appear.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.easing/jquery.easing.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.cookie/jquery.cookie.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.validation/jquery.validate.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/jquery.gmap/jquery.gmap.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/lazysizes/lazysizes.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/isotope/jquery.isotope.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/owl.carousel/owl.carousel.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/vide/jquery.vide.min.js"></script>
-		<script src="{% static 'assets/' %}vendor/vivus/vivus.min.js"></script>
+		<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.appear/jquery.appear.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.cookie/jquery.cookie.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.validation/jquery.validate.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.gmap/jquery.gmap.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/lazysizes/lazysizes.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/isotope/jquery.isotope.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/vide/jquery.vide.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/vivus/vivus.min.js' %}"></script>
 
 		<!-- Theme Base, Components and Settings -->
-		<script src="{% static 'assets/' %}js/theme.js"></script>
+		<script src="{% static 'assets/js/theme.js' %}"></script>
 
 		<!-- Current Page Vendor and Views -->
-		<script src="{% static 'assets/' %}js/views/view.contact.js"></script>
+		<script src="{% static 'assets/js/views/view.contact.js' %}"></script>
 
 		<!-- Demo -->
-		<script src="{% static 'assets/' %}js/demos/demo-resume.js"></script>
+		<script src="{% static 'assets/js/demos/demo-resume.js' %}"></script>
 
 		<!-- Theme Custom -->
-		<script src="{% static 'assets/' %}js/custom.js"></script>
+		<script src="{% static 'assets/js/custom.js' %}"></script>
 
 		<!-- Theme Initialization Files -->
-		<script src="{% static 'assets/' %}js/theme.init.js"></script>
+		<script src="{% static 'assets/js/theme.init.js' %}"></script>
 
 	</body>
 </html>
