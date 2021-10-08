@@ -26,10 +26,16 @@ def upload_to(instance, filename):
 class CompanyCategory(models.Model):
     title = models.CharField(max_length=220)
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
-    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL, related_name='childrens')
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
+
+    def have_childrens(self):
+        return self.childrens.exists()
 
 
 class Company(models.Model):
@@ -98,8 +104,13 @@ class CompanyInformation(models.Model):
 class CompanyItems(models.Model):
     title = models.CharField(max_length=200)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='products')
-    image = models.ImageField()
+    image = models.ImageField(help_text='400*400', upload_to='products')
+    text = HTMLField(blank=True, null=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
+
+    class Meta:
+        verbose_name_plural = 'ΠΡΟΪΟΝΤΑ'
+        verbose_name = 'ΠΡΟΪΟΝ'
 
     def __str__(self) -> str:
         return self.title

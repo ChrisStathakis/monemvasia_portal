@@ -1,79 +1,215 @@
 {% extends 'index.html' %}
 
-
 {% block content %}
-    <div role="main" class="main">
-        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 align-self-center p-static order-2 text-center">
-                        <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
-                        <span class="sub-title text-dark">Check out our Latest News!</span>
-                    </div>
-                    <div class="col-md-12 align-self-center order-1">
-                        <ul class="breadcrumb d-block text-center">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Blog</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div role="main" class="main">
 
+				<section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 align-self-center p-static order-2 text-center">
+								<h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+								<br />
+							</div>
+							<div class="col-md-12 align-self-center order-1">
+								<ul class="breadcrumb d-block text-center">
+									<li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+									<li class="active">{{ category }}</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
 
 				<div class="container py-4">
 
 					<div class="row">
-						<div class="col">
-							<div class="blog-posts">
-
-								<div class="row">
-                                    {% for article in object_list %}
-									<div class="col-md-4 col-lg-3">
-										<article class="post post-medium border-0 pb-0 mb-5">
-											<div class="post-image">
-												<a href="{{ article.get_absolute_url }}">
-													<img src="{{ article.image.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-												</a>
-											</div>
-
-											<div class="post-content">
-
-												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-                                                    <a href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:40 }}</a>
-                                                </h2>
-												<p>{{ article.text|safe|truncatechars:80 }}</p>
-
-												<div class="post-meta">
-													<span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
-													<span><i class="far fa-folder"></i> {% for category in categories %}  <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>, {% endfor %}  </span>
-													<span><i class="far fa-calendar"></i> <a href="#">{{ article.published|date }}</a></span>
-													<span class="d-block mt-2"><a href="{{ article.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
-												</div>
-
-											</div>
-										</article>
+						<div class="col-lg-3">
+							<aside class="sidebar">
+								<form method="get">
+									<div class="input-group mb-3 pb-1">
+										<input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
+										<button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
 									</div>
+								</form>
+								<h5 class="font-weight-semi-bold pt-4">ΚΑΤΗΓΟΡΙΕΣ</h5>
+								<ul class="nav nav-list flex-column mb-5">
+                                    {% for parent in my_categories %}
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="{{ parent.get_absolute_url }}">{{ parent }}</a>
+                                            {% if category.have_childrens %}
+                                            <ul>
+                                                {% for children in parent.childrens.all %}
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{ children.get_absolute_url }}">{{ children }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                            {% endif %}
+                                        </li>
                                     {% endfor %}
 
-
-								</div>
-
-								<div class="row">
-									<div class="col">
-										<ul class="pagination float-end">
-											<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-											<li class="page-item active"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-										</ul>
+								</ul>
+								<div class="tabs tabs-dark mb-4 pb-2">
+									<ul class="nav nav-tabs">
+										<li class="nav-item"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-bs-toggle="tab">Popular</a></li>
+										<li class="nav-item"><a class="nav-link text-1 font-weight-bold text-uppercase" href="#recentPosts" data-bs-toggle="tab">Recent</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="popularPosts">
+											<ul class="simple-post-list">
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Odiosters Nullam Vitae</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="tab-pane" id="recentPosts">
+											<ul class="simple-post-list">
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Odiosters Nullam Vitae</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="post-image">
+														<div class="img-thumbnail img-thumbnail-no-borders d-block">
+															<a href="blog-post.html">
+																<img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
+															</a>
+														</div>
+													</div>
+													<div class="post-info">
+														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+														<div class="post-meta">
+															 Nov 10, 2021
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
+
+							</aside>
+						</div>
+						<div class="col-lg-9">
+							<div class="blog-posts">
+                                {% for company in object_list %}
+                                    <article class="post post-medium">
+                                        <div class="row mb-3">
+                                            <div class="col-lg-5">
+                                                <div class="post-image">
+                                                    <a href="{{ company.get_absolute_url }}">
+													<img src="{{ company.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-7">
+											<div class="post-content">
+												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
+                                                    <a href="{{ company.get_absolute_url }}">{{ company.title }}</a>
+                                                </h2>
+												<p class="mb-0">{{ company.detail.description|safe|truncatechars:100 }}</p>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="post-meta">
+
+												<span><i class="far fa-city"></i> By <a href="{{ company.city.get_absolute_url }}">{{ company.city }}</a> </span>
+                                                {% for cat in company.category.all %}
+
+												<span><i class="far fa-comments"></i>
+                                                    <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                                                </span>
+                                                    {% endfor %}
+												<span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0">
+                                                    <a href="{{ company.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+											</div>
+										</div>
+									</div>
+								</article>
+                              {% endfor %}
+								`
+
+								<ul class="pagination float-end">
+									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+									<li class="page-item active"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+								</ul>
 
 							</div>
 						</div>
-
 					</div>
 
 				</div>

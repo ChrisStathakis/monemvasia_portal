@@ -544,22 +544,24 @@
 									<article class="thumb-info custom-thumb-info-2 custom-box-shadow-1 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="0" data-appear-animation-duration="1s">
 										<div class="thumb-info-wrapper">
 											<a href="#">
-												<img src="img/demos/resume/blog/blog-1.jpg" alt class="img-fluid" />
+												<img src="{{ product.image.url }}" alt class="img-fluid" />
 											</a>
 										</div>
 										<div class="thumb-info-caption">
 											<div class="thumb-info-caption-text">
 												<h4 class="mb-2">
 													<a href="#" class="text-decoration-none text-color-dark font-weight-semibold">
-														Design Driven
+														{{ product.title }}
 													</a>
 												</h4>
-												<p class="custom-text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt nulla tortor, a imperdiet enim tristique nec. Nulla lobortis leo eget metus dapib...</p>
+												<p class="custom-text-color-2">
+                                                    {{ product.text|safe }}
+                                                </p>
 											</div>
 											<hr class="solid m-0 mt-4 mb-2">
 											<div class="row justify-content-between">
 												<div class="col-auto custom-blog-post-date text-uppercase font-weight-semibold text-color-dark text-2">
-													July 12-2021
+													{{ product.price }} {{ currency }}
 												</div>
 												<div class="col-auto custom-blog-post-share text-uppercase font-weight-semibold text-color-dark text-2">
 													Share:

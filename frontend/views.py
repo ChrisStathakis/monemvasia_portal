@@ -48,7 +48,7 @@ class CategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs)
-        context['categories'] = CompanyCategory.objects.filter(parent=self.category)
+        context['my_categories'] = CompanyCategory.objects.filter(parent=self.category)
         context['category'] = self.category
         return context
 

@@ -1,6 +1,35 @@
 from django.contrib import admin
 
-from .models import Company, CompanyItems, CompanyCategory, CompanyService
+from .models import Company, CompanyItems, CompanyCategory, CompanyService, CompanyInformation
+
+
+class CompanyItemsInline(admin.TabularInline):
+    model = CompanyItems
+    fields = ['title', 'image', 'price']
+
+
+class CompanyInfoInline(admin.TabularInline):
+    model = CompanyInformation
+    fieldsets = (
+        ('images', {
+            'fields': (
+                ('logo_image', 'background_image', 'small_image', ),
+            )
+        }),
+        ('Info', {
+            'fields': (
+                ('address', 'phone', 'cellphone', 'website'),
+
+            )
+        }),
+        ('rest', {
+            'fields': (
+                'description',
+                ('facebook_url', 'instagram_url')
+            )
+        }),
+
+    )
 
 
 @admin.register(CompanyCategory)
@@ -16,10 +45,18 @@ class CompanyServiceAdmin(admin.ModelAdmin):
     list_filter = ['company']
 
 
-class CompanyItemsInline(admin.TabularInline):
-    model = CompanyItems
-    fields = ['title', 'image', 'price']
 
+
+
+@admin.register(CompanyItems)
+class CompanyItemAdmin(admin.ModelAdmin):
+    list_display = ['title', 'company', ]
+    list_filter = ['company', ]
+
+
+@admin.register(CompanyInformation)
+class CompanyInformation(admin.ModelAdmin):
+    list_filter = ['company']
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
@@ -27,7 +64,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'status']
     readonly_fields = ['item_support', 'status', 'counter']
     search_fields = ['title', ]
-    inlines = [CompanyItemsInline, ]
+    inlines = [CompanyInfoInline, CompanyItemsInline, ]
 
     fieldsets = (
         ('Active and Subs', {
@@ -45,7 +82,7 @@ class CompanyAdmin(admin.ModelAdmin):
         }),
         ('rest', {
             'fields': (
-                'description',
+
                 ('counter', 'slug')
             )
         }),

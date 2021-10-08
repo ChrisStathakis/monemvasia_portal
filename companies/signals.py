@@ -16,11 +16,9 @@ def create_slug_for_category(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Company)
 def create_slug_for_company(sender, instance, **kwargs):
-    print('signal sent')
     if not instance.slug:
         new_slug = slugify(instance.title, allow_unicode=True)
         qs_exists = Company.objects.filter(slug=new_slug).exists()
         instance.slug = new_slug if not qs_exists else f'{new_slug}-{instance.id}'
         instance.save()
-    if not instance.detail:
-        CompanyInformation.objects.get_or_create(company=instance)
+    CompanyInformation.objects.get_or_create(company=instance)
