@@ -1,14 +1,14 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div role="main" class="main">
+    <div role="main" class="main">
 
-				<section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 align-self-center p-static order-2 text-center">
 								<h1 class="text-dark font-weight-bold text-8">Αγγελίες</h1>
-								<span class="sub-title text-dark">Check out our Latest News!</span>
+
 							</div>
 							<div class="col-md-12 align-self-center order-1">
 								<ul class="breadcrumb d-block text-center">
@@ -18,34 +18,26 @@
 							</div>
 						</div>
 					</div>
-				</section>
+        </section>
 
-				<div class="container py-4">
-
-					<div class="row">
-						<div class="col-lg-3">
-							<aside class="sidebar">
-								<form action="page-search-results.html" method="get">
-									<div class="input-group mb-3 pb-1">
-										<input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
-										<button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
-									</div>
-								</form>
-								<h5 class="font-weight-semi-bold pt-4">Categories</h5>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-3">
+                    <aside class="sidebar">
+                        <form name='q' method="get">
+                            <div class="input-group mb-3 pb-1">
+                                <input value="{{ request.get.q }}" class="form-control text-1" placeholder="Search..." name="q" id="s" type="text">
+                                <button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
+                            </div>
+                        </form>
+								<h5 class="font-weight-semi-bold pt-4">ΚΑΤΗΓΟΡΙΕΣ</h5>
 								<ul class="nav nav-list flex-column mb-5">
-									<li class="nav-item"><a class="nav-link" href="#">Design (2)</a></li>
-									<li class="nav-item">
-										<a class="nav-link active" href="#">Photos (4)</a>
-										<ul>
-											<li class="nav-item"><a class="nav-link" href="#">Animals</a></li>
-											<li class="nav-item"><a class="nav-link active" href="#">Business</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">Sports</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">People</a></li>
-										</ul>
-									</li>
-									<li class="nav-item"><a class="nav-link" href="#">Videos (3)</a></li>
-									<li class="nav-item"><a class="nav-link" href="#">Lifestyle (2)</a></li>
-									<li class="nav-item"><a class="nav-link" href="#">Technology (1)</a></li>
+                                    {% for cat in job_categories %}
+									    <li class="nav-item">
+                                            <a class="nav-link" href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                                        </li>
+                                    {% endfor %}
+
 								</ul>
 								<div class="tabs tabs-dark mb-4 pb-2">
 									<ul class="nav nav-tabs">
@@ -162,34 +154,30 @@
                               {% for job in object_list %}
 								<article class="post post-medium">
 									<div class="row mb-3">
-										<div class="col-lg-5">
-											<div class="post-image">
-												<a href="blog-post.html">
-													<img src="img/blog/medium/blog-11.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-												</a>
-											</div>
-										</div>
-										<div class="col-lg-7">
+                                        <div class="col-lg-12">
 											<div class="post-content">
-												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2"><a href="blog-post.html">This is a stardard post with preview image</a></h2>
-												<p class="mb-0">Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]</p>
+												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
+                                                    <a href="">{{ job.title }}</a>
+                                                    </h2>
+												<p class="mb-0">
+                                                     {{ job.text|safe }}
+                                                </p>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col">
 											<div class="post-meta">
-												<span><i class="far fa-calendar-alt"></i> January 10, 2021 </span>
-												<span><i class="far fa-user"></i> By <a href="#">John Doe</a> </span>
-												<span><i class="far fa-folder"></i> <a href="#">Lifestyle</a>, <a href="#">Design</a> </span>
-												<span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-												<span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0"><a href="blog-post.html" class="btn btn-xs btn-light text-1 text-uppercase">Read More</a></span>
+												<span><i class="far fa-calendar-alt"></i> {{ job.timestamp }} </span>
+												<span><i class="far fa-user"></i> By <a href="#">{{ job.company }}</a> </span>
+												<span><i class="far fa-folder"></i>  <a href="{{ job.category.get_absolute_url }}">{{ job.category }}</a> </span>
+
 											</div>
 										</div>
 									</div>
 								</article>
                               {% endfor %}
-								`
+
 
 								<ul class="pagination float-end">
 									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>

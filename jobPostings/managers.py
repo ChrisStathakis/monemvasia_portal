@@ -9,3 +9,6 @@ class JobPostingManager(models.Manager):
     def featured(self):
         return self.active().filter(featured=True)
 
+    def filter_by_category(self, category):
+        return self.active().filter(category=category)
+

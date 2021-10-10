@@ -93,6 +93,7 @@ class CompanyInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True)
     cellphone = models.CharField(max_length=20, blank=True)
     website = models.URLField(blank=True)
+    email = models.EmailField(blank=True, null=True)
     description = HTMLField(blank=True, null=True)
     facebook_url = models.URLField(blank=True, null=True)
     instagram_url = models.URLField(blank=True, null=True)

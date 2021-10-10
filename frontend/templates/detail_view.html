@@ -6,11 +6,11 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-		<title>Demo Resume | Porto - Responsive HTML5 Template</title>	
+		<title>{{ page_title }}</title>
 
 		<meta name="keywords" content="HTML5 Template" />
-		<meta name="description" content="Porto - Responsive HTML5 Template">
-		<meta name="author" content="okler.net">
+		<meta name="description" content="{{ company.detail.description }}">
+
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
@@ -64,7 +64,7 @@
 											<nav class="wrapper-spy collapse">
 												<ul class="nav" id="mainNav">
 													<li>
-														<a data-hash href="#about-me" class="nav-link text-color-dark bg-color-primary">
+														<a href="{{ request.META.HTTP_REFERER }}" class="nav-link text-color-dark bg-color-primary">
 															<i class="fa fa-backspace"></i>
 															<span class="custom-tooltip text-color-dark">ΕΠΙΣΤΡΟΦΗ</span>
 														</a>
@@ -78,7 +78,7 @@
 													<li>
 														<a data-hash href="#education" class="nav-link text-color-dark bg-color-primary">
 															<i class="icon-briefcase icons"></i>
-															<span class="custom-tooltip text-color-dark">Education</span>
+															<span class="custom-tooltip text-color-dark">ΒΡΕΙΤΕ ΜΑΣ</span>
 														</a>
 													</li>
                                                     {% comment %}
@@ -136,7 +136,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-4 position-relative custom-sm-margin-bottom-1">
-								<img src="{{ detail.logo_image }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
+								<img src="{{ detail.logo_image.url }}" class="img-fluid custom-border custom-image-position-2 custom-box-shadow-4" alt />
 							</div>
 							<div class="col-lg-6 col-xl-5">
 								<h1 class="text-color-primary custom-font-size-1">{{ object }}</h1>
@@ -286,11 +286,12 @@
 													<span class="font-weight-semibold">Present</span>
 												</span>
 												<p class="text-color-light">(3 Years 9 Months)</p>
-												{% endcomment %}
+
 												<span class="company text-color-light font-weight-semibold">
 													ΚΟΣΤΟΛΟΓΗΣΗ
-													<span class="company-location text-color-light font-weight-normal text-uppercase">{{ service.tag_price }}</span>
+													<span class="company-location text-color-light font-weight-normal text-uppercase">{{ service }}</span>
 												</span>
+												{% endcomment %}
 											</div>
 											<div class="experience-description col-lg-9 col-sm-7 bg-color-light">
 												<h4 class="text-color-dark font-weight-semibold">{{ service.title }}</h4>
@@ -314,62 +315,28 @@
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<h2 class="text-color-quaternary text-uppercase font-weight-extra-bold m-0">ΕΚΠΑΙΔΕΥΣΗ</h2>
-							<div class="owl-carousel nav-bottom custom-dots-style-1 custom-dots-color-1 custom-dots-color-1-dark mb-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': true, 'nav': false}">
+							<h2 class="text-color-quaternary text-uppercase font-weight-extra-bold m-0">ΒΡΕΙΤΕ ΜΑΣ</h2>
+							<div class=" nav-bottom custom-dots-style-1 custom-dots-color-1 custom-dots-color-1-dark mb-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': true, 'nav': false}">
 								<div class="row">
 									<div class="col-lg-6 col-sm-6 pb-4">
 										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
+											<i class="icon-eye icons text-color-primary"></i>
+											<h4 class="font-weight-semibold text-color-dark m-0">ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</h4>
+											<p class="custom-text-color-2 mb-1">EMAIL: {{ detail.email }}</p>
+											<strong class="text-color-primary">WEBSITE: {{ detail.website }}</strong>
 										</div>
 									</div>
 									<div class="col-lg-6 col-sm-6 pb-4">
 										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
+											<i class="icon-phone icons text-color-primary"></i>
+											<h4 class="font-weight-semibold text-color-dark m-0">ΤΗΛΕΦΩΝΑ</h4>
+											<p class="custom-text-color-2 mb-1">ΣΤΑΘΕΡΟ: {{ detail.phone }}</p>
+											<strong class="text-color-primary">ΚΙΝΗΤΟ: {{ detail.cellphone }}</strong>
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-lg-6 col-sm-6 pb-4">
-										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
-										</div>
-									</div>
-									<div class="col-lg-6 col-sm-6 pb-4">
-										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-6 col-sm-6 pb-4">
-										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
-										</div>
-									</div>
-									<div class="col-lg-6 col-sm-6 pb-4">
-										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
-											<i class="icon-graduation icons text-color-primary"></i>
-											<h4 class="font-weight-semibold text-color-dark m-0">Porto University</h4>
-											<p class="custom-text-color-2 mb-1">Master of Information Technology</p>
-											<strong class="text-color-primary">2001-2021</strong>
-										</div>
-									</div>
-								</div>
+
+
 							</div>
 						</div>
 					</div>
@@ -540,7 +507,7 @@
 
 							<div class="row">
                                 {% for product in object.products.all %}
-								    <div class="col-lg-6 mb-5 mb-lg-0">
+								    <div class="col-lg-4 mb-5 mb-lg-0">
 									<article class="thumb-info custom-thumb-info-2 custom-box-shadow-1 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="0" data-appear-animation-duration="1s">
 										<div class="thumb-info-wrapper">
 											<a href="#">
@@ -563,20 +530,7 @@
 												<div class="col-auto custom-blog-post-date text-uppercase font-weight-semibold text-color-dark text-2">
 													{{ product.price }} {{ currency }}
 												</div>
-												<div class="col-auto custom-blog-post-share text-uppercase font-weight-semibold text-color-dark text-2">
-													Share:
-													<ul class="mb-0">
-														<li>
-															<a class="item-facebook text-decoration-none text-uppercase" href="#" title="Share on Facebook">Facebook</a>
-														</li>
-														<li>
-															<a class="item-twitter text-decoration-none text-uppercase" href="#" title="Share on Twitter">Twitter</a>
-														</li>
-														<li>
-															<a class="item-google-plus text-decoration-none text-uppercase" href="#" title="Share on Google Plus">Google Plus</a>
-														</li>
-													</ul>
-												</div>
+
 											</div>
 										</div>
 									</article>
@@ -597,8 +551,8 @@
 							<div class="row justify-content-end m-0">
 								<div class="col-half-section col-half-section-right me-3">
 
-									<h2 class="text-color-light text-uppercase font-weight-extra-bold">Say Hello</h2>
-									<form id="contactForm" class="contact-form custom-form-style form-errors-light" action="php/contact-form.php" method="post">
+									<h2 class="text-color-light text-uppercase font-weight-extra-bold">ΡΩΤΗΣΤΕ ΜΑΣ</h2>
+									<form id="contactForm" class="contact-form custom-form-style form-errors-light"  method="post">
 										<div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
 											<strong>Success!</strong> Your message has been sent to us.
 										</div>
@@ -626,66 +580,24 @@
 						</section>
 					</div>
 					<div class="col-lg-6 p-0">
-						<section class="section section-no-border h-100 m-0" style="background: url(img/demos/resume/contact/contact-bg-1.jpg); background-size: cover;">
+						<section class="section section-no-border h-100 m-0">
 							<div class="row m-0">
 								<div class="col-half-section col-half-section-left ms-3">
-									<a href="mailto:you@domain.com" class="text-decoration-none">
-										<span class="feature-box custom-feature-box align-items-center mb-4">
-											<span class="custom-feature-box-icon">
-												<i class="icon-envelope icons text-color-light"></i>
-											</span>
-											<span class="feature-box-info">
-												<span class="custom-label font-weight-semibold text-uppercase custom-text-color-1 line-height-5">Email</span>
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">you@domain.com</strong>
-											</span>
-										</span>
-									</a>
-									<a href="tel:+1234657890" class="text-decoration-none">
-										<span class="feature-box custom-feature-box align-items-center mb-4">
-											<span class="custom-feature-box-icon">
-												<i class="icon-phone icons text-color-light"></i>
-											</span>
-											<span class="feature-box-info">
-												<span class="custom-label font-weight-semibold text-uppercase custom-text-color-1 line-height-5">Phone</span>
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">123-456-7890</strong>
-											</span>
-										</span>
-									</a>
-									<a href="skype:yourskype?chat" class="text-decoration-none">
-										<span class="feature-box custom-feature-box align-items-center mb-4">
-											<span class="custom-feature-box-icon">
-												<i class="icon-social-skype icons text-color-light"></i>
-											</span>
-											<span class="feature-box-info">
-												<span class="custom-label font-weight-semibold text-uppercase custom-text-color-1 line-height-5">Skype</span>
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">yourskype</strong>
-											</span>
-										</span>
-									</a>
-									<span class="feature-box custom-feature-box align-items-center">
-										<span class="custom-feature-box-icon">
-											<i class="icon-share icons text-color-light"></i>
-										</span>
-                                        {% if detail.facebook_url %}
-										<a href="{{ facebook.url }}" class="d-flex text-decoration-none">
-											<span class="feature-box-info">
-												<span class="custom-label font-weight-semibold text-uppercase custom-text-color-1 line-height-5">Follow me</span>
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Facebook</strong>
-											</span>
-										</a>
-                                        {% endif %}
+									<div class=" nav-bottom custom-dots-style-1 custom-dots-color-1 custom-dots-color-1-dark mb-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': true, 'nav': false}">
+								<div class="row">
+									<div class="col-lg-12 col-sm-6 pb-12">
+										<div class="custom-box-details-2 bg-color-light custom-box-shadow-3">
+											<i class="icon-map icons text-color-primary"></i>
+											<h4 class="font-weight-semibold text-color-dark m-0">ΔΙΕΥΘΥΝΣΗ</h4>
+											<p class="custom-text-color-2 mb-1">ΠΟΛΗ: {{ object.city }}</p>
+											<strong class="text-color-primary">{{ detail.address }}</strong>
+										</div>
+									</div>
 
-										<a href="http://www.twitter.com" class="d-flex text-decoration-none">
-											<span class="feature-box-info custom-both-side-border mt-2">
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Instagram</strong>
-											</span>
-										</a>
-										<a href="http://www.linkedin.com" class="d-flex text-decoration-none">
-											<span class="feature-box-info p-0 mt-2">
-												<strong class="font-weight-light text-color-light custom-opacity-effect-1">Linkedin</strong>
-											</span>
-										</a>
-									</span>
+								</div>
+
+
+							</div>
 								</div>
 							</div>
 						</section>

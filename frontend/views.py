@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, HttpResponseRedirect
 
 from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
 from jobPostings.models import JobPost
@@ -14,6 +14,8 @@ class HomepageView(TemplateView):
         context['page_title'] = 'Αρχική Σελίδα'
         context['cities'] = City.objects.filter(active=True)
         context['featured'] = Company.my_query.featured()[:6]
+        context['first_choice'] = Company.my_query.first_choice()[:3]
+        context['main_companies'] = Company.my_query.first_priority()[:10]
         context['last_five_jobs'] = JobPost.objects.all()[:5]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
 
@@ -27,7 +29,8 @@ class CompanyDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
-        context['detail'] = CompanyInformation.objects.get_or_create(company=self.object)
+        context['detail'] = self.object.detail
+        context['back_url'] = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         return context
 
 

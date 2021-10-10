@@ -18,7 +18,7 @@ class CompanyInfoInline(admin.TabularInline):
         }),
         ('Info', {
             'fields': (
-                ('address', 'phone', 'cellphone', 'website'),
+                ('address', 'phone', 'cellphone', 'website', 'email'),
 
             )
         }),

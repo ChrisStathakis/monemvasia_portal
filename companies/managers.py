@@ -9,5 +9,8 @@ class CompanyManager(models.Manager):
     def featured(self):
         return self.active().filter(featured=True)
 
-    def first_choice(self):
+    def first_priority(self):
         return self.active().filter(priority='1')
+
+    def first_choice(self):
+        return self.active().filter(first_choice=True)

@@ -1,6 +1,7 @@
 from django.db import models
+from django.shortcuts import reverse
 from tinymce.models import HTMLField
-# Create your models here.
+from django.db.models import Q
 
 from companies.models import Company
 from .managers import  JobPostingManager
@@ -8,6 +9,7 @@ from .managers import  JobPostingManager
 
 class JobCategory(models.Model):
     title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(blank=True, null=True, allow_unicode=True)
 
     class Meta:
         verbose_name = 'ΚΑΤΗΓΟΡΙΑ ΑΓΓΕΛΙΑΣ'
@@ -15,6 +17,9 @@ class JobCategory(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('jobPost:category_list', kwargs={'slug': self.slug})
 
 
 class JobPost(models.Model):
@@ -38,3 +43,14 @@ class JobPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    @staticmethod
+    def filter_data(request, qs):
+        q = request.GET.get('q', None)
+        if q:
+            qs = qs.filter(Q(title__icontains=q) |
+                           Q(text__icontains=q) |
+                           Q(company__title__icontains=q)
+
+                           )
+        return qs
