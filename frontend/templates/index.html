@@ -51,65 +51,7 @@
 
 				<div class="container container-xl-custom">
 					<div class="row py-5">
-						<div class="col-md-6 col-lg-4">
-
-							<h3 class="font-weight-bold text-3 mb-0">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΑΓΓΕΛΙΕΣ</h3>
-
-							<ul class="simple-post-list">
-                                {% for job in featured_jobs %}
-								<li>
-									<article>
-										<div class="post-image">
-											<div class="img-thumbnail img-thumbnail-no-borders d-block">
-												<a href="">
-													<img src="{% static 'assets/img/blog/square/blog-55.jpg' %}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
-												</a>
-											</div>
-										</div>
-										<div class="post-info">
-											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ job }}</a></h4>
-											<div class="post-meta">
-												{{ job.published }}
-											</div>
-										</div>
-									</article>
-								</li>
-                                {% endfor %}
-
-							</ul>
-
-						</div>
-						<div class="col-md-6 col-lg-4">
-
-							<h3 class="font-weight-bold text-3 mb-0 mt-4 mt-md-0">ΤΕΛΕΥΤΑΙΕΣ ΑΓΓΕΛΙΕΣ</h3>
-
-							<ul class="simple-post-list">
-                                {% for job in last_five_jobs %}
-                                    <li>
-                                        <article>
-                                            <div class="post-image">
-                                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                                    <a href="">
-                                                        <img src="{% static 'assets/img/blog/square/blog-55.jpg' %}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-info">
-                                                <h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ job }}</a></h4>
-                                                <div class="post-meta">
-                                                    {{ job.published }}
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </li>
-                                {% endfor %}
-
-
-
-							</ul>
-
-						</div>
-						<div class="col-lg-4">
+                        <div class="col-lg-6">
 
 							<h3 class="font-weight-bold text-3 mt-4 mt-md-0">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h3>
 
@@ -141,6 +83,36 @@
 
 							</div>
 						</div>
+						<div class="col-md-6 col-lg-6">
+
+							<h3 class="font-weight-bold text-3 mb-0">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΑΓΓΕΛΙΕΣ</h3>
+
+							<ul class="simple-post-list">
+                                {% for job in featured_jobs %}
+								<li>
+									<article>
+										<div class="post-image">
+											<div class="img-thumbnail img-thumbnail-no-borders d-block">
+												<a href="">
+													<img src="{% static 'assets/img/blog/square/blog-55.jpg' %}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
+												</a>
+											</div>
+										</div>
+										<div class="post-info">
+											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ job }}</a></h4>
+											<div class="post-meta">
+												{{ job.published }}
+											</div>
+										</div>
+									</article>
+								</li>
+                                {% endfor %}
+
+							</ul>
+
+						</div>
+
+
 					</div>
 				</div>
 
@@ -154,9 +126,6 @@
 										<a href="{{ city.get_absolute_url }}" class="btn btn-dark w-100 py-3 rounded-0 text-2 text-uppercase font-weight-bold">{{ city }}</a>
 									</div>
                                     {% endfor %}
-
-									
-
 								</div>
 							</div>
 						</div>
@@ -188,8 +157,6 @@
 										</div>
 									</article>
                                 {% endfor %}
-
-
 
 							</div>
 						</div>

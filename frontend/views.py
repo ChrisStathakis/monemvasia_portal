@@ -1,8 +1,11 @@
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from django.shortcuts import get_object_or_404, HttpResponseRedirect
-
+from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
 from jobPostings.models import JobPost
+
+from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm, CompanyItemForm
 
 
 class HomepageView(TemplateView):
@@ -16,7 +19,6 @@ class HomepageView(TemplateView):
         context['featured'] = Company.my_query.featured()[:6]
         context['first_choice'] = Company.my_query.first_choice()[:3]
         context['main_companies'] = Company.my_query.first_priority()[:10]
-        context['last_five_jobs'] = JobPost.objects.all()[:5]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
 
         return context
@@ -103,3 +105,25 @@ class ArticleDetailView(DetailView):
 
 class ContactView(FormView):
     pass
+
+
+@login_required
+def edit_company_page(request, slug):
+    user = request.user
+    obj = get_object_or_404(Company, slug=slug)
+    if obj.owner != user:
+        messages.warning(request, 'Η ΣΥΓΚΕΚΡΙΜΕΝΗ ΣΕΛΙΔΑ ΔΕ ΣΑΣ ΑΝΗΚΕΙ')
+
+    form = FrontEndCompanyInformationForm(request.POST or None, instance=obj.detail)
+    service_form = CompanyServiceForm(request.POST or None, initial={'company': obj})
+    item_form = CompanyItemForm(request.POST or None, initial={'company': obj})
+
+    return render(request, 'edit_customer_page.html', context={
+        'form': form,
+        'obj': obj,
+        'service_form': service_form,
+        'item_form': item_form,
+        'detail': obj.detail,
+        'object': obj
+    })
+

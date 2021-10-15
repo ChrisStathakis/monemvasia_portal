@@ -47,6 +47,7 @@ class JobPost(models.Model):
     @staticmethod
     def filter_data(request, qs):
         q = request.GET.get('q', None)
+        user = request.GET.get()
         if q:
             qs = qs.filter(Q(title__icontains=q) |
                            Q(text__icontains=q) |
