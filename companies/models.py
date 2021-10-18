@@ -57,7 +57,7 @@ class Company(models.Model):
     max_items = models.IntegerField(default=6)
     title = models.CharField(max_length=200)
     city = models.ForeignKey(City, blank=True, null=True, on_delete=models.SET_NULL)
-    owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='companies')
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
 
     my_query = CompanyManager()

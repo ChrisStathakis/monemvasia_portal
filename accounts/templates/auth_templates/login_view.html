@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block content %}
+ <div role="main" class="main">
+     <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ category }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ page_title }}</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <br> <hr>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> {{ button_title }} </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{{ button_switch_url }}" class="btn btn-primary pull-right">{{ button_switch_title }}</a>
+                    <br />
+                    <hr />
+                    <h4>ΟΡΟΙ ΧΡΗΣΗΣ</h4>
+                </div>
+               <div class="card-body">
+
+               </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'companies',
     'jobPostings',
     'articles',
+    'accounts',
 
     'tinymce',
     'storages',

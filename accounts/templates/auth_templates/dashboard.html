@@ -1,0 +1,108 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+    <div role="main" class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ category }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΠΛΗΡΟΦΟΡΙΕΣ</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item ">EMAIL: {{ user.username }} </li>
+                            <li class="list-group-item">ΟΝΟΜΑΤΕΠΩΝΥΜΟ:{{ user.profile.name }}</li>
+                            <li class="list-group-item">ΑΦΜ: {{ user.profile.taxes_id }}</li>
+                            <li class="list-group-item">ΤΗΛΕΦΩΝΟ:</li>
+                            <li class="list-group-item">ΚΙΝΗΤΟ:</li>
+                        </ul>
+                        <br>
+                        <hr>
+                        <a href="" class="btn btn-danger">ΑΛΛΑΓΗ ΣΤΟΙΧΕΙΩΝ</a>
+                        <a href="" class="btn btn-danger pull-right">ΑΛΛΑΓΗ PASSWORD</a>
+                        <button id="modalN" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Launch demo modal
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                ...
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h4>ΕΤΑΙΡΙΕΣ</h4>
+                {% for company in user.companies.all %}
+                    <div class="card" style="margin-bottom: 3%">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ company.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Κατηγορια: {{ company.get_business_type_display }}
+                                <br>
+                            </h6>
+                            <hr/>
+                            <p class="card-text">
+                                Πλάνο: {{ company.get_priority_display }}
+                                <br />
+                                 ΠΡΟΤΕΙΝΟΜΕΝΗ: {{ company.featured }}
+                                <br>
+                                ΜΕΓΙΣΤΗ ΠΟΣΟΤΗΤΑ ΠΡΟΪΌΝΤΩΝ/ΥΠΗΡΕΣΙΩΝ: {{ company.max_items }}
+                                <br>
+
+                                <span style="color:red">Λήξη Συνδρομής: {{ company.subscription_ends }}</span>
+                            </p>
+                            <a href="{{ company.get_edit_url }}" class="card-link">ΕΠΕΞΕΡΓΑΣΙΑ ΕΤΑΙΡΙΑΣ</a>
+                            <a href="#" class="card-link">ΠΛΗΡΟΦΟΡΙΕΣ</a>
+                            <!-- Button trigger modal -->
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $('#modalN').click(function (evt) {
+            $('#exampleModal').show()
+        })
+    </script>
+{% endblock %}
