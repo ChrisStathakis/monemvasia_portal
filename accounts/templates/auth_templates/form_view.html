@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ page_title }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ page_title }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h4>{{ page_title }}</h4>
+                <form method="post" class="form"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <br />
+                    <hr />
+                    <br />
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                </form>
+            </div>
+            <div class="col-3">
+                <a href="{{ back_url }}" class="btn btn-warning">ΕΠΙΣΤΡΟΦΗ</a>
+                <br/>
+                <hr/>
+                {% if delete_url %}
+                    <a href="{{ delete_url }}" class="btn btn-danger">ΔΙΑΓΡΑΦΗ</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

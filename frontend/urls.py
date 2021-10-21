@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView,
                     CompanyDetailView,
                     CityListView, CityDetailView,
-                    edit_company_page
+                    edit_company_page, link_page_view
                     )
 from .action_views import (create_new_item_view, create_new_service_view, validate_edit_form_info_view,
                            edit_delete_product_view,edit_or_delete_service_view
@@ -23,6 +23,7 @@ urlpatterns = [
     path('πολη/<str:slug>/', CityDetailView.as_view(), name='city_detail'),
 
     path('edit-view/<str:slug>/', edit_company_page, name='edit_company_page'),
+    path('link/<str:slug>/', link_page_view, name='link_page'),
 
     # action views
     path('action/create-service/<str:slug>/', create_new_service_view, name='create_service_view'),
@@ -30,4 +31,5 @@ urlpatterns = [
     path('action/edit-info/<str:slug>/', validate_edit_form_info_view, name='validate_company_info'),
     path('action/edit-service/<int:pk>/<str:action>/', edit_or_delete_service_view, name='edit_or_delete_service_view'),
     path('action/edit-product/<int:pk>/<str:action>/', edit_delete_product_view, name='edit_or_delete_item_view'),
+
 ]

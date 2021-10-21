@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                     <br />
+                     <a target="_blank" href="{% url 'link_page' company.slug %}" class="btn btn-success">ΔΕΙΤΕ ΤΟ</a>
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'accounts:dashboard_view' %}">ΕΠΙΣΤΡΟΦΗ</a></li>
+                         <li class="active">LINK TREE {{ company }}</li>
+                     </ul>
+
+                 </div>
+             </div>
+         </div>
+     </section>
+        <section class="body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4> ΟΙ ΚΑΤΗΓΟΡΙΕΣ </h4>
+                        </div>
+                        <div class="card-body">
+                            {% for category in instagram_categories %}
+                                <h4>{{ category }}</h4>
+                                <hr />
+                                <a href="{{ category.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a>
+
+                                <hr />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ΤΙΤΛΟΣ</th>
+                                            <th>LINK</th>
+                                            <th>-</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for link in category.my_links.all %}
+                                            <tr>
+                                                <td>{{ link.title }}</td>
+                                                <td><a href="{{ link.url }}" target="_blank">{{ link.url }}</a> </td>
+                                                <td><a href="{{ link.get_edit_url }}" class="btn btn-info"><i class="fa fa-edit"></i> </a> </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>ΔΗΜΙΟΥΡΓΙΑ</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4>ΔΗΜΙΟΥΡΓΙΑ ΚΑΤΗΓΟΡΙΑΣ</h4>
+                            <form method="post" class="form" action="{% url 'accounts:validate_create_category' company.slug %}">
+                                {% csrf_token %}
+                                {{ category_form }}
+                                <br />
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                            </form>
+                            <br />
+                            <hr />
+                            <br/>
+                            <h4>ΔΗΜΙΟΥΡΓΙΑ LINK</h4>
+                            <form method="post" class="form" action="{% url 'accounts:validate_create_link' company.slug %}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <br />
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

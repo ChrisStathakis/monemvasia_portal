@@ -127,3 +127,12 @@ def edit_company_page(request, slug):
         'object': obj
     })
 
+
+def link_page_view(request, slug):
+    company = get_object_or_404(Company, slug=slug)
+    link_categories = company.instagramcategories_set.all()
+
+    return render(request, 'link_page.html', context={
+        'company': company,
+        'link_categories': link_categories
+    })

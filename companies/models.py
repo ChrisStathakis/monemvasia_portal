@@ -40,9 +40,9 @@ class CompanyCategory(models.Model):
 
 class Company(models.Model):
     PRIORITY_OPTIONS = (
-        ('1', 'First. Subscription Cost:  50'),
+        ('1', 'First. Subscription Cost:  100'),
         ('2', 'Second. Subscription Cost: 40'),
-        ('3', 'Third. Subscription Cost:  30')
+        ('3', 'Third. Subscription Cost:  20')
     )
 
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
@@ -78,6 +78,9 @@ class Company(models.Model):
 
     def get_absolute_url(self):
         return reverse('company_view', kwargs={'slug': self.slug})
+
+    def get_edit_url(self):
+        return reverse('accounts:update_company_info', kwargs={'slug': self.slug})
 
     @staticmethod
     def filter_data(request, qs):

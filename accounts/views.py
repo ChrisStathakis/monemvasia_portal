@@ -1,17 +1,24 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout, login
 
 
-from .forms import UserCreationCustomForm, LoginForm, ProfileForm
-from .models import Profile, User
 
+from .forms import UserCreationCustomForm, LoginForm, ProfileForm, InstagramLinkForm, InstagramCategoriesForm
+from .models import Profile, User, InstagramCategories, InstagramLink, Company
+from companies.forms import FrontEndCompanyInformationForm
 
 def homepage_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('accounts:dashboard_view')
     return redirect('accounts:register')
+
+
+def logout_request(request):
+    logout(request)
+    return redirect('homepage')
 
 
 @login_required
@@ -28,24 +35,19 @@ def dashboard_view(request):
                   )
 
 
-def login_view(request):
-    form = LoginForm(request.POST or None)
-    if form.is_valid():
-        username = request.POST.get('username', None)
-        password = request.POST.get('password1', None)
-        user = authenticate(username, password)
-        login(request, user)
-        return redirect('accounts:dashboard_view')
+class MyLoginView(LoginView):
+    template_name = 'auth_templates/login_view.html'
 
-    return render(request,
-                  'auth_templates/login_view.html',
-                  context={
-                      'form': form,
-                      'page_title': 'ΣΥΝΔΕΣΗ  ΜΕΛΟΥΣ',
-                      'button_title': "ΣΥΝΔΕΣΗ",
-                      'button_switch_title': 'ΕΓΓΡΑΦΗ',
-                      'button_switch_url': reverse('accounts:register')
-})
+    def get_success_url(self):
+        return reverse('accounts:dashboard_view')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'ΣΥΝΔΕΣΗ ΜΕΛΟΥΣ'
+        context['button_title'] = "ΣΥΝΔΕΣΗ"
+        context['button_switch_title'] = 'ΕΓΓΡΑΦΗ'
+        context['button_switch_url'] = reverse('accounts:register')
+        return context
 
 
 def register_view(request):
@@ -54,10 +56,7 @@ def register_view(request):
         user = form.save()
         afm = form.cleaned_data.get('taxes_id')
         name = form.cleaned_data.get('name')
-        profile, created = Profile.objects.get_or_create(user=user)
-        profile.taxes_id = afm
-        profile.name = name
-        profile.save()
+        profile, created = Profile.objects.get_or_create(user=user, taxes_id=afm, name=name)
         login(request, user)
         return redirect('accounts:dashboard_view')
 
@@ -71,3 +70,47 @@ def register_view(request):
                       'button_switch_url': reverse('accounts:login')
 
                   })
+
+
+@login_required
+def update_profile_view(request):
+    user = request.user
+    profile = user.profile
+    form = ProfileForm(request.POST or None, instance=profile)
+    if form.is_valid():
+        form.save()
+
+        return redirect('accounts:dashboard_view')
+    return render(request,
+                  'auth_templates/form_view.html',
+                  context={
+                      'form': form,
+                      'page_title': 'ΕΠΕΞΕΡΓΑΣΙΑ ΠΡΟΦΙΛ',
+                      'back_url': reverse('accounts:dashboard_view')
+                  })
+
+
+@login_required
+def manage_instagram_links_view(request, slug):
+    company = get_object_or_404(Company, slug=slug)
+    user = request.user
+    profile = user.profile
+    instagram_categories = profile.instagramcategories_set.all()
+    form = InstagramLinkForm(initial={'profile': profile, 'company': company})
+    category_form = InstagramCategoriesForm(initial={'profile': profile, 'company': company})
+    return render(request, 'auth_templates/instagram_manager.html', context=locals())
+
+
+@login_required
+def update_company_info_view(request, slug):
+    instance = get_object_or_404(Company, slug=slug)
+    if instance.owner != request.user:
+        return redirect('homepage')
+    profile = instance.detail
+    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile)
+    if form.is_valid():
+        form.save()
+        return redirect('accounts:dashboard_view')
+    return render(request, 'auth_templates/form_view.html', context={
+        'form': form
+    })

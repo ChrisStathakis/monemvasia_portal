@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from companies.forms import BaseForm
-from .models import User, Profile
-
+from companies.models import Company
+from .models import User, Profile, InstagramLink, InstagramCategories
 
 class LoginForm(BaseForm):
     username = forms.EmailField(required=True)
@@ -37,7 +37,26 @@ class UserCreationCustomForm(BaseForm, UserCreationForm):
 
 
 class ProfileForm(BaseForm, forms.ModelForm):
+    user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput())
 
     class Meta:
         model = Profile
+        fields = '__all__'
+        exclude = ['permission_grand', ]
+
+
+class InstagramCategoriesForm(BaseForm, forms.ModelForm):
+    profile = forms.ModelChoiceField(queryset=Profile.objects.all(), required=True, widget=forms.HiddenInput())
+    company = forms.ModelChoiceField(queryset=Company.objects.all(), required=True, widget=forms.HiddenInput())
+
+    class Meta:
+        model = InstagramCategories
+        fields = '__all__'
+
+
+class InstagramLinkForm(BaseForm, forms.ModelForm):
+    profile = forms.ModelChoiceField(queryset=Profile.objects.all(), required=True, widget=forms.HiddenInput())
+
+    class Meta:
+        model = InstagramLink
         fields = '__all__'
