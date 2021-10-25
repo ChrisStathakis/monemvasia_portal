@@ -5,6 +5,7 @@ from companies.forms import BaseForm
 from companies.models import Company
 from .models import User, Profile, InstagramLink, InstagramCategories
 
+
 class LoginForm(BaseForm):
     username = forms.EmailField(required=True)
     password = forms.CharField(required=True, widget=forms.PasswordInput())

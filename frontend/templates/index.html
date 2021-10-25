@@ -1,6 +1,9 @@
 <!DOCTYPE html> {% load static %}
 <html>
     {% include 'include/head.html' %}
+    {% block extra_css %}
+
+    {% endblock %}
 
 	<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 500}">
 		<div class="loading-overlay">

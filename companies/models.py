@@ -82,6 +82,12 @@ class Company(models.Model):
     def get_edit_url(self):
         return reverse('accounts:update_company_info', kwargs={'slug': self.slug})
 
+    def support_products(self):
+        return True if self.business_type in ['1', '4'] else False
+
+    def support_service(self)-> bool:
+        return True if self.business_type in ['3', '4'] else False
+
     @staticmethod
     def filter_data(request, qs):
         return qs
@@ -121,6 +127,7 @@ class CompanyItems(models.Model):
 
 
 class CompanyService(models.Model):
+    is_primary = models.BooleanField(default=False)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
     title = models.CharField(max_length=250)
     text = HTMLField()
@@ -133,3 +140,9 @@ class CompanyService(models.Model):
     def __str__(self):
         return self.title
 
+
+    def get_edit_url(self):
+        return reverse('company:service_update', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('company:service-delete', kwargs={'pk': self.id})

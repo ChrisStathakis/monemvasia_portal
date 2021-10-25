@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div role="main" class="main">
+
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 align-self-center p-static order-2 text-center">
+                        <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                        <br />
+                    </div>
+                    <div class="col-md-12 align-self-center order-1">
+                        <ul class="breadcrumb d-block text-center">
+                            <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                            <li class="active">{{ page_title }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+				<div class="container py-4">
+
+					<div class="row">
+						<div class="col-lg-3">
+							<aside class="sidebar">
+								<form method="get">
+									<div class="input-group mb-3 pb-1">
+										<input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
+										<button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
+									</div>
+								</form>
+								<h5 class="font-weight-semi-bold pt-4">ΚΑΤΗΓΟΡΙΕΣ</h5>
+								<ul class="nav nav-list flex-column mb-5">
+                                    {% for cat in prod_cat %}
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                                            {% if cat.have_childrens %}
+                                            <ul>
+                                                {% for cat_ in cat.childrens.all %}
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{ cat_.get_absolute_url }}">{{ cat_ }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+
+								</ul>
+								{% include 'include/featured_products.html' %}
+
+							</aside>
+						</div>
+						<div class="col-lg-9">
+							<div class="blog-posts">
+                                {% for product in object_list %}
+                                    <article class="post post-medium">
+                                        <div class="row mb-3">
+                                            <div class="col-lg-5">
+                                                <div class="post-image">
+                                                    <a href="{{ product.get_detail_url }}">
+													<img src="{{ product.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+												</a>
+											</div>
+										</div>
+										<div class="col-lg-7">
+											<div class="post-content">
+												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
+                                                    <a href="{{ product.get_absolute_url }}">{{ product }}</a>
+                                                </h2>
+												<p class="mb-0">{{ product }}</p>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="post-meta">
+
+												<span><i class="far fa-city"></i> By <a href="{{ company.city.get_absolute_url }}">{{ company.city }}</a> </span>
+                                                {% for cat in company.category.all %}
+
+												<span><i class="far fa-comments"></i>
+                                                    <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                                                </span>
+                                                    {% endfor %}
+												<span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0">
+                                                    <a href="{{ company.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+											</div>
+										</div>
+									</div>
+								</article>
+                              {% endfor %}
+								`
+
+								<ul class="pagination float-end">
+									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+									<li class="page-item active"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+{% endblock %}

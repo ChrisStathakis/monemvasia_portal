@@ -2,10 +2,11 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
+from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation, CompanyItems
 from jobPostings.models import JobPost
 
 from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm, CompanyItemForm
+from companies.models import CompanyCategory
 
 
 class HomepageView(TemplateView):
@@ -15,6 +16,7 @@ class HomepageView(TemplateView):
         context = super(HomepageView, self).get_context_data(**kwargs)
 
         context['page_title'] = 'Αρχική Σελίδα'
+        context['page_description'] =
         context['cities'] = City.objects.filter(active=True)
         context['featured'] = Company.my_query.featured()[:6]
         context['first_choice'] = Company.my_query.first_choice()[:3]
@@ -95,6 +97,20 @@ class SearchPageView(ListView):
 
     def get_queryset(self):
         return self.model.filter_data(self.request, self.model.objects.all())
+
+
+class ProductCategoryView(ListView):
+    template_name = 'category_list_view.html'
+    model = CompanyCategory
+
+    def get_queryset(self):
+        qs = CompanyCategory.objects.filter(parent__isnull=True)
+        return qs
+
+
+class ProductCategoryListView(ListView):
+    template_name = 'productListView.html'
+    model = ''
 
 
 class ArticleDetailView(DetailView):

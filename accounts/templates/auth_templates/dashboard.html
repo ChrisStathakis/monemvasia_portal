@@ -82,7 +82,7 @@
                                 <span style="color:red">Λήξη Συνδρομής: {{ company.subscription_ends }}</span>
                             </p>
                             <a href="{{ company.get_edit_url }}" class="card-link">ΕΠΕΞΕΡΓΑΣΙΑ ΕΤΑΙΡΙΑΣ</a>
-                            <a href="#" class="card-link">ΠΛΗΡΟΦΟΡΙΕΣ</a>
+                            <a target="_blank" href="{{ company.get_absolute_url }}" class="card-link">ΠΛΗΡΟΦΟΡΙΕΣ</a>
                             <a href="{% url 'accounts:manage_links' company.slug %}" class="card-link">Link Tree</a>
                             <!-- Button trigger modal -->
 

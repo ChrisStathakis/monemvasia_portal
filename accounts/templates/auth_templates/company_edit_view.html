@@ -1,0 +1,178 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ page_title }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ page_title }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+        <div style="margin: 3%" class="row">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ page_title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <br />
+                    <hr />
+                    <br />
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-6">
+                {% if company.support_products %}
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΠΡΟΪΟΝΤΑ</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>-</th>
+                                    <th>ΠΡΟΪΟΝ</th>
+                                    <th>ΚΑΤΗΓΟΡΙΕΣ</th>
+                                    <th>ΤΙΜΗ</th>
+                                    <th>ΚΑΤΑΣΤΑΣΗ</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in company.my_products.all %}
+                                    <tr>
+                                        <td><img {% if product.image %}src="{{ product.image.url }}" {% else  %}  {% endif %}width="100" height="100" /></td>
+                                        <td>{{ product.title }}</td>
+                                        <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
+                                        <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
+                                        <td></td>
+                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+                {% if company.support_service %}
+                    <div class="card">
+                    <div class="card-header">
+                        <h4>ΥΠΗΡΕΣΙΕΣ</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>-</th>
+                                    <th>ΥΠΗΡΕΣΙΑ</th>
+                                    <th>ΚΑΤΗΓΟΡΙΕΣ</th>
+                                    <th>ΤΙΜΗ</th>
+                                    <th>ΚΑΤΑΣΤΑΣΗ</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in company.services.all %}
+                                    <tr>
+                                        <td><img {% if product.image %}src="{{ product.image.url }}" {% else  %}  {% endif %} width="100" height="100" /></td>
+                                        <td>{{ product.title }}</td>
+                                        <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
+                                        <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
+                                        <td></td>
+                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <a href="{{ back_url }}" class="btn btn-warning">ΕΠΙΣΤΡΟΦΗ</a>
+                <br/>
+                <hr/>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΠΛΗΡΟΦΟΡΙΕΣ</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th>ΕΙΔΟΣ</th>
+                                    <td>{{ company.get_business_type_display }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ΠΛΑΝΟ ΠΛΗΡΩΜΗΣ</th>
+                                    <td>{{ company.get_priority_display }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ΤΕΛΟΣ ΣΥΝΔΡΟΜΗΣ</th>
+                                    <td>{{ company.subscription_ends }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ΜΕΓΙΣΤΗ ΠΟΣΟΤΗΤΑ ΥΠΗΡ./ ΠΡΟΪΟΝ</th>
+                                    <td>{{ company.max_items }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ΠΟΛΗ</th>
+                                    <td>{{ company.city }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% if company.support_service %}
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΔΗΜΙΟΥΡΓΙΑ ΥΠΗΡΕΣΙΑΣ</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="form" action="{% url 'accounts:validate_product_or_service' company.slug 'service' %}">
+                            {{ service_form }}
+                            <br />
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+                {% if company.support_products %}
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΪΟΝΤΟΣ</h4>
+                    </div>
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" method="post" class="form" action="{% url 'accounts:validate_product_or_service' company.slug 'product' %}">
+                            {% csrf_token %}
+                            {{ product_form }}
+                            <br />
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

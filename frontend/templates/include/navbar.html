@@ -33,12 +33,6 @@
 													<div class="header-nav-main header-nav-main-square header-nav-main-effect-1 header-nav-main-sub-effect-1">
 														<nav class="collapse">
 															<ul class="nav nav-pills" id="mainNav">
-																<li class="dropdown dropdown-full-color dropdown-light">
-																	<a class="dropdown-item dropdown-toggle" href="{% url 'homepage' %}">
-																		ΑΡΧΙΚΗ ΣΕΛΙΔΑ
-																	</a>
-
-																</li>
                                                                 {% for category in categories %}
                                                                     <li class="dropdown dropdown-full-color dropdown-light">
                                                                         <a class="dropdown-item dropdown-toggle" href="{{ category.get_absolute_url }}">
@@ -62,10 +56,10 @@
 
 																</li>
                                                                 <li class="dropdown dropdown-full-color dropdown-light">
-																	<a class="dropdown-item dropdown-toggle" href="{% url 'jobPost:list' %}">
-                                                                        ΑΓΓΕΛΙΕΣ
-                                                                    </a>
-                                                                </li>
+																	<a class="dropdown-item dropdown-toggle" href="{% url 'product_categories' %}">
+																		ΠΡΟΪΌΝΤΑ
+																	</a>
+																</li>
                                                                 <li class="dropdown dropdown-full-color dropdown-light">
 																	<a class="dropdown-item dropdown-toggle" href="{% url 'accounts:homepage_view' %}">
                                                                         ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ

@@ -3,11 +3,12 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
 
-
-
 from .forms import UserCreationCustomForm, LoginForm, ProfileForm, InstagramLinkForm, InstagramCategoriesForm
 from .models import Profile, User, InstagramCategories, InstagramLink, Company
-from companies.forms import FrontEndCompanyInformationForm
+from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
+from catalogue.forms import ProductForm
+from catalogue.models import Product
+
 
 def homepage_view(request):
     user = request.user
@@ -91,6 +92,31 @@ def update_profile_view(request):
 
 
 @login_required
+def update_company_info_view(request, slug):
+    instance = get_object_or_404(Company, slug=slug)
+    if instance.owner != request.user:
+        return redirect('homepage')
+    profile = instance.detail
+    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile, initial={'company': instance})
+    if request.POST:
+        form = FrontEndCompanyInformationForm(request.POST, request.FILES, instance=profile, initial={'company': instance})
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:dashboard_view')
+
+    product_form = ProductForm(request.POST or None, initial={'company': instance})
+    service_form = CompanyServiceForm(request.POST or None, initial={'company': instance})
+    return render(request, 'auth_templates/company_edit_view.html', context={
+        'form': form,
+        'page_title': f'ΕΠΕΞΕΡΓΑΣΙΑ {instance.title}',
+        'back_url': reverse('accounts:dashboard_view'),
+        'company': instance,
+        'product_form': product_form,
+        'service_form': service_form
+    })
+
+
+@login_required
 def manage_instagram_links_view(request, slug):
     company = get_object_or_404(Company, slug=slug)
     user = request.user
@@ -101,16 +127,3 @@ def manage_instagram_links_view(request, slug):
     return render(request, 'auth_templates/instagram_manager.html', context=locals())
 
 
-@login_required
-def update_company_info_view(request, slug):
-    instance = get_object_or_404(Company, slug=slug)
-    if instance.owner != request.user:
-        return redirect('homepage')
-    profile = instance.detail
-    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile)
-    if form.is_valid():
-        form.save()
-        return redirect('accounts:dashboard_view')
-    return render(request, 'auth_templates/form_view.html', context={
-        'form': form
-    })

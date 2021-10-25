@@ -48,9 +48,11 @@ INSTALLED_APPS = [
     'jobPostings',
     'articles',
     'accounts',
+    'catalogue',
 
     'tinymce',
     'storages',
+    'mptt',
 
 ]
 
