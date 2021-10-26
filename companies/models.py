@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from frontend.models import City
@@ -90,6 +91,11 @@ class Company(models.Model):
 
     @staticmethod
     def filter_data(request, qs):
+        q = request.GET.get('q', None)
+        if q:
+            qs = qs.filter(Q(title__icontains=q) |
+                           Q(city__title__icontains=q)
+                           )
         return qs
 
 

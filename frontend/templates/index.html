@@ -56,30 +56,30 @@
 					<div class="row py-5">
                         <div class="col-lg-6">
 
-							<h3 class="font-weight-bold text-3 mt-4 mt-md-0">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h3>
+							<h3 class="font-weight-bold text-3 mt-4 mt-md-0">ΠΡΟΪΟΝΤΑ</h3>
 
 							<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10, 'loop': true, 'nav': false, 'dots': false, 'autoplay': true, 'autoplayTimeout': 5000}">
-                                {% for company in first_choice %}
-								<div>
-									<a href="{{ company.get_absolute_url }}">
-										<article>
-											<div class="thumb-info thumb-info-no-borders thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom border-radius-0">
-												<div class="thumb-info-wrapper thumb-info-wrapper-opacity-6">
-													<img src="{{ company.logo.url }}" class="img-fluid" alt="Main Reasons To Stop Texting And Driving">
-													<div class="thumb-info-title bg-transparent p-4">
-														<div class="thumb-info-type bg-color-primary px-2 mb-1">{{ company.get_business_type_display }}</div>
-														<div class="thumb-info-inner mt-1">
-															<h2 class="text-color-light line-height-2 text-4 font-weight-bold mb-0">{{ company }}</h2>
-														</div>
-														<div class="thumb-info-show-more-content">
-															<p class="mb-0 text-1 line-height-9 mb-1 mt-2 text-light opacity-5">{{ company.detail.description|safe|truncatechars_html:25 }}.</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</a>
-								</div>
+                                {% for product in featured_products %}
+                                    <div>
+                                        <a href="{{ product.get_detail_url }}">
+                                            <article>
+                                                <div class="thumb-info thumb-info-no-borders thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom border-radius-0">
+                                                    <div class="thumb-info-wrapper thumb-info-wrapper-opacity-6">
+                                                        <img src="{{ product.tag_image }}" class="img-fluid" alt="{{ product.title }}">
+                                                        <div class="thumb-info-title bg-transparent p-4">
+                                                            <div class="thumb-info-type bg-color-primary px-2 mb-1">{{ product.company }}</div>
+                                                            <div class="thumb-info-inner mt-1">
+                                                                <h2 class="text-color-light line-height-2 text-4 font-weight-bold mb-0">{{ product }}</h2>
+                                                            </div>
+                                                            <div class="thumb-info-show-more-content">
+                                                                <p class="mb-0 text-1 line-height-9 mb-1 mt-2 text-light opacity-5">{{ product.text|safe|truncatechars_html:25 }}.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </a>
+                                    </div>
                                 {% endfor %}
 
 
@@ -88,23 +88,23 @@
 						</div>
 						<div class="col-md-6 col-lg-6">
 
-							<h3 class="font-weight-bold text-3 mb-0">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΑΓΓΕΛΙΕΣ</h3>
+							<h3 class="font-weight-bold text-3 mb-0">ΥΠΗΡΕΣΙΕΣ</h3>
 
 							<ul class="simple-post-list">
-                                {% for job in featured_jobs %}
+                                {% for service in featured_services %}
 								<li>
 									<article>
 										<div class="post-image">
 											<div class="img-thumbnail img-thumbnail-no-borders d-block">
 												<a href="">
-													<img src="{% static 'assets/img/blog/square/blog-55.jpg' %}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
+													<img src="{{ service.tag_image }}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
 												</a>
 											</div>
 										</div>
 										<div class="post-info">
-											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ job }}</a></h4>
+											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ service }}</a></h4>
 											<div class="post-meta">
-												{{ job.published }}
+												{{ service.company }}
 											</div>
 										</div>
 									</article>

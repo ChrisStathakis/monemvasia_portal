@@ -1,184 +1,107 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div role="main" class="main">
+    <div role="main" class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 align-self-center p-static order-2 text-center">
+                        <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                        <br />
+                    </div>
+                    <div class="col-md-12 align-self-center order-1">
+                        <ul class="breadcrumb d-block text-center">
+                            <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                            <li class="active">{{ category }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-				<section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 align-self-center p-static order-2 text-center">
-								<h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
-								<br />
-							</div>
-							<div class="col-md-12 align-self-center order-1">
-								<ul class="breadcrumb d-block text-center">
-									<li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
-									<li class="active">{{ category }}</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
 
-				<div class="container py-4">
+        <div class="container py-4">
 
-					<div class="row">
-						<div class="col-lg-3">
-							<aside class="sidebar">
-								<form method="get">
-									<div class="input-group mb-3 pb-1">
-										<input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
-										<button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
-									</div>
-								</form>
-								<h5 class="font-weight-semi-bold pt-4">ΚΑΤΗΓΟΡΙΕΣ</h5>
-								<ul class="nav nav-list flex-column mb-5">
-                                    {% for parent in my_categories %}
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="{{ parent.get_absolute_url }}">{{ parent }}</a>
-                                            {% if category.have_childrens %}
-                                            <ul>
-                                                {% for children in parent.childrens.all %}
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="{{ children.get_absolute_url }}">{{ children }}</a>
-                                                    </li>
-                                                {% endfor %}
+            <div class="row">
+                <div class="col-lg-3">
+                    <aside class="sidebar">
+                        <form method="get">
+                            <div class="input-group mb-3 pb-1">
+                                <input class="form-control text-1" placeholder="Αναζήτηση..." name="q" id="q" type="text">
+                                <button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
+                            </div>
+                        </form>
+                        <h5 class="font-weight-semi-bold pt-4">ΚΑΤΗΓΟΡΙΕΣ</h5>
+                        <ul class="nav nav-list flex-column mb-5">
+                            {% for parent in my_categories %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ parent.get_absolute_url }}">{{ parent }}</a>
+                                    {% if category.have_childrens %}
+                                        <ul>
+                                            {% for children in parent.childrens.all %}
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ children.get_absolute_url }}">{{ children }}</a>
+                                                </li>
+                                            {% endfor %}
 
-                                            </ul>
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-
-								</ul>
-								<div class="tabs tabs-dark mb-4 pb-2">
-									<ul class="nav nav-tabs">
-										<li class="nav-item"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-bs-toggle="tab">Popular</a></li>
-										<li class="nav-item"><a class="nav-link text-1 font-weight-bold text-uppercase" href="#recentPosts" data-bs-toggle="tab">Recent</a></li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane active" id="popularPosts">
-											<ul class="simple-post-list">
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Odiosters Nullam Vitae</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="tab-pane" id="recentPosts">
-											<ul class="simple-post-list">
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Odiosters Nullam Vitae</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail img-thumbnail-no-borders d-block">
-															<a href="blog-post.html">
-																<img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Nov 10, 2021
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-							</aside>
-						</div>
-						<div class="col-lg-9">
-							<div class="blog-posts">
-                                {% for company in object_list %}
-                                    <article class="post post-medium">
-                                        <div class="row mb-3">
-                                            <div class="col-lg-5">
-                                                <div class="post-image">
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="tabs tabs-dark mb-4 pb-2">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-bs-toggle="tab">ΠΡΟΤΕΙΝΟΜΕΝΕΣ</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="popularPosts">
+                                    <ul class="simple-post-list">
+                                        {% for company in featured_comanies %}
+                                        <li>
+                                            <div class="post-image">
+                                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
                                                     <a href="{{ company.get_absolute_url }}">
-													<img src="{{ company.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-												</a>
-											</div>
-										</div>
-										<div class="col-lg-7">
-											<div class="post-content">
-												<h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
-                                                    <a href="{{ company.get_absolute_url }}">{{ company.title }}</a>
-                                                </h2>
-												<p class="mb-0">{{ company.detail.description|safe|truncatechars:100 }}</p>
-											</div>
-										</div>
+                                                        <img src="{{ company.tag_image }}" width="50" height="50" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-info">
+                                                <a href="{{ company.get_absolute_url }}">{{ company }}</a>
+                                                <div class="post-meta">
+                                                    {{ company.get_business_type_display }}
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </aside>
+                </div>
+                <div class="col-lg-9">
+                    <div class="blog-posts">
+                        {% for company in object_list %}
+                            <article class="post post-medium">
+                                <div class="row mb-3">
+                                    <div class="col-lg-5">
+                                        <div class="post-image">
+                                            <a href="{{ company.get_absolute_url }}">
+                                                <img src="{{ company.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="post-content">
+                                            <h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
+                                                <a href="{{ company.get_absolute_url }}">{{ company.title }}</a>
+                                            </h2>
+                                            <p class="mb-0">{{ company.detail.description|safe|truncatechars:100 }}</p>
+                                        </div>
+                                    </div>
 									</div>
 									<div class="row">
 										<div class="col">
@@ -197,9 +120,11 @@
 										</div>
 									</div>
 								</article>
-                              {% endfor %}
+                                {% empty %}
+                                    <p>Δε υπάρχουν δεδομένα.</p>
+                                {% endfor %}
 								`
-
+                        {% comment %}
 								<ul class="pagination float-end">
 									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
 									<li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -207,13 +132,13 @@
 									<li class="page-item"><a class="page-link" href="#">3</a></li>
 									<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
 								</ul>
-
+                        {% endcomment %}
 							</div>
 						</div>
 					</div>
 
 				</div>
 
-			</div>
+    </div>
 
 {% endblock %}

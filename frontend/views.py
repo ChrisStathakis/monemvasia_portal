@@ -16,10 +16,10 @@ class HomepageView(TemplateView):
         context = super(HomepageView, self).get_context_data(**kwargs)
 
         context['page_title'] = 'Αρχική Σελίδα'
-        context['page_description'] =
+        context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Εδώ θα βρείτε πληροφορίες για τις τοπικές ' \
+                                      'επιχειρήσεις και προϊόντα.'
         context['cities'] = City.objects.filter(active=True)
         context['featured'] = Company.my_query.featured()[:6]
-        context['first_choice'] = Company.my_query.first_choice()[:3]
         context['main_companies'] = Company.my_query.first_priority()[:10]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
 
@@ -35,6 +35,7 @@ class CompanyDetailView(DetailView):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         context['detail'] = self.object.detail
         context['back_url'] = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        context['page_title'] = f'{self.object}'
         return context
 
 
@@ -57,6 +58,9 @@ class CategoryListView(ListView):
         context = super(CategoryListView, self).get_context_data(**kwargs)
         context['my_categories'] = CompanyCategory.objects.filter(parent=self.category)
         context['category'] = self.category
+        context['page_title'] = f'{self.category}'
+        context['page_description'] = f'Καλώς ήρθατε στο monemvasia.org. Επισκευτείτε την κατηγορια {self.category} ' \
+                                      f'και δείτε τις τοπικές επιχειρήσεις'
         return context
 
 
