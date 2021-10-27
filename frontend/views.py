@@ -2,12 +2,13 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation, CompanyItems
+from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
+from catalogue.forms import ProductForm
 from jobPostings.models import JobPost
 
-from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm, CompanyItemForm
+from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
 from companies.models import CompanyCategory
-
+from catalogue.models import Product
 
 class HomepageView(TemplateView):
     template_name = 'index.html'
@@ -94,13 +95,16 @@ class CityDetailView(ListView):
         return context
 
 
-class SearchPageView(ListView):
-    model = Company
+class SearchPageView(TemplateView):
     template_name = 'list_view.html'
-    paginate_by = 32
 
-    def get_queryset(self):
-        return self.model.filter_data(self.request, self.model.objects.all())
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchPageView, self).get_context_data(**kwargs)
+        q = self.request.GET.get('q', '')
+        context['products'] = Product.fi
+        context['page_title'] = f'ΑΝΑΖΗΤΗΣΗ {q}'
+        return context
 
 
 class ProductCategoryView(ListView):
@@ -136,7 +140,7 @@ def edit_company_page(request, slug):
 
     form = FrontEndCompanyInformationForm(request.POST or None, instance=obj.detail)
     service_form = CompanyServiceForm(request.POST or None, initial={'company': obj})
-    item_form = CompanyItemForm(request.POST or None, initial={'company': obj})
+    item_form = ProductForm(request.POST or None, initial={'company': obj})
 
     return render(request, 'edit_customer_page.html', context={
         'form': form,

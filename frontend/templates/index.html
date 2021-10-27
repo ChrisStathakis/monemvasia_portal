@@ -96,13 +96,13 @@
 									<article>
 										<div class="post-image">
 											<div class="img-thumbnail img-thumbnail-no-borders d-block">
-												<a href="">
+												<a href="{{ service.get_detail_url }}">
 													<img src="{{ service.tag_image }}" class="border-radius-0" width="50" height="50" alt="Simple Ways to Have a Pretty Face">
 												</a>
 											</div>
 										</div>
 										<div class="post-info">
-											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="" class="text-dark">{{ service }}</a></h4>
+											<h4 class="font-weight-normal text-3 line-height-4 mb-0"><a href="{{ service.get_detail_url }}" class="text-dark">{{ service }}</a></h4>
 											<div class="post-meta">
 												{{ service.company }}
 											</div>

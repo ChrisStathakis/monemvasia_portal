@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import CompanyInformation, Company, CompanyService, CompanyItems
+from .models import CompanyInformation, Company, CompanyService
 
 
 class BaseForm(forms.Form):
@@ -16,18 +16,17 @@ class FrontEndCompanyInformationForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = CompanyInformation
-        fields = '__all__'
+        fields = ['company', 'logo_image', 'background_image',
+                  'address', 'phone', 'cellphone', 'website', 'email',
+                  'description', 'facebook_url', 'instagram_url'
+
+                  ]
 
 
 class CompanyServiceForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = CompanyService
-        fields = '__all__'
+        fields = ['title', 'image', 'text', 'price']
 
 
-class CompanyItemForm(BaseForm, forms.ModelForm):
-
-    class Meta:
-        model = CompanyItems
-        fields = '__all__'

@@ -144,17 +144,14 @@
 								<span class="custom-about-me-infos">
                                     {% for category in object.category.all %}
 									<span class="custom-text-color-1 text-uppercase">
-										<strong class="text-color-light">Previous: </strong>
-										    {{ category }}
-										<a data-hash href="{{ category.get_absolute_url }}" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ms-2">Περισσοτερα</a>
+										<strong class="text-color-light">{{ category }} </strong>
+                                        <a data-hash href="{{ category.get_absolute_url }}" class="btn btn-tertiary text-uppercase custom-btn-style-1 text-1 ms-2">Περισσοτερα</a>
 									</span>
                                     {% endfor %}
 
 								</span>
 							</div>
-							<div class="col-lg-2 col-xl-3 d-none d-lg-block">
-								<img src="{% static 'assets/img/demos/resume/about-me/mouse.png' %}" custom-anim class="img-fluid custom-image-pos-1" alt />
-							</div>
+
 						</div>
 					</div>
 					<ul class="social-icons custom-social-icons">
@@ -276,22 +273,7 @@
 									    <article class="timeline-box right custom-box-shadow-2">
 										<div class="row">
 											<div class="experience-info col-lg-3 col-sm-5 bg-color-primary">
-                                                {% comment %}
-												<span class="from text-color-light text-uppercase">
-													From
-													<span class="font-weight-semibold">Sep 2012</span>
-												</span>
-												<span class="to text-color-light text-uppercase">
-													To
-													<span class="font-weight-semibold">Present</span>
-												</span>
-												<p class="text-color-light">(3 Years 9 Months)</p>
-
-												<span class="company text-color-light font-weight-semibold">
-													ΚΟΣΤΟΛΟΓΗΣΗ
-													<span class="company-location text-color-light font-weight-normal text-uppercase">{{ service }}</span>
-												</span>
-												{% endcomment %}
+                                                <img src="{{ service.tag_image }}" width="200" height="200" class="image">
 											</div>
 											<div class="experience-description col-lg-9 col-sm-7 bg-color-light">
 												<h4 class="text-color-dark font-weight-semibold">{{ service.title }}</h4>

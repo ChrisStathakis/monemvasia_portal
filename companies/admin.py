@@ -1,11 +1,9 @@
 from django.contrib import admin
 
-from .models import Company, CompanyItems, CompanyCategory, CompanyService, CompanyInformation
+from .models import Company, CompanyCategory, CompanyService, CompanyInformation
 
 
-class CompanyItemsInline(admin.TabularInline):
-    model = CompanyItems
-    fields = ['title', 'image', 'price']
+
 
 
 class CompanyInfoInline(admin.TabularInline):
@@ -41,22 +39,15 @@ class CompanyCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(CompanyService)
 class CompanyServiceAdmin(admin.ModelAdmin):
-    list_display = ['title', 'company']
-    list_filter = ['company']
-
-
-
-
-
-@admin.register(CompanyItems)
-class CompanyItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'company', ]
-    list_filter = ['company', ]
+    list_display = ['title', 'company', 'is_primary']
+    list_filter = ['company', 'is_primary']
+    search_fields = ['title', 'company']
 
 
 @admin.register(CompanyInformation)
 class CompanyInformation(admin.ModelAdmin):
     list_filter = ['company']
+
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
@@ -64,7 +55,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'status']
     readonly_fields = ['item_support', 'status', 'counter']
     search_fields = ['title', ]
-    inlines = [CompanyInfoInline, CompanyItemsInline, ]
+    inlines = [CompanyInfoInline, ]
 
     fieldsets = (
         ('Active and Subs', {

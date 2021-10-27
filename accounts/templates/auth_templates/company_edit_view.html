@@ -1,5 +1,15 @@
 {% extends 'index.html' %}
 
+{% block extra_css %}
+    <style>
+        .form-control{
+            margin-bottom: 5%;
+
+        }
+
+    </style>
+{% endblock %}
+
 {% block content %}
     <div class="main">
         <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
@@ -25,14 +35,25 @@
                         <h4>{{ page_title }}</h4>
                     </div>
                     <div class="card-body">
+                        <p>ΕΠΕΞΗΓΗΣΗ</p>
+                        <ul>
+                            <li>ΦΟΝΤΟ: ΑΝΑΛΥΣΗ ΕΙΚΟΝΑΣ 1970px*550px</li>
+                            <li>LOGO: ΑΝΑΛΥΣΗ ΕΙΚΟΝΑΣ 718px*982px</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <hr />
+                        <h4>ΕΠΕΞΕΡΓΑΣΙΑ ΕΤΑΙΡΙΑΣ</h4>
                         <form method="post" class="form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form }}
-                    <br />
-                    <hr />
-                    <br />
-                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
-                </form>
+                            {% csrf_token %}
+                            {{ form }}
+                            <br />
+                            <hr />
+                            <br />
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                        </form>
                     </div>
                 </div>
 
@@ -86,7 +107,7 @@
                                     <th>ΥΠΗΡΕΣΙΑ</th>
                                     <th>ΚΑΤΗΓΟΡΙΕΣ</th>
                                     <th>ΤΙΜΗ</th>
-                                    <th>ΚΑΤΑΣΤΑΣΗ</th>
+                                    <th>ΕΧΕΙ ΠΡΟΤΕΡΙΟΤΗΤΑ</th>
                                     <th>-</th>
                                 </tr>
                             </thead>
@@ -97,7 +118,7 @@
                                         <td>{{ product.title }}</td>
                                         <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
                                         <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
-                                        <td></td>
+                                        <td>{{ product.tag_primary }}</td>
                                         <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
 
                                     </tr>
@@ -175,4 +196,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ form.media }}
+
 {% endblock %}

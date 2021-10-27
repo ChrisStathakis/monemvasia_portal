@@ -26,6 +26,8 @@ def logout_request(request):
 def dashboard_view(request):
     user = request.user
     profile, created = Profile.objects.get_or_create(user=user)
+    if not profile.permission_grand:
+        return render(request, 'auth_templates/deny_access.html')
     form = ProfileForm(request.POST or None, instance=profile)
     return render(request,
                   'auth_templates/dashboard.html',

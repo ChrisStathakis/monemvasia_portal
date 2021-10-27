@@ -41,9 +41,9 @@ class CompanyCategory(models.Model):
 
 class Company(models.Model):
     PRIORITY_OPTIONS = (
-        ('1', 'First. Subscription Cost:  100'),
-        ('2', 'Second. Subscription Cost: 40'),
-        ('3', 'Third. Subscription Cost:  20')
+        ('1', 'ΠΡΟΧΩΡΗΜΕΝΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 100/ΜΗΝΑ'),
+        ('2', 'ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 40/ΜΗΝΑ'),
+        ('3', 'ΒΑΣΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 20/ΜΗΝΑ')
     )
 
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
@@ -101,43 +101,31 @@ class Company(models.Model):
 
 class CompanyInformation(models.Model):
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
-    background_image = models.ImageField(help_text='1970*550', blank=True)
-    logo_image = models.ImageField(help_text='718*982', blank=True)
+    background_image = models.ImageField( blank=True, verbose_name='ΦΟΝΤΟ')
+    logo_image = models.ImageField(blank=True)
     small_image = models.ImageField(help_text='247*232', blank=True)
-    address = models.TextField(blank=True)
-    phone = models.CharField(max_length=20, blank=True)
-    cellphone = models.CharField(max_length=20, blank=True)
+    address = models.CharField(blank=True, verbose_name='ΔΙΕΥΘΥΝΣΗ', max_length=220)
+    phone = models.CharField(max_length=20, blank=True, verbose_name='ΤΗΛΕΦΩΝΟ')
+    cellphone = models.CharField(max_length=20, blank=True, verbose_name='ΚΙΝΗΤΟ')
     website = models.URLField(blank=True)
     email = models.EmailField(blank=True, null=True)
-    description = HTMLField(blank=True, null=True)
-    facebook_url = models.URLField(blank=True, null=True)
-    instagram_url = models.URLField(blank=True, null=True)
+    description = HTMLField(blank=True, null=True, verbose_name='ΠΕΡΙΓΡΑΦΗ')
+    facebook_url = models.URLField(blank=True, null=True, verbose_name='ΣΕΛΙΔΑ FACEBOOK')
+    instagram_url = models.URLField(blank=True, null=True, verbose_name='ΣΕΛΙΔΑ INSTAGRAM')
 
     def __str__(self):
         return self.company.title
 
 
-class CompanyItems(models.Model):
-    title = models.CharField(max_length=200)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='products')
-    image = models.ImageField(help_text='400*400', upload_to='products')
-    text = HTMLField(blank=True, null=True)
-    price = models.DecimalField(max_digits=20, decimal_places=2)
-
-    class Meta:
-        verbose_name_plural = 'ΠΡΟΪΟΝΤΑ'
-        verbose_name = 'ΠΡΟΪΟΝ'
-
-    def __str__(self) -> str:
-        return self.title
 
 
 class CompanyService(models.Model):
     is_primary = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='services', verbose_name='ΕΙΚΟΝΑ', null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
-    title = models.CharField(max_length=250)
-    text = HTMLField()
-    price = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    title = models.CharField(max_length=250, verbose_name='ΤΙΤΛΟΣ')
+    text = HTMLField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
+    price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name='ΤΙΜΗ')
 
     class Meta:
         verbose_name_plural = 'ΥΠΗΡΕΣΙΕΣ'
@@ -146,9 +134,17 @@ class CompanyService(models.Model):
     def __str__(self):
         return self.title
 
-
     def get_edit_url(self):
         return reverse('company:service_update', kwargs={'pk': self.id})
 
     def get_delete_url(self):
         return reverse('company:service-delete', kwargs={'pk': self.id})
+
+    def tag_primary(self):
+        return 'ΕΧΕΙ ΠΡΟΤΕΡΙΟΤΗΤΑ' if self.is_primary else 'ΔΕ ΕΧΕΙ'
+
+    def tag_image(self):
+        return self.image.url if self.image else ''
+
+    def get_detail_url(self):
+        return reverse('company_view', kwargs={'slug': self.company.slug})
