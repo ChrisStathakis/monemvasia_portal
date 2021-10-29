@@ -17,3 +17,8 @@ class Contact(models.Model):
 
     def __str__(self):
         return f'{self.email}'
+
+
+class BusinessContact(models.Model):
+    email = models.EmailField()
+    name = models.CharField()
