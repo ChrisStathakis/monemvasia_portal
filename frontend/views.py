@@ -2,7 +2,7 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from companies.models import Company, CompanyCategory, City, BUSINESS_TYPE, CompanyInformation
+from companies.models import Company, CompanyService, City, BUSINESS_TYPE, CompanyInformation
 from catalogue.forms import ProductForm
 from jobPostings.models import JobPost
 
@@ -96,13 +96,14 @@ class CityDetailView(ListView):
 
 
 class SearchPageView(TemplateView):
-    template_name = 'list_view.html'
-
+    template_name = 'search_page.html'
 
     def get_context_data(self, **kwargs):
         context = super(SearchPageView, self).get_context_data(**kwargs)
         q = self.request.GET.get('q', '')
-        context['products'] = Product.fi
+        context['products'] = Product.filter_data(self.request, Product.objects.filter(active=True))
+        context['companies'] = Company.filter_data(self.request, Company.objects.filter(status=True))
+        context['services'] = CompanyService.filter_data(self.request, CompanyService.objects.filter(company__status=True))
         context['page_title'] = f'ΑΝΑΖΗΤΗΣΗ {q}'
         return context
 

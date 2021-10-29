@@ -1,0 +1,121 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div role="main" class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 align-self-center p-static order-2 text-center">
+                        <br>
+                        <h1 class="text-dark font-weight-bold text-8">{{ page_title }}</h1>
+                        <span class="sub-title text-dark"></span>
+                    </div>
+                    <div class="col-md-12 align-self-center order-1">
+                        <ul class="breadcrumb d-block text-center">
+                            <li><a href="#">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a></li>
+                            <li class="active">{{ page_title }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-12">
+                    <h4>ΕΤΑΙΡΙΕΣ</h4>
+                    <div class="blog-posts">
+                        <div class="row">
+                            {% for ele in companies %}
+                                <div class="col-md-4 col-lg-4">
+                                    <article class="post post-medium border-0 pb-0 mb-5">
+                                        <div class="post-image">
+												<a href="{{ ele.get_absolute_url }}">
+													<img src="{{ ele.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+												</a>
+											</div>
+                                        <div class="post-content">
+
+												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+                                                    <a href="{{ ele.get_absolute_url }}">{{ ele.title}}</a>
+                                                </h2>
+												<div class="post-meta">
+													<hr />
+													<span class="d-block mt-2"><a href="{{ ele.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+												</div>
+
+											</div>
+                                    </article>
+									</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>ΠΡΟΪΟΝΤΑ</h4>
+                    <div class="blog-posts">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-4 col-lg-4">
+                                    <article class="post post-medium border-0 pb-0 mb-5">
+                                        <div class="post-image">
+												<a href="{{ product.get_detail_url }}">
+													<img src="{{ product.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+												</a>
+											</div>
+
+                                        <div class="post-content">
+												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+                                                    <a href="{{ product.get_detail_url }}">{{ product.title}}</a>
+                                                </h2>
+
+
+												<div class="post-meta">
+													<hr />
+													<span class="d-block mt-2"><a href="{{ product.get_detail_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+												</div>
+
+											</div>
+                                    </article>
+									</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>ΥΠΗΡΕΣΙΕΣ</h4>
+                    <div class="blog-posts">
+                        <div class="row">
+                            {% for service in services %}
+                                <div class="col-md-4 col-lg-4">
+                                    <article class="post post-medium border-0 pb-0 mb-5">
+                                        <div class="post-image">
+                                            <a href="{{ service.get_absolute_url }}">
+                                                <img src="{{ service.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+                                                <a href="{{ service.get_absolute_url }}">{{ service.title}}</a>
+                                            </h2>
+
+                                            <div class="post-meta">
+                                                <hr />
+                                                <span class="d-block mt-2"><a href="{{ article.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

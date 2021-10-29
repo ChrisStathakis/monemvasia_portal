@@ -55,3 +55,12 @@ class Product(models.Model):
     def tag_image(self):
         return self.image.url if self.image else ''
 
+    @staticmethod
+    def filter_data(request, qs):
+        q = request.GET.get('q', None)
+        category_name = request.GET.getlist('category_name', None)
+        if q:
+            qs = qs.filter(title__icontains=q)
+        qs = qs.filter(category__slug__in=category_name) if category_name else qs
+        
+        return qs

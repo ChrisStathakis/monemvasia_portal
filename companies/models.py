@@ -117,8 +117,6 @@ class CompanyInformation(models.Model):
         return self.company.title
 
 
-
-
 class CompanyService(models.Model):
     is_primary = models.BooleanField(default=False)
     image = models.ImageField(upload_to='services', verbose_name='ΕΙΚΟΝΑ', null=True)
@@ -148,3 +146,9 @@ class CompanyService(models.Model):
 
     def get_detail_url(self):
         return reverse('company_view', kwargs={'slug': self.company.slug})
+
+    @staticmethod
+    def filter_data(request, qs):
+        q = request.GET.get('q', None)
+        qs = qs.filter(title__icontains=q) if q else qs
+        return qs
