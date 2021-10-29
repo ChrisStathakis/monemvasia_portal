@@ -29,24 +29,7 @@
                         <div class="row">
                             {% for ele in companies %}
                                 <div class="col-md-4 col-lg-4">
-                                    <article class="post post-medium border-0 pb-0 mb-5">
-                                        <div class="post-image">
-												<a href="{{ ele.get_absolute_url }}">
-													<img src="{{ ele.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-												</a>
-											</div>
-                                        <div class="post-content">
-
-												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-                                                    <a href="{{ ele.get_absolute_url }}">{{ ele.title}}</a>
-                                                </h2>
-												<div class="post-meta">
-													<hr />
-													<span class="d-block mt-2"><a href="{{ ele.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
-												</div>
-
-											</div>
-                                    </article>
+                                    {% include 'include/company_card.html' %}
 									</div>
                             {% endfor %}
                         </div>
@@ -58,26 +41,7 @@
                         <div class="row">
                             {% for product in products %}
                                 <div class="col-md-4 col-lg-4">
-                                    <article class="post post-medium border-0 pb-0 mb-5">
-                                        <div class="post-image">
-												<a href="{{ product.get_detail_url }}">
-													<img src="{{ product.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-												</a>
-											</div>
-
-                                        <div class="post-content">
-												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-                                                    <a href="{{ product.get_detail_url }}">{{ product.title}}</a>
-                                                </h2>
-
-
-												<div class="post-meta">
-													<hr />
-													<span class="d-block mt-2"><a href="{{ product.get_detail_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
-												</div>
-
-											</div>
-                                    </article>
+                                    {% include 'include/product_card.html' %}
 									</div>
                             {% endfor %}
                         </div>

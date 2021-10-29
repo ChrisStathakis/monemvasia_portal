@@ -3,8 +3,8 @@ from django.urls import path
 from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView,
                     CompanyDetailView, CityListView, CityDetailView,
                     edit_company_page, link_page_view,
-                    ProductCategoryView,
                     )
+
 from .action_views import (create_new_item_view, create_new_service_view, validate_edit_form_info_view,
                            edit_delete_product_view,edit_or_delete_service_view
                            )

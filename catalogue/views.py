@@ -20,6 +20,8 @@ class ProductListView(ListView):
     def get_context_data(self,  **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
+        context['page_title'] = 'ΠΡΟΪΟΝΤΑ'
+        context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα'
         return context
 
 
@@ -35,6 +37,14 @@ class CategoryDetailView(ListView):
     def get_queryset(self):
         childrens = self.category.children.all()
         return Product.objects.filter(active=True, category__in=childrens)
+
+    def get_context_data(self,  **kwargs):
+        context = super(CategoryDetailView, self).get_context_data(**kwargs)
+        context['page_title'] = f'ΚΑΤΗΓΟΡΙΑ {self.category}'
+        context['page_description'] = f'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα' \
+                                      ' της κατηγορίας {self.category}'
+
+        return context
 
 
 @method_decorator(login_required, name='dispatch')

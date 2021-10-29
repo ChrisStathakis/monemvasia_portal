@@ -1,0 +1,39 @@
+
+
+<article class="post post-medium">
+    <div class="row mb-3">
+        <div class="col-lg-5">
+            <div class="post-image">
+                <a href="{{ company.get_absolute_url }}">
+                    <img src="{{ company.logo.url }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="post-content">
+                <h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
+                    <a href="{{ company.get_absolute_url }}">{{ company.title }}</a>
+                </h2>
+                <p class="mb-0">{{ company.detail.description|safe|truncatechars:100 }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="post-meta">
+                <span><i class="far fa-city"></i>
+                    ΠΟΛΗ <a href="{{ company.city.get_absolute_url }}">{{ company.city }}</a> </span>
+                ΚΑΤΗΓΟΡΙΕΣ
+                {% for cat in company.category.all %}
+                    <span>
+                        <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                    </span>
+                    {% empty %}
+
+                {% endfor %}
+                <span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0">
+                    <a href="{{ company.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
+            </div>
+        </div>
+    </div>
+</article>

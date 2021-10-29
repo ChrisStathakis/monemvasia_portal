@@ -10,6 +10,7 @@ from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
 from companies.models import CompanyCategory
 from catalogue.models import Product
 
+
 class HomepageView(TemplateView):
     template_name = 'index.html'
 
@@ -23,7 +24,6 @@ class HomepageView(TemplateView):
         context['featured'] = Company.my_query.featured()[:6]
         context['main_companies'] = Company.my_query.first_priority()[:10]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
-
         return context
 
 
@@ -108,18 +108,9 @@ class SearchPageView(TemplateView):
         return context
 
 
-class ProductCategoryView(ListView):
-    template_name = 'category_list_view.html'
-    model = CompanyCategory
-
-    def get_queryset(self):
-        qs = CompanyCategory.objects.filter(parent__isnull=True)
-        return qs
 
 
-class ProductCategoryListView(ListView):
-    template_name = 'productListView.html'
-    model = ''
+
 
 
 class ArticleDetailView(DetailView):
