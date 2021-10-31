@@ -8,6 +8,7 @@ from .models import Profile, User, InstagramCategories, InstagramLink, Company
 from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
 from catalogue.forms import ProductForm
 from catalogue.models import Product
+from contact.forms import BusinessContactForm
 
 
 def homepage_view(request):
@@ -20,6 +21,14 @@ def homepage_view(request):
 def logout_request(request):
     logout(request)
     return redirect('homepage')
+
+
+def login_or_register_view(request):
+    register_form = BusinessContactForm(request.POST or None)
+    login_form = LoginForm(request.POST or None)
+    page_title = 'ΠΕΡΙΟΧΗ ΜΕΛΩΝ'
+
+    return render(request, 'auth_templates/login_view.html', context=locals())
 
 
 @login_required

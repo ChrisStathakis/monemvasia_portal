@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div role="main" class="main">
+        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ category }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+        <div class="row" style="margin: 5%">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{% if success %} ΕΠΙΤΥΧΗΣ ΕΓΓΡΑΦΗ {% else %} ΜΗ ΕΠΙΤΥΧΗΣ ΕΓΓΡΑΦΗ {% endif %}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        {% if success %}
+                        <p>
+                            Το αίτημας σας αποθηκεύτηκε. Μετά από έλενχο τον στοιχείων σας, θα επικοινωνήσουν μαζί σας
+                            οι διαχειριστές για να σας δώσουν το username και το password.
+                        </p>
+
+                        {% else %}
+                            <p>Κάτι πήγε λάθος</p>
+                            {{ form.errors }}
+                            <hr/>
+                            Για περισσότερες πληροφορίες επικοινωνήστε τηλεφωνικα στο ή μέσω email στο
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

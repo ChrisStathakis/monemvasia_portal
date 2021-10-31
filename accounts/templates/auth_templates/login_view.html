@@ -18,18 +18,18 @@
              </div>
          </div>
      </section>
-    <div class="row">
+     <div class="row" style="margin: 2%">
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <h4>{{ page_title }}</h4>
+                    <h4>ΣΥΝΔΕΣΗ</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form" method="post">
+                    <form class="form" method="post" action="{% url 'accounts:validate_login' %}">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ login_form }}
                         <br> <hr>
-                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> {{ button_title }} </button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΣΥΝΔΕΣΗ</button>
                     </form>
                 </div>
             </div>
@@ -39,13 +39,15 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ button_switch_url }}" class="btn btn-primary pull-right">{{ button_switch_title }}</a>
-                    <br />
-                    <hr />
-                    <h4>ΟΡΟΙ ΧΡΗΣΗΣ</h4>
+                   <h4>ΔΗΜΙΟΥΡΓΙΑ ΛΟΓΑΡΙΑΣΜΟΥ</h4>
                 </div>
                <div class="card-body">
-
+                   <form class="form" method="post" action="{% url 'accounts:validate_register' %}">
+                        {% csrf_token %}
+                        {{ register_form }}
+                        <br> <hr>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΣΤΟΛΗ </button>
+                    </form>
                </div>
             </div>
         </div>

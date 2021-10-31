@@ -108,11 +108,6 @@ class SearchPageView(TemplateView):
         return context
 
 
-
-
-
-
-
 class ArticleDetailView(DetailView):
     model = Company
     template_name = 'detail_view.html'

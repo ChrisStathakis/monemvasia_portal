@@ -1,13 +1,42 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
-
-from .forms import InstagramCategoriesForm, InstagramLinkForm
+from .forms import InstagramCategoriesForm, InstagramLinkForm, LoginForm
 from .models import InstagramCategories, InstagramLink
 from companies.models import Company, CompanyService
 from companies.forms import CompanyServiceForm
 from catalogue.forms import ProductForm
 from catalogue.models import Product
+
+from contact.forms import ContactForm, BusinessContactForm
+
+
+def validate_register_form_view(request):
+    register_form = BusinessContactForm(request.POST or None)
+    success = False
+    if register_form.is_valid():
+        register_form.save()
+        success = True
+    else:
+        print(register_form.errors)
+    form = register_form
+    return render(request, 'auth_templates/register_success.html', context=locals())
+
+
+def validate_login_form_view(request):
+    form = LoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+        else:
+            print('user fails')
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect('accounts:dashboard_view')
 
 
 @login_required

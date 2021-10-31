@@ -1,20 +1,20 @@
 from django.urls import path
 
 
-from .views import (register_view, homepage_view, MyLoginView, dashboard_view, logout_request, update_profile_view,
-                    manage_instagram_links_view, update_company_info_view
+from .views import (homepage_view, dashboard_view, logout_request, update_profile_view,
+                    manage_instagram_links_view, update_company_info_view, login_or_register_view
                     )
 
 from .action_views import (validate_category_creation_view, validate_link_creation_view, edit_category_view,
-                           edit_link_view, delete_category_or_link_view, validate_company_create_product_or_service_view
+                           edit_link_view, delete_category_or_link_view, validate_company_create_product_or_service_view,
+                           validate_login_form_view, validate_register_form_view
                            )
 
 app_name = 'accounts'
 
 urlpatterns = [
     path('homepage/', homepage_view, name='homepage_view'),
-    path('login/', MyLoginView.as_view(), name='login'),
-    path('register/', register_view, name='register'),
+    path('register/', login_or_register_view, name='register'),
     path('logout/', logout_request, name='logout'),
 
     path('dashboard/', dashboard_view, name='dashboard_view'),
@@ -31,6 +31,9 @@ urlpatterns = [
          validate_company_create_product_or_service_view,
          name='validate_product_or_service'
          ),
+
+    path('action/validate/login/', validate_login_form_view, name='validate_login'),
+    path('action/validate/register/', validate_register_form_view, name='validate_register'),
 
 
 ]
