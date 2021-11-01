@@ -3,8 +3,11 @@ from django.urls import reverse
 from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
 
+from .managers import CategoryManager
+
 
 class Category(MPTTModel):
+    is_featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=120, verbose_name='Τίτλος')
 
@@ -17,6 +20,7 @@ class Category(MPTTModel):
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
 
     objects = models.Manager()
+    my_query = CategoryManager()
 
     class Meta:
         app_label = 'catalogue'

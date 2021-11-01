@@ -8,7 +8,7 @@ from jobPostings.models import JobPost
 
 from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
 from companies.models import CompanyCategory
-from catalogue.models import Product
+from catalogue.models import Product, Category
 
 
 class HomepageView(TemplateView):
@@ -24,6 +24,8 @@ class HomepageView(TemplateView):
         context['featured'] = Company.my_query.featured()[:6]
         context['main_companies'] = Company.my_query.first_priority()[:10]
         context['featured_jobs'] = JobPost.my_query.featured()[:5] if JobPost.my_query.featured().exists() else None
+        context['companies'] = Company.my_query.normal_companies()[:10]
+        context['product_categories'] = Category.my_query.is_featured()
         return context
 
 

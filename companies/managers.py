@@ -6,6 +6,9 @@ class CompanyManager(models.Manager):
     def active(self):
         return self.filter(status=True)
 
+    def normal_companies(self):
+        return self.active().filter(featured=False)
+
     def featured(self):
         return self.active().filter(featured=True)
 
