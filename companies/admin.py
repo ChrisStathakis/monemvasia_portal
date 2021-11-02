@@ -52,7 +52,7 @@ class CompanyInformation(admin.ModelAdmin):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_filter = ['status', 'business_type', 'featured', 'priority', 'category']
-    list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'status']
+    list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'featured','status']
     readonly_fields = ['item_support', 'status', 'counter']
     search_fields = ['title', ]
     inlines = [CompanyInfoInline, ]

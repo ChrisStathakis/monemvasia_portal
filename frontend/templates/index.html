@@ -140,25 +140,8 @@
 					<div class="row mt-5 pt-3">
 						<div class="col-md-9">
 							<div class="blog-posts">
-                                {% for company in normal_companies %}
-								    <article>
-										<div class="thumb-info thumb-info-no-borders thumb-info-bottom-info thumb-info-bottom-info-dark thumb-info-bottom-info-show-more thumb-info-no-zoom border-radius-0">
-											<div class="thumb-info-wrapper thumb-info-wrapper-opacity-6">
-												<img src="{{ company.logo.url }}" class="img-fluid" alt="How To Take Better Concert Pictures in 30 Seconds">
-												<div class="thumb-info-title bg-transparent p-4">
-													<div class="thumb-info-type bg-color-primary px-2 mb-1">{{ company.get_business_type_display }}</div>
-													<div class="thumb-info-inner mt-1">
-														<h2 class="text-color-light line-height-2 text-4 font-weight-bold mb-0">{{ company }}</h2>
-													</div>
-													<div class="thumb-info-show-more-content">
-														<p class="mb-0 text-1 line-height-9 mb-1 mt-2 text-light opacity-5">
-                                                            {{ company.description|safe|truncatechars_html:40 }}
-                                                        </p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</article>
+                                {% for company in companies %}
+								    {% include 'include/company_card.html' %}
                                 {% endfor %}
 
 							</div>
@@ -168,12 +151,12 @@
 
 								<h5 class="font-weight-semi-bold pt-4">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΚΑΤΗΓΟΡΙΕΣ</h5>
                                 {% for category in product_categories %}
-								<div class="fb-page" data-href="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
-                                     data-show-facepile="true">
-                                    <blockquote cite="" class="fb-xfbml-parse-ignore">
-                                        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                                    </blockquote>
-                                </div>
+                                    <div class="fb-page" data-href="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
+                                         data-show-facepile="true">
+                                        <blockquote cite="" class="fb-xfbml-parse-ignore">
+                                            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                                        </blockquote>
+                                    </div>
                                 {% endfor %}
 
 							</aside>
