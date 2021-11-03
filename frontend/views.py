@@ -32,11 +32,11 @@ class HomepageView(TemplateView):
 class CompanyDetailView(DetailView):
     model = Company
     queryset = Company.my_query.active()
-    template_name = 'detail_view.html'
+    template_name = 'detail_company.html'
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
-        context['detail'] = self.object.detail
+        context['profile'] = self.object.detail
         context['back_url'] = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         context['page_title'] = f'{self.object}'
         return context

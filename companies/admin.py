@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Company, CompanyCategory, CompanyService, CompanyInformation
+from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage
 
 
-
+class CompanyImageInline(admin.TabularInline):
+    model = CompanyImage
 
 
 class CompanyInfoInline(admin.TabularInline):
@@ -55,7 +56,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'featured','status']
     readonly_fields = ['item_support', 'status', 'counter']
     search_fields = ['title', ]
-    inlines = [CompanyInfoInline, ]
+    inlines = [CompanyImageInline, ]
 
     fieldsets = (
         ('Active and Subs', {
@@ -66,14 +67,18 @@ class CompanyAdmin(admin.ModelAdmin):
         }),
         ('Info', {
             'fields': (
-                ('title', 'logo'),
+                ('title',),
                 ('city', 'owner', ),
                 ('category', )
             )
         }),
+        ('Page Detail', {
+            'fields': (
+                ('service_title',),
+            )
+        }),
         ('rest', {
             'fields': (
-
                 ('counter', 'slug')
             )
         }),

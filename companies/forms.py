@@ -16,7 +16,7 @@ class FrontEndCompanyInformationForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = CompanyInformation
-        fields = ['company', 'logo_image', 'background_image',
+        fields = ['company', 'logo_image',
                   'address', 'phone', 'cellphone', 'website', 'email',
                   'description', 'facebook_url', 'instagram_url'
 

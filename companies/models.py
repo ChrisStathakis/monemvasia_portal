@@ -21,7 +21,19 @@ BUSINESS_TYPE = (
 
 
 def upload_to(instance, filename):
-    return f'/companies/{instance.title}/{filename}'
+    return f'/companies/images/{instance.id}/{filename}'
+
+
+def upload_image(instance, filename):
+    return f'/companies/images/{instance.company.id}/{filename}'
+
+
+def upload_logo(instance, filename):
+    return f'/companies/logos/{instance.company.id}/{filename}'
+
+
+def upload_services(instance, filename):
+    return f'/companies/services/{instance.company.id}/{filename}'
 
 
 class CompanyCategory(models.Model):
@@ -52,7 +64,6 @@ class Company(models.Model):
     category = models.ManyToManyField(CompanyCategory, null=True, blank=True)
     status = models.BooleanField(default=False)
     subscription_ends = models.DateField(null=True)
-    logo = models.ImageField(upload_to='companies/logo/', null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_OPTIONS, default='3')
     item_support = models.BooleanField(default=False)
     max_items = models.IntegerField(default=6)
@@ -61,6 +72,10 @@ class Company(models.Model):
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='companies')
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
 
+
+    # page_relates_fields
+    service_title = models.CharField(max_length=220, default='ΥΠΗΡΕΣΙΕΣ')
+
     my_query = CompanyManager()
     objects = models.Manager()
 
@@ -68,6 +83,7 @@ class Company(models.Model):
 
     class Meta:
         ordering = ['priority', ]
+        verbose_name_plural = '1. ΕΠΙΧΕΙΡΗΣΕΙΣ'
         
     def save(self, *args, **kwargs):
         self.status = True if self.subscription_ends >= datetime.datetime.now().date() else False
@@ -101,9 +117,7 @@ class Company(models.Model):
 
 class CompanyInformation(models.Model):
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
-    background_image = models.ImageField( blank=True, verbose_name='ΦΟΝΤΟ')
-    logo_image = models.ImageField(blank=True)
-    small_image = models.ImageField(help_text='247*232', blank=True)
+    logo_image = models.ImageField(blank=True, upload_to=upload_logo)
     address = models.CharField(blank=True, verbose_name='ΔΙΕΥΘΥΝΣΗ', max_length=220)
     phone = models.CharField(max_length=20, blank=True, verbose_name='ΤΗΛΕΦΩΝΟ')
     cellphone = models.CharField(max_length=20, blank=True, verbose_name='ΚΙΝΗΤΟ')
@@ -113,21 +127,33 @@ class CompanyInformation(models.Model):
     facebook_url = models.URLField(blank=True, null=True, verbose_name='ΣΕΛΙΔΑ FACEBOOK')
     instagram_url = models.URLField(blank=True, null=True, verbose_name='ΣΕΛΙΔΑ INSTAGRAM')
 
+    class Meta:
+        verbose_name_plural = '2. ΠΡΟΦΙΛ ΕΠΙΧΕΙΡΗΣΕΩΝ'
+
     def __str__(self):
         return self.company.title
 
 
+class CompanyImage(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='companies/images/')
+
+    class Meta:
+        verbose_name_plural = '2. ΕΙΚΟΝΕΣ ΕΠΙΧΕΙΡΗΣΕΩΝ'
+
+
 class CompanyService(models.Model):
     is_primary = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='services', verbose_name='ΕΙΚΟΝΑ', null=True)
+    image = models.ImageField(upload_to='companies/service/images/', verbose_name='ΕΙΚΟΝΑ', null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
     title = models.CharField(max_length=250, verbose_name='ΤΙΤΛΟΣ')
     text = HTMLField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name='ΤΙΜΗ')
 
     class Meta:
-        verbose_name_plural = 'ΥΠΗΡΕΣΙΕΣ'
+        verbose_name_plural = '4. ΥΠΗΡΕΣΙΕΣ'
         verbose_name = 'ΥΠΗΡΕΣΙΑ'
+
 
     def __str__(self):
         return self.title
