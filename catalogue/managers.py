@@ -8,3 +8,18 @@ class CategoryManager(models.Manager):
 
     def is_featured(self):
         return self.active().filter(is_featured=True)
+
+
+class ProductManager(models.Manager):
+
+    def subscribed(self):
+        return self.filter(subscribe=True)
+
+    def active(self):
+        return self.subscribed().filter(active=True)
+
+    def is_primary(self):
+        return self.active().filter(is_primary=True)
+
+    def filter_data(self, request):
+        pass

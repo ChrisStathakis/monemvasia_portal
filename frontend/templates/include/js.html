@@ -1,28 +1,39 @@
 {% load static %}
 
 <!-- Vendor -->
-		<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="{% static 'assets/js/theme.js' %}"></script>
+
+		<!-- Theme Custom -->
+		<script src="{% static 'assets/js/custom.js' %}"></script>
+
+    {% comment %}
+        <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+
 		<script src="{% static 'assets/vendor/jquery.appear/jquery.appear.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/jquery.cookie/jquery.cookie.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/jquery.validation/jquery.validate.min.js' %}"></script>
+		{% comment %}<script src="{% static 'assets/vendor/jquery.validation/jquery.validate.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/jquery.gmap/jquery.gmap.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/lazysizes/lazysizes.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/isotope/jquery.isotope.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		{% comment %}<script src="{% static 'assets/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/vide/jquery.vide.min.js' %}"></script>
 		<script src="{% static 'assets/vendor/vivus/vivus.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/instafeed/instafeed.min.js' %}"></script>
+
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="{% static 'assets/js/theme.js' %}"></script>
 
 		<!-- Theme Custom -->
 		<script src="{% static 'assets/js/custom.js' %}"></script>
-
+ {% endcomment %}
 		<!-- Theme Initialization Files -->
-		<script src="{% static 'assets/js/theme.init.js' %}"></script>
+		{% comment %}<script src="{% static 'assets/js/theme.init.js' %}"></script> {% endcomment %}
+
+
+
 

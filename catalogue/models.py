@@ -13,6 +13,7 @@ from decimal import Decimal
 from tinymce.models import HTMLField
 from .categories import Category
 from companies.models import Company
+from .managers import ProductManager
 
 
 def upload_to(instance, filename):
@@ -20,15 +21,16 @@ def upload_to(instance, filename):
 
 
 class Product(models.Model):
+    subscribe = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
     is_primary = models.BooleanField(default=False, )
+
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='my_products')
     title = models.CharField(max_length=220)
-    active = models.BooleanField(default=True)
     image = models.ImageField(blank=True, upload_to=upload_to, )
     is_offer = models.BooleanField(default=False, verbose_name='Προσφορά')
     category = models.ManyToManyField(Category, blank=True, verbose_name='Κατηγορία')
     notes = models.TextField(null=True, blank=True, verbose_name='Περιγραφή')
-    objects = models.Manager()
 
     #  site
     sku = models.CharField(max_length=150, blank=True, null=True)
@@ -40,8 +42,12 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00, verbose_name="Αρχική Τιμή")
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Εκπτωτική Τιμή')
     final_price = models.DecimalField(default=0, decimal_places=2, max_digits=10, blank=True, verbose_name='Τιμή Πώλησης')
-    
+
+    objects = models.Manager()
+    my_query = ProductManager()
+
     def save(self, *args, **kwargs):
+        self.subscribe = self.company.status
         if not self.product_url:
             self.product_url = self.company.detail.website
         self.final_price = self.price_discount if self.price_discount > 0 else self.price

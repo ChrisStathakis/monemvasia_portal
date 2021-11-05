@@ -22,3 +22,7 @@ def create_slug_for_company(sender, instance, **kwargs):
         instance.slug = new_slug if not qs_exists else f'{new_slug}-{instance.id}'
         instance.save()
     CompanyInformation.objects.get_or_create(company=instance)
+    for service in instance.services.all():
+        service.save()
+    for product in instance.my_products.all():
+        product.save()

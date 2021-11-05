@@ -6,7 +6,7 @@ from frontend.models import City
 
 
 from tinymce.models import HTMLField
-from .managers import CompanyManager
+from .managers import CompanyManager, ServiceManager
 
 import datetime
 
@@ -116,6 +116,7 @@ class Company(models.Model):
 
 
 class CompanyInformation(models.Model):
+    is_visible = models.BooleanField(default=True)
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
     logo_image = models.ImageField(blank=True, upload_to='companies/logos/')
     address = models.CharField(blank=True, verbose_name='ΔΙΕΥΘΥΝΣΗ', max_length=220)
@@ -160,6 +161,8 @@ class CompanyImage(models.Model):
 
 
 class CompanyService(models.Model):
+    active = models.BooleanField(default=True)
+    subscribe = models.BooleanField(default=True)
     is_primary = models.BooleanField(default=False)
     image = models.ImageField(upload_to='companies/service/images/', verbose_name='ΕΙΚΟΝΑ', null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
@@ -167,9 +170,16 @@ class CompanyService(models.Model):
     text = HTMLField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name='ΤΙΜΗ')
 
+    objects = models.Manager()
+    my_query = ServiceManager()
+
     class Meta:
         verbose_name_plural = '4. ΥΠΗΡΕΣΙΕΣ'
         verbose_name = 'ΥΠΗΡΕΣΙΑ'
+
+    def save(self, *args, **kwargs):
+        self.subscribe = self.company.status
+        super(CompanyService, self).save(*args, **kwargs)
 
 
     def __str__(self):

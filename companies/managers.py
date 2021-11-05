@@ -17,3 +17,15 @@ class CompanyManager(models.Manager):
 
     def first_choice(self):
         return self.active().filter(first_choice=True)
+
+
+class ServiceManager(models.Manager):
+
+    def subscribed(self):
+        return self.filter(subscribe=True)
+
+    def active(self):
+        return self.filter(active=True)
+
+    def is_primary(self):
+        return self.filter(is_primary=True)
