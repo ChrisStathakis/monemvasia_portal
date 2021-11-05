@@ -4,7 +4,6 @@
     <style>
         .form-control{
             margin-bottom: 5%;
-
         }
 
     </style>
@@ -27,7 +26,7 @@
                  </div>
              </div>
          </div>
-     </section>
+        </section>
         <div style="margin: 3%" class="row">
             <div class="col-3">
                 <div class="card">
@@ -60,6 +59,36 @@
 
             </div>
             <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΦΩΤΟΓΡΑΦΙΕΣ</h4>
+                        <p>ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ</p>
+                        <form method="post" class="form" action="">
+                            {% csrf_token %}
+                            {{ image_form }}
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ΦΩΤΟ</th>
+                                    <th>ΚΑΤΗΓΟΡΙΑ</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for image in company.images.all %}
+                                    <tr>
+                                        <td><img src="{{ image.image.url }}" width="200" height="200" class="img-thumbnail" ></td>
+                                        <td></td>
+                                        <td><a href="" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 {% if company.support_products %}
                 <div class="card">
                     <div class="card-header">
@@ -85,8 +114,7 @@
                                         <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
                                         <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
                                         <td></td>
-                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
-
+                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

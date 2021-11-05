@@ -7,7 +7,8 @@ from .views import (homepage_view, dashboard_view, logout_request, update_profil
 
 from .action_views import (validate_category_creation_view, validate_link_creation_view, edit_category_view,
                            edit_link_view, delete_category_or_link_view, validate_company_create_product_or_service_view,
-                           validate_login_form_view, validate_register_form_view
+                           validate_login_form_view, validate_register_form_view,
+                           validate_company_create_image_view, update_company_image_view, delete_company_image_view
                            )
 
 app_name = 'accounts'
@@ -34,6 +35,10 @@ urlpatterns = [
 
     path('action/validate/login/', validate_login_form_view, name='validate_login'),
     path('action/validate/register/', validate_register_form_view, name='validate_register'),
+
+    path('action/validate-company-create-image/<str:slug>/', validate_company_create_image_view, name='create_company_image'),
+    path('action/update-company-image/<int:pk>/', update_company_image_view, name='update_company_image'),
+    path('action/delete-company-image/<int:pk>/', delete_company_image_view, name='delete_company_image')
 
 
 ]

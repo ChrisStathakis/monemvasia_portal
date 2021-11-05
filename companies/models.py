@@ -117,7 +117,7 @@ class Company(models.Model):
 
 class CompanyInformation(models.Model):
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
-    logo_image = models.ImageField(blank=True, upload_to=upload_logo)
+    logo_image = models.ImageField(blank=True, upload_to='companies/logos/')
     address = models.CharField(blank=True, verbose_name='ΔΙΕΥΘΥΝΣΗ', max_length=220)
     phone = models.CharField(max_length=20, blank=True, verbose_name='ΤΗΛΕΦΩΝΟ')
     cellphone = models.CharField(max_length=20, blank=True, verbose_name='ΚΙΝΗΤΟ')
@@ -133,6 +133,17 @@ class CompanyInformation(models.Model):
     def __str__(self):
         return self.company.title
 
+    def full_phones(self):
+        phones = self.cellphone if self.cellphone else ''
+        phones += f' | {self.phone}' if self.phone else '.'
+        return phones
+
+    def full_address(self):
+        return f'{self.address} | {self.company.city}'
+
+    def tag_image(self):
+        return self.logo_image.url if self.logo_image else ''
+
 
 class CompanyImage(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='images')
@@ -140,6 +151,12 @@ class CompanyImage(models.Model):
 
     class Meta:
         verbose_name_plural = '2. ΕΙΚΟΝΕΣ ΕΠΙΧΕΙΡΗΣΕΩΝ'
+
+    def get_edit_url(self):
+        return reverse('accounts:update_company_image', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('accounts:delete_company_image', kwargs={'pk': self.pk})
 
 
 class CompanyService(models.Model):

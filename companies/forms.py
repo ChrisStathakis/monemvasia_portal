@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import CompanyInformation, Company, CompanyService
+from .models import CompanyInformation, Company, CompanyService, CompanyImage
 
 
 class BaseForm(forms.Form):
@@ -30,3 +30,9 @@ class CompanyServiceForm(BaseForm, forms.ModelForm):
         fields = ['title', 'image', 'text', 'price']
 
 
+class CompanyImageForm(BaseForm, forms.ModelForm):
+    company = forms.ModelChoiceField(queryset=Company.objects.all(), widget=forms.HiddenInput())
+
+    class Meta:
+        model = CompanyImage
+        fields = '__all__'

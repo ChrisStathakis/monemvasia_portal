@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login
 
 from .forms import InstagramCategoriesForm, InstagramLinkForm, LoginForm
 from .models import InstagramCategories, InstagramLink
-from companies.models import Company, CompanyService
-from companies.forms import CompanyServiceForm
+from companies.models import Company, CompanyService, CompanyImage
+from companies.forms import CompanyServiceForm, CompanyImageForm
 from catalogue.forms import ProductForm
 from catalogue.models import Product
 
@@ -134,3 +134,47 @@ def validate_company_create_product_or_service_view(request, slug, action):
             form.save()
 
     return redirect(company.get_edit_url())
+
+
+# images views
+
+
+@login_required
+def validate_company_create_image_view(request, slug):
+    company = get_object_or_404(Company, slug)
+    if company.owner != request.user:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    form = CompanyImageForm(request.POST, request.FILES, initial={'company': company})
+    images = company.images.all().count()
+    if images >= company.max_items:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if form.is_valid():
+        form.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def update_company_image_view(request, pk):
+    image = get_object_or_404(CompanyImage, id=pk)
+    if image.company.owner != request.user:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    form = CompanyImageForm(request.POST, request.FILES, instance=image)
+    if form.is_valid():
+        form.save()
+        return redirect(image.company.get_edit_url())
+
+    return render(request, 'auth_templates/form_view.html', context={
+        'form': form,
+        'page_title': '',
+        'back_url': '',
+        'delete_url': image.get_delete_url()
+    })
+
+
+@login_required
+def delete_company_image_view(request, pk):
+    image = get_object_or_404(CompanyImage, id=pk)
+    if image.company.owner != request.user:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    image.delete()
+    return redirect(image.company.get_edit_url())

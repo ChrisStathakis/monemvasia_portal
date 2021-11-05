@@ -5,7 +5,7 @@ from django.contrib.auth import logout, login
 
 from .forms import UserCreationCustomForm, LoginForm, ProfileForm, InstagramLinkForm, InstagramCategoriesForm
 from .models import Profile, User, InstagramCategories, InstagramLink, Company
-from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
+from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm, CompanyImageForm
 from catalogue.forms import ProductForm
 from catalogue.models import Product
 from contact.forms import BusinessContactForm
@@ -117,13 +117,15 @@ def update_company_info_view(request, slug):
 
     product_form = ProductForm(request.POST or None, initial={'company': instance})
     service_form = CompanyServiceForm(request.POST or None, initial={'company': instance})
+    image_form = CompanyImageForm(request.POST or None, initial={'company': instance})
     return render(request, 'auth_templates/company_edit_view.html', context={
         'form': form,
         'page_title': f'ΕΠΕΞΕΡΓΑΣΙΑ {instance.title}',
         'back_url': reverse('accounts:dashboard_view'),
         'company': instance,
         'product_form': product_form,
-        'service_form': service_form
+        'service_form': service_form,
+        'image_form': image_form
     })
 
 
