@@ -1,0 +1,56 @@
+/*=====================
+ slick slider css start
+==========================*/
+
+.slick-slider {
+    overflow: hidden;
+    &.slick-slider {
+        overflow: visible;
+    }
+}
+
+.no-arrow {
+    .slick-next,
+    .slick-prev {
+        display: none !important;
+    }
+}
+
+
+.theme-dots {
+    .slick-dots {
+        bottom: 10px;
+        li {
+            button {
+                &:before {
+                    font-size: 12px;
+                }
+            }
+            &.slick-active {
+                button {
+                    &:before {
+                        color: var(--theme-deafult);
+                    }
+                }
+            }
+        }
+    }
+    &.slick-dotted {
+        &.slick-slider {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.slick-default-margin {
+    .slick-list {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    .slick-slide {
+        > div {
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+    }
+}

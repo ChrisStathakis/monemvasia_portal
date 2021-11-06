@@ -1,34 +1,48 @@
+{% load static %}
 
-<article class="post post-medium">
-    <div class="row mb-3">
-        <div class="col-lg-5">
-            <div class="post-image">
-                <a href="{{ product.get_detail_url }}">
-                    <img src="{{ product.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                </a>
-            </div>
+<div class="product-box">
+    <div class="img-wrapper">
+        {% comment %}
+        <div class="lable-block">
+            <span class="lable3">new</span>
+            <span class="lable4">on sale</span>
         </div>
-        <div class="col-lg-7">
-            <div class="post-content">
-                <h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
-                    <a href="{{ product.get_detail_url }}">{{ product }}</a>
-                </h2>
-                <p class="mb-0">{{ product }}</p>
-            </div>
+        {% endcomment %}
+        <div class="front">
+            <a href="{{ product.get_absolute_url }}">
+                <img
+                    src="{{ product.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
+        </div>
+        <div class="back">
+            <a href="{{ product.get_absolute_url }}"><img
+                    src="{{ product.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
+        </div>
+        <div class="cart-info cart-wrap">
+            <button data-bs-toggle="modal" data-bs-target="#addtocart"
+                    title="Add to cart">
+                <i class="ti-shopping-cart"></i></button>
+            <a
+                href="javascript:void(0)" title="Add to Wishlist"><i
+                class="ti-heart" aria-hidden="true"></i>
+            </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"
+               title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="post-meta">
-                <span><i class="far fa-city"></i> ΠΟΛΗ <a href="{{ product.company.city.get_absolute_url }}">{{ product.company.city }}</a> </span>
-                {% for cat in product.category.all %}
-                    <span><i class="far fa-comments"></i>
-                        <a href="{{ cat.get_detail_url }}">{{ cat }}</a>
-                    </span>
-                {% endfor %}
-                <span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0">
-                    <a href="{{ product.get_detail_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
-            </div>
+    <div class="product-detail">
+        <div class="rating">
+            {{ product.company }}
         </div>
+        <a href="{{ product.get_absolute_url }}">
+            <h6>{{ product }}</h6>
+        </a>
+        <h4>{{ product.tag_final_value }}</h4>
+        <ul class="color-variant">
+            <li class="bg-light0"></li>
+            <li class="bg-light1"></li>
+            <li class="bg-light2"></li>
+        </ul>
     </div>
-</article>
+</div>

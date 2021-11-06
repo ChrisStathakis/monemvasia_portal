@@ -1,39 +1,41 @@
+{% load static %}
 
-
-<article class="post post-medium">
-    <div class="row mb-3">
-        <div class="col-lg-5">
-            <div class="post-image">
-                <a href="{{ company.get_absolute_url }}">
-                    <img src="{{ company.detail.tag_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                </a>
-            </div>
+<div class="product-box">
+    <div class="img-wrapper">
+        <div class="front">
+            <a href="{{ company.get_absolute_url }}">
+                <img
+                    src="{{ company.detail.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img" alt=""
+                >
+            </a>
         </div>
-        <div class="col-lg-7">
-            <div class="post-content">
-                <h2 class="font-weight-semibold pt-4 pt-lg-0 text-5 line-height-4 mb-2">
-                    <a href="{{ company.get_absolute_url }}">{{ company.title }}</a>
-                </h2>
-                <p class="mb-0">{{ company.detail.description|safe|truncatechars:100 }}</p>
-            </div>
+        <div class="back">
+            <a href="{{ company.detail.tag_image }}"><img
+                    src="{{ company.detail.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img" alt="">
+            </a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="post-meta">
-                <span><i class="far fa-city"></i>
-                    ΠΟΛΗ <a href="{{ company.city.get_absolute_url }}">{{ company.city }}</a> </span>
-                ΚΑΤΗΓΟΡΙΕΣ
-                {% for cat in company.category.all %}
-                    <span>
-                        <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
-                    </span>
-                    {% empty %}
-
-                {% endfor %}
-                <span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0">
-                    <a href="{{ company.get_absolute_url }}" class="btn btn-xs btn-light text-1 text-uppercase">ΠΕΡΙΣΣΟΤΕΡΑ</a></span>
-            </div>
+        <div class="cart-info cart-wrap">
+            <button data-bs-toggle="modal" data-bs-target="#addtocart"
+                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
+                href="javascript:void(0)" title="Add to Wishlist"><i
+                class="ti-heart" aria-hidden="true"></i></a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"
+               title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
+            <a href="compare.html" title="Compare"><i class="ti-reload"
+                                                      aria-hidden="true"></i></a>
         </div>
     </div>
-</article>
+    <div class="product-detail">
+        <hr/>
+        <div class="rating">
+            {{ company.get_business_type_display }}
+        </div>
+        <a href="{{ company.detail.tag_image }}">
+            <h4>{{ company }}</h4>
+        </a>
+        <hr />
+        <p>{{ company.city }}</p>
+    </div>
+</div>

@@ -1,57 +1,38 @@
-<head> {% load static %}
+{% load static %}
 
-		<!-- Basic -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="multikart">
+    <meta name="keywords" content="multikart">
+    <meta name="author" content="multikart">
+    <link rel="icon" href="{% static 'assets/images/favicon/12.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon/12.png' %}" type="image/x-icon">
+    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
 
-		<title>Μονεμβασια | {{ page_title }}</title>
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
 
-		<meta name="keywords" content="Μονεμβασια, Εμποριο, Υπηρεσιες, {{ page_keywords }}" />
-		<meta name="description" content="{{ page_description }}">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/fontawesome.css' %}">
 
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick-theme.css' %}">
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="{% static 'assets/img/apple-touch-icon.png' %}">
+    <!-- Animate icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/animate.css' %}">
 
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <!-- Themify icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/themify-icons.css' %}">
 
-		<!-- Web Fonts  -->
-		<link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400&display=swap" rel="stylesheet" type="text/css">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
 
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/animate/animate.compat.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/vendor/magnific-popup/magnific-popup.min.css' %}">
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/css/theme-elements.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/css/theme-blog.css' %}">
-		<link rel="stylesheet" href="{% static 'assets/css/theme-shop.css' %}">
-
-		<!-- Skin CSS -->
-		<link id="skinCSS" rel="stylesheet" href="{% static 'assets/css/skins/default.css' %}">
-
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
-
-		<!-- Head Libs -->
-		<script src="{% static 'assets/vendor/modernizr/modernizr.min.js' %}"></script>
-        {% block extra_css %}
-            <style>
-                .foo {
-                    border-radius: 1px;
-                    box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);
-                    height: 200px;
-                    width: 200px;
-                }
-            </style>
-        {% endblock %}
-
-	</head>
+</head>

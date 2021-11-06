@@ -1,39 +1,39 @@
 {% load static %}
 
-<!-- Vendor -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="{% static 'assets/js/theme.js' %}"></script>
+ <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
 
-		<!-- Theme Custom -->
-		<script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- menu js-->
+    <script src="{% static 'assets/js/menu.js' %}"></script>
 
-    {% comment %}
-        <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <!-- lazyload js-->
+    <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
 
-		<script src="{% static 'assets/vendor/jquery.appear/jquery.appear.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-		{% comment %}<script src="{% static 'assets/vendor/jquery.validation/jquery.validate.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/jquery.gmap/jquery.gmap.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/lazysizes/lazysizes.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/isotope/jquery.isotope.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
-		{% comment %}<script src="{% static 'assets/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/vide/jquery.vide.min.js' %}"></script>
-		<script src="{% static 'assets/vendor/vivus/vivus.min.js' %}"></script>
+    <!-- slick js-->
+    <script src="{% static 'assets/js/slick.js' %}../"></script>
 
+    <!-- Bootstrap js-->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
 
-		<!-- Theme Base, Components and Settings -->
-		<script src="{% static 'assets/js/theme.js' %}"></script>
+    <!-- Bootstrap Notification js-->
+    <script src="{% static 'assets/js/bootstrap-notify.min.js' %}"></script>
 
-		<!-- Theme Custom -->
-		<script src="{% static 'assets/js/custom.js' %}"></script>
- {% endcomment %}
-		<!-- Theme Initialization Files -->
-		{% comment %}<script src="{% static 'assets/js/theme.init.js' %}"></script> {% endcomment %}
+    <!-- Theme js-->
+    <script src="{% static 'assets/js/theme-setting.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
 
+    <script>
+        $(window).on('load', function () {
+            setTimeout(function () {
+                $('#exampleModal').modal('show');
+            }, 2500);
+        });
 
+        function openSearch() {
+            document.getElementById("search-overlay").style.display = "block";
+        }
 
-
+        function closeSearch() {
+            document.getElementById("search-overlay").style.display = "none";
+        }
+    </script>

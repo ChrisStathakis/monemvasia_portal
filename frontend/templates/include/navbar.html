@@ -1,99 +1,101 @@
 {% load static %}
-<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 122, 'stickySetTop': '-122px', 'stickyChangeLogo': false}">
-    <div class="header-body border-color-primary border-top-0 box-shadow-none">
-					<div class="header-container container z-index-2" style="min-height: 122px;">
-						<div class="header-row">
-							<div class="header-column">
-								<div class="header-row">
-									<h1 class="header-logo">
-										<a href="{% url 'homepage' %}">
-											<img alt="Porto" width="100" height="48" src="{% static 'assets/img/logo-default-slim.png' %}">
-											<span class="hide-text">{{ page_title }}</span>
-										</a>
-									</h1>
-								</div>
-							</div>
-							<div class="header-column justify-content-end">
-								<div class="header-row h-100">
-									<a href="{{ navbar_ads_choice.image.url }}" {% if navbar_ads_choice.url_blank %} target="_blank" {% endif %} class="py-3 d-block">
-										<img alt="no image" class="img-fluid ps-3" src="{{ navbar_ads_choice.image.url }}" />
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="header-nav-bar bg-primary">
-						<div class="container">
-							<div class="header-row p-relative">
-								<div class="header-column">
-									<div class="header-row">
-										<div class="header-colum order-2 order-lg-1">
-											<div class="header-row">
-												<div class="header-nav header-nav-stripe header-nav-divisor header-nav-force-light-text justify-content-start">
-													<div class="header-nav-main header-nav-main-square header-nav-main-effect-1 header-nav-main-sub-effect-1">
-														<nav class="collapse">
-															<ul class="nav nav-pills" id="mainNav">
-                                                                {% for category in categories %}
-                                                                    <li class="dropdown dropdown-full-color dropdown-light">
-                                                                        <a class="dropdown-item dropdown-toggle" href="{{ category.get_absolute_url }}">
-                                                                            {{ category }}
-                                                                        </a>
-                                                                        {% if category.have_children %}
-                                                                        <ul class="dropdown-menu">
-                                                                            {% for ele in category.children.all %}
-                                                                            <li>
-                                                                                <a class="dropdown-item" href="{{ ele.get_absolute_url }}">{{ ele }}</a>
-                                                                            </li>
-                                                                            {% endfor %}
-                                                                        </ul>
-                                                                        {% endif %}
-                                                                    </li>
-                                                                {% endfor %}
-                                                                <li class="dropdown dropdown-full-color dropdown-light">
-																	<a class="dropdown-item dropdown-toggle" href="{% url 'cities' %}">
-																		ΠΕΡΙΟΧΕΣ
-																	</a>
 
-																</li>
-                                                                <li class="dropdown dropdown-full-color dropdown-light">
-																	<a class="dropdown-item dropdown-toggle" href="{% url 'product_categories' %}">
-																		ΠΡΟΪΌΝΤΑ
-																	</a>
-																</li>
-                                                                <li class="dropdown dropdown-full-color dropdown-light">
-																	<a class="dropdown-item dropdown-toggle" href="{% url 'accounts:homepage_view' %}">
-                                                                        ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ
-                                                                    </a>
-																</li>
-															</ul>
-														</nav>
-													</div>
-													<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
-														<i class="fas fa-bars"></i>
-													</button>
-												</div>
-											</div>
-										</div>
-										<div class="header-column order-1 order-lg-2">
-											<div class="header-row justify-content-end">
-												<div class="header-nav-features header-nav-features-no-border w-75 w-auto-mobile d-none d-sm-flex">
-													<form name="q" role="search" class="d-flex w-100" action="{% url 'search' %}" method="get">
-														<div class="simple-search input-group w-100">
-															<input class="form-control border-0 text-1" id="headerSearch" name="q" type="search"
-                                                                   value="{{ request.q }}" placeholder="Αναζήτηση"
-                                                            >
-															<button class="btn btn-light" type="submit">
-																<i class="fa fa-search header-nav-top-icon"></i>
-															</button>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</header>
+<header>
+    <div class="top-header d-none d-sm-block top-header-dark2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                            <div class="header-contact">
+                                <ul>
+                                    <li>Καλώς ήρθατε στο Monemvasia.org</li>
+                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Βρείτε μας στο: 123 - 456 - 7890</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-end">
+                            <ul class="header-dropdown">
+                                <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i>
+                                        wishlist</a></li>
+                                <li class="onhover-dropdown mobile-account"> <i class="fa fa-user"
+                                        aria-hidden="true"></i>
+                                    My Account
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container layout3-menu">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="main-menu">
+                            <div class="menu-left around-border">
+                                <div class="navbar"> <a href="#" onclick="openNav()"><i class="fa fa-bars sidebar-bar"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                                <div class="main-menu-right">
+                                    <nav>
+                                        <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                        <ul class="sm pixelstrap sm-horizontal light-font-menu">
+                                            <li>
+                                                <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
+                                                        aria-hidden="true"></i></div>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'homepage' %}">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">feature<div class="lable-nav">new</div></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">shop</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">product</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">pages</a>
+                                            </li>
+                                            <li><a href="#">blog</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="absolute-logo">
+                                <div class="brand-logo">
+                                    <a href="#"><img alt="" src="{% static 'assets/images/icon/logo/12.png' %}"></a>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="menu-right pull-right">
+                                    <div>
+                                        <div class="icon-nav d-none d-sm-block">
+                                            <ul>
+                                                <li class="onhover-div mobile-search">
+                                                    <div><img alt="" src="../assets/images/icon/layout4/search.png"
+                                                            onclick="openSearch()" class="img-fluid blur-up lazyload">
+                                                        <i class="ti-search" onclick="openSearch()"></i>
+                                                    </div>
+                                                </li>
+                                                <li class="onhover-div mobile-setting">
+                                                    <div><img alt="" src="../assets/images/icon/layout4/setting.png"
+                                                            class="img-fluid blur-up lazyload"> <i
+                                                            class="ti-settings"></i>
+                                                    </div>
+                                                </li>
+                                                <li class="onhover-div mobile-cart">
+                                                    <div><img alt="" src="../assets/images/icon/layout4/cart.png"
+                                                            class="img-fluid blur-up lazyload"> <i
+                                                            class="ti-shopping-cart"></i></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>

@@ -80,7 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                'frontend.context_processor.initial_data',
                 'myAds.context_processors.get_ads',
                 'companies.context_processors.navbar_categories',
             ],
