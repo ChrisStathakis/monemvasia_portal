@@ -1,0 +1,268 @@
+{% extends 'index.html' %} {% load  static %}
+
+{% block content %}
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>{{ page_title }}</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'homepage' %}">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb end -->
+
+    <!-- section start -->
+    <section class="section-b-space ratio_asos">
+        <div class="collection-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 collection-filter">
+                        <!-- side-bar colleps block stat -->
+                        <div class="collection-filter-block">
+                            <!-- brand filter start -->
+                            <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
+                                        aria-hidden="true"></i> back</span></div>
+                            <div class="collection-collapse-block open">
+                                <h3 class="collapse-block-title">ΠΟΛΗ</h3>
+                                <div class="collection-collapse-block-content">
+                                    <div class="collection-brand-filter">
+                                        {% for city in cities %}
+                                            <div class="form-check collection-filter-checkbox">
+                                                <input
+                                                        name='city_name'
+                                                        value="{{ city.id }}"
+                                                        type="checkbox"
+                                                        class="form-check-input"
+                                                        id="city_{{ city.id }}"
+                                                >
+                                                <label class="form-check-label" for="city_{{ city.id }}">{{ city }}</label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="collection-collapse-block open">
+                                <h3 class="collapse-block-title">ΚΑΤΗΓΟΡΙΑ</h3>
+                                <div class="collection-collapse-block-content">
+                                    <div class="collection-brand-filter">
+                                        {% for category in my_categories %}
+                                            <div class="form-check collection-filter-checkbox">
+                                                <input
+                                                        name='category_name'
+                                                        value="{{ category.id }}"
+                                                        type="checkbox"
+                                                        class="form-check-input"
+                                                        id="category_{{ category.id }}"
+                                                >
+                                                <label class="form-check-label" for="category_{{ category.id }}">{{ category }}</label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- silde-bar colleps block end here -->
+                        <!-- side-bar single product slider start -->
+                        <div class="theme-card">
+                            <h5 class="title-border">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h5>
+                            <div class="offer-slider slide-1">
+                                <div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/1.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/011.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/16.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/001.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/4.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/19.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- side-bar single product slider end -->
+
+                    </div>
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+                                        <a href="#">
+                                            <img src="{% static 'assets/images/mega-menu/2.jpg' %}"
+                                                class="img-fluid blur-up lazyload" alt=""></a>
+                                        <div class="top-banner-content small-section">
+                                            <h4>ΔΕΙΤΕ ΤΙΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h4>
+                                        </div>
+                                    </div>
+                                    <div class="collection-product-wrapper">
+                                        <div class="product-top-filter">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="filter-main-btn"><span
+                                                            class="filter-btn btn btn-theme"><i class="fa fa-filter"
+                                                                aria-hidden="true"></i> Filter</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-filter-content">
+                                                        <div class="search-count">
+                                                            <h5>Showing Products 1-24 of 10 Result</h5>
+                                                        </div>
+                                                        <div class="product-page-filter">
+                                                            <select>
+                                                                <option value="High to low">Sorting items</option>
+                                                                <option value="Low to High">50 Products</option>
+                                                                <option value="Low to High">100 Products</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                {% for company in object_list %}
+                                                <div class="col-xl-3 col-6 col-grid-box">
+                                                    {% include 'include/company_card.html' %}
+                                                </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                        <div class="product-pagination">
+                                            <div class="theme-paggination-block">
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-md-6 col-sm-12">
+                                                        <nav aria-label="Page navigation">
+                                                            <ul class="pagination">
+                                                                <li class="page-item"><a class="page-link" href="#"
+                                                                        aria-label="Previous"><span
+                                                                            aria-hidden="true"><i
+                                                                                class="fa fa-chevron-left"
+                                                                                aria-hidden="true"></i></span> <span
+                                                                            class="sr-only">Previous</span></a></li>
+                                                                <li class="page-item active"><a class="page-link"
+                                                                        href="#">1</a></li>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="#">2</a></li>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="#">3</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#"
+                                                                        aria-label="Next"><span aria-hidden="true"><i
+                                                                                class="fa fa-chevron-right"
+                                                                                aria-hidden="true"></i></span> <span
+                                                                            class="sr-only">Next</span></a></li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                    <div class="col-xl-6 col-md-6 col-sm-12">
+                                                        <div class="product-search-count-bottom">
+                                                            <h5>Showing Products 1-24 of 10 Result</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section End -->
+
+{% endblock %}
+
+
+
+
+

@@ -33,19 +33,21 @@ class HomepageView(TemplateView):
 class CompanyDetailView(DetailView):
     model = Company
     queryset = Company.my_query.active()
-    template_name = 'detail_company.html'
+    template_name = 'company_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         context['profile'] = self.object.detail
         context['back_url'] = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         context['page_title'] = f'{self.object}'
+        context['products'] = Product.my_query.active().filter(company=self.object)
+        context['services'] = CompanyService.my_query.active().filter(company=self.object)
         return context
 
 
 class CategoryListView(ListView):
     model = Company
-    template_name = 'list_view.html'
+    template_name = 'company_list_view.html'
     paginate_by = 32
 
     def dispatch(self, request, *args, **kwargs):
@@ -61,6 +63,7 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs)
         context['my_categories'] = CompanyCategory.objects.filter(parent=self.category)
+        context['cities'] = City.objects.filter(active=True)
         context['category'] = self.category
         context['page_title'] = f'{self.category}'
         context['page_description'] = f'Καλώς ήρθατε στο monemvasia.org. Επισκευτείτε την κατηγορια {self.category} ' \

@@ -14,11 +14,9 @@
                         </div>
                         <div class="col-lg-6 text-end">
                             <ul class="header-dropdown">
-                                <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i>
-                                        wishlist</a></li>
                                 <li class="onhover-dropdown mobile-account"> <i class="fa fa-user"
                                         aria-hidden="true"></i>
-                                    My Account
+                                    ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ
                                 </li>
                             </ul>
                         </div>
@@ -44,20 +42,12 @@
                                             <li>
                                                 <a href="{% url 'homepage' %}">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a>
                                             </li>
-                                            <li>
-                                                <a href="#">feature<div class="lable-nav">new</div></a>
-                                            </li>
-                                            <li>
-                                                <a href="#">shop</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">product</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">pages</a>
-                                            </li>
-                                            <li><a href="#">blog</a>
-                                            </li>
+                                            {% for category in categories %}
+                                                <li>
+                                                    <a href="{{ category.get_absolute_url }}">{{ category }}</a>
+                                                </li>
+                                            {% endfor %}
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -72,20 +62,23 @@
                                     <div>
                                         <div class="icon-nav d-none d-sm-block">
                                             <ul>
+                                                <li>
+                                                <a href="">ΠΟΛΕΙΣ</a>
+                                            </li>
                                                 <li class="onhover-div mobile-search">
-                                                    <div><img alt="" src="../assets/images/icon/layout4/search.png"
+                                                    <div><img alt="" src="{% static 'assets/images/icon/layout4/search.png' %}"
                                                             onclick="openSearch()" class="img-fluid blur-up lazyload">
                                                         <i class="ti-search" onclick="openSearch()"></i>
                                                     </div>
                                                 </li>
                                                 <li class="onhover-div mobile-setting">
-                                                    <div><img alt="" src="../assets/images/icon/layout4/setting.png"
+                                                    <div><img alt="" src="{% static 'assets/images/icon/layout4/setting.png' %}"
                                                             class="img-fluid blur-up lazyload"> <i
                                                             class="ti-settings"></i>
                                                     </div>
                                                 </li>
                                                 <li class="onhover-div mobile-cart">
-                                                    <div><img alt="" src="../assets/images/icon/layout4/cart.png"
+                                                    <div><img alt="" src="{% static 'assets/images/icon/layout4/cart.png' %}"
                                                             class="img-fluid blur-up lazyload"> <i
                                                             class="ti-shopping-cart"></i></div>
                                                 </li>

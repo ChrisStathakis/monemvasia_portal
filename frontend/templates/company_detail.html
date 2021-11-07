@@ -1,0 +1,750 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="multikart">
+    <meta name="keywords" content="multikart">
+    <meta name="author" content="multikart">
+    <link rel="icon" href="{{ profile.tag_image }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon/1.png' %}" type="image/x-icon">
+    <title>{{ company }}</title>
+
+    {% include 'include/css.html' %}
+
+
+</head>
+
+<body class="theme-color-2 section-white">
+
+
+
+
+    <!-- header start -->
+    <header>
+        <div class="mobile-fix-option"></div>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="header-contact">
+                            <ul>
+                                <li>Πληροφορίες για {{ company }}</li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>ΤΗΛΕΦΩΝΟ: {{ profile.tag_phones }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <ul class="header-dropdown">
+
+                            <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i>
+                                ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ
+                                <ul class="onhover-show-div">
+                                    <li><a href="">ΣΥΝΔΕΣΗ</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="main-menu">
+                        <div class="menu-left">
+                            <div class="navbar">
+                                <a href="javascript:void(0)" onclick="openNav()">
+                                    <div class="bar-style"><i class="fa fa-bars sidebar-bar" aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <div id="mySidenav" class="sidenav">
+                                    <a href="javascript:void(0)" class="sidebar-overlay" onclick="closeNav()"></a>
+                                    <nav>
+                                        <div onclick="closeNav()">
+                                            <div class="sidebar-back text-start"><i class="fa fa-angle-left pe-2"
+                                                    aria-hidden="true"></i> Back</div>
+                                        </div>
+                                        <ul id="sub-menu" class="sm pixelstrap sm-vertical">
+                                            <li> <a href="#">clothing</a>
+                                                <ul class="mega-menu clothing-menu">
+                                                    <li>
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-4">
+                                                                <div class="link-section">
+                                                                    <h5>women's fashion</h5>
+                                                                    <ul>
+                                                                        <li><a href="#">dresses</a></li>
+                                                                        <li><a href="#">skirts</a></li>
+                                                                        <li><a href="#">westarn wear</a></li>
+                                                                        <li><a href="#">ethic wear</a></li>
+                                                                        <li><a href="#">sport wear</a></li>
+                                                                    </ul>
+                                                                    <h5>men's fashion</h5>
+                                                                    <ul>
+                                                                        <li><a href="#">sports wear</a></li>
+                                                                        <li><a href="#">western wear</a></li>
+                                                                        <li><a href="#">ethic wear</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4">
+                                                                <div class="link-section">
+                                                                    <h5>accessories</h5>
+                                                                    <ul>
+                                                                        <li><a href="#">fashion jewellery</a></li>
+                                                                        <li><a href="#">caps and hats</a></li>
+                                                                        <li><a href="#">precious jewellery</a></li>
+                                                                        <li><a href="#">necklaces</a></li>
+                                                                        <li><a href="#">earrings</a></li>
+                                                                        <li><a href="#">wrist wear</a></li>
+                                                                        <li><a href="#">ties</a></li>
+                                                                        <li><a href="#">cufflinks</a></li>
+                                                                        <li><a href="#">pockets squares</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4">
+                                                                <a href="#" class="mega-menu-banner"><img
+                                                                        src="../assets/images/mega-menu/fashion.jpg"
+                                                                        alt="" class="img-fluid blur-up lazyload"></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li> <a href="#">bags</a>
+                                                <ul>
+                                                    <li><a href="#">shopper bags</a></li>
+                                                    <li><a href="#">laptop bags</a></li>
+                                                    <li><a href="#">clutches</a></li>
+                                                    <li> <a href="#">purses</a>
+                                                        <ul>
+                                                            <li><a href="#">purses</a></li>
+                                                            <li><a href="#">wallets</a></li>
+                                                            <li><a href="#">leathers</a></li>
+                                                            <li><a href="#">satchels</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li> <a href="#">footwear</a>
+                                                <ul>
+                                                    <li><a href="#">sport shoes</a></li>
+                                                    <li><a href="#">formal shoes</a></li>
+                                                    <li><a href="#">casual shoes</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">watches</a></li>
+                                            <li> <a href="#">Accessories</a>
+                                                <ul>
+                                                    <li><a href="#">fashion jewellery</a></li>
+                                                    <li><a href="#">caps and hats</a></li>
+                                                    <li><a href="#">precious jewellery</a></li>
+                                                    <li> <a href="#">more..</a>
+                                                        <ul>
+                                                            <li><a href="#">necklaces</a></li>
+                                                            <li><a href="#">earrings</a></li>
+                                                            <li><a href="#">wrist wear</a></li>
+                                                            <li> <a href="#">accessories</a>
+                                                                <ul>
+                                                                    <li><a href="#">ties</a></li>
+                                                                    <li><a href="#">cufflinks</a></li>
+                                                                    <li><a href="#">pockets squares</a></li>
+                                                                    <li><a href="#">helmets</a></li>
+                                                                    <li><a href="#">scarves</a></li>
+                                                                    <li> <a href="#">more...</a>
+                                                                        <ul>
+                                                                            <li><a href="#">accessory gift sets</a></li>
+                                                                            <li><a href="#">travel accessories</a></li>
+                                                                            <li><a href="#">phone cases</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li><a href="#">belts & more</a></li>
+                                                            <li><a href="#">wearable</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">house of design</a></li>
+                                            <li> <a href="#">beauty & personal care</a>
+                                                <ul>
+                                                    <li><a href="#">makeup</a></li>
+                                                    <li><a href="#">skincare</a></li>
+                                                    <li><a href="#">premium beaty</a></li>
+                                                    <li> <a href="#">more</a>
+                                                        <ul>
+                                                            <li><a href="#">fragrances</a></li>
+                                                            <li><a href="#">luxury beauty</a></li>
+                                                            <li><a href="#">hair care</a></li>
+                                                            <li><a href="#">tools & brushes</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">home & decor</a></li>
+                                            <li><a href="#">kitchen</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="brand-logo">
+                                <a href="{{ company.get_absolute_url }}"><img src="{{ profile.tag_image }}"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="menu-right pull-right">
+                            <div>
+                                <nav id="main-nav">
+                                    <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                    <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                                        <li>
+                                            <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
+                                                    aria-hidden="true"></i></div>
+                                        </li>
+                                        <li><a href="index.html">ΕΠΙΣΤΡΟΦΗ ΣΤΟ SITE</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+
+
+    <!-- Home slider -->
+    <section class="pt-0">
+        <div class="slider-animate home-slider">
+            <div>
+                <div class="home">
+                    <img src="" alt="" class="bg-img blur-up lazyload">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slider-contain px-padding">
+                                    <div>
+                                        <h4 class="animated" data-animation-in="fadeInUp">{{ company.get_business_type_display }}</h4>
+                                        <h1 class="animated" data-animation-in="fadeInUp" data-delay-in="0.3">
+                                            {{ company }}</h1>
+                                        {% if profile.website %}
+                                            <a href="{{ profile.website }}" class="btn btn-solid animated"
+                                            data-animation-in="fadeInUp" data-delay-in="0.5">ΕΠΙΣΚΕΥΤΕΙΤΕ ΤΟ SITE</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- about section-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="title3">
+                        <h4>Η ΙΣΤΟΡΙΑ ΜΑΣ</h4>
+                        <h2 class="title-inner3">Η ΙΣΤΟΡΙΑ ΜΑΣ</h2>
+                        <div class="line"></div>
+                    </div>
+                    <div class="about-text">
+                        {{ profile.description|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about section end -->
+
+
+    <!-- product start -->
+    <section class="section-b-space bg-light bag-product ratio_square">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="title3">
+                        <h4>Multikart</h4>
+                        <h2 class="title-inner3">ΤΑ ΠΡΟΪΟΝΤΑ ΜΑΣ</h2>
+                        <div class="line"></div>
+                    </div>
+                    <div class="product-5 product-m no-arrow">
+                        {% for product in products %}
+                            {% include 'include/product_card.html' %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product end -->
+
+    <!-- product section start -->
+    <section class="bag-product ratio_square section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title3">
+                        <h4>exclusive products</h4>
+                        <h2 class="title-inner3">ΥΠΗΡΕΣΙΕΣ</h2>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row no-slider margin-default five-product">
+                        {% for service in services %}
+                            {% include 'include/service_card.html' %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product section end -->
+
+
+    <!-- lookbook section -->
+    <section class="lookbook ratio_square lookbook-layout bg-light section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title3">
+                        <h2 class="title-inner3">ΒΡΕΙΤΕ ΜΑΣ</h2>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form class="theme-form">
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <label for="name">First Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Your name"
+                                    required="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Last Name</label>
+                                <input type="text" class="form-control" id="last-name" placeholder="Email" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="review">Phone number</label>
+                                <input type="text" class="form-control" id="review" placeholder="Enter your number"
+                                    required="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="review">Write Your Message</label>
+                                <textarea class="form-control" placeholder="Write Your Message"
+                                    id="exampleFormControlTextarea1" rows="6"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-solid" type="submit">Send Your Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-right">
+                        <ul>
+                            <li>
+                                <div class="contact-icon"><img src="{% static 'assets/images/icon/phone.png' %}"
+                                        alt="Generic placeholder image">
+                                    <h6>Contact Us</h6>
+                                </div>
+                                <div class="media-body">
+                                    <p>+91 123 - 456 - 7890</p>
+                                    <p>+86 163 - 451 - 7894</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <h6>Address</h6>
+                                </div>
+                                <div class="media-body">
+                                    <p>ABC Complex,Near xyz, New York</p>
+                                    <p>USA 123456</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="contact-icon"><img src="{% static 'assets/images/icon/email.png' %}"
+                                        alt="Generic placeholder image">
+                                    <h6>Address</h6>
+                                </div>
+                                <div class="media-body">
+                                    <p>Support@Shopcart.com</p>
+                                    <p>info@shopcart.com</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fa fa-fax" aria-hidden="true"></i>
+                                    <h6>Fax</h6>
+                                </div>
+                                <div class="media-body">
+                                    <p>Support@Shopcart.com</p>
+                                    <p>info@shopcart.com</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- lookbook section end-->
+
+
+
+
+
+    <!-- instagram section -->
+    <section class="instagram section-b-space ratio_square">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title-borderless"># instagram</h2>
+                    <div class="slide-7 no-arrow slick-instagram">
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/1.jpg" alt="Avatar" class="bg-img"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/2.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/3.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/4.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/5.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/6.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="instagram-box">
+                                    <img src="../assets/images/yoga/instagram/7.jpg" class="bg-img" alt="Avatar"
+                                        style="width:100%">
+                                    <div class="overlay">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- instagram section end -->
+
+
+    <!-- footer section start -->
+    <footer class="sticky-footer darken-background">
+        <section class="section-b-space darken-layout">
+            <div class="container">
+                <div class="row footer-theme partition-f">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-title footer-mobile-title">
+                            <h4>about</h4>
+                        </div>
+                        <div class="footer-contant">
+                            <div class="footer-logo">
+                                <img src="../assets/images/icon/logo/f5.png" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col offset-xl-1 ">
+                        <div class="sub-title">
+                            <div class="footer-title">
+                                <h4>my account</h4>
+                            </div>
+                            <div class="footer-contant">
+                                <ul>
+                                    <li><a href="#">mens</a></li>
+                                    <li><a href="#">womens</a></li>
+                                    <li><a href="#">clothing</a></li>
+                                    <li><a href="#">accessories</a></li>
+                                    <li><a href="#">featured</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="sub-title">
+                            <div class="footer-title">
+                                <h4>why we choose</h4>
+                            </div>
+                            <div class="footer-contant">
+                                <ul>
+                                    <li><a href="#">shipping &amp; return</a></li>
+                                    <li><a href="#">secure shopping</a></li>
+                                    <li><a href="#">gallary</a></li>
+                                    <li><a href="#">affiliates</a></li>
+                                    <li><a href="#">contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="sub-title">
+                            <div class="footer-title">
+                                <h4>store information</h4>
+                            </div>
+                            <div class="footer-contant">
+                                <ul class="contact-list">
+                                    <li><i class="fa fa-map-marker"></i>Multikart Demo Store, Demo store
+                                        India 345-659</li>
+                                    <li><i class="fa fa-phone"></i>Call Us: 123-456-7898</li>
+                                    <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">Support@Fiot.com</a></li>
+                                    <li><i class="fa fa-fax"></i>Fax: 123456</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="sub-footer darker-subfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="footer-end">
+                            <p><i class="fa fa-copyright" aria-hidden="true"></i> 2017-18 themeforest powered by
+                                pixelstrap</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="payment-card-bottom">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="../assets/images/icon/visa.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="../assets/images/icon/mastercard.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="../assets/images/icon/paypal.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="../assets/images/icon/american-express.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="../assets/images/icon/discover.png" alt=""></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end -->
+
+
+
+
+    <!-- Quick-view modal popup start-->
+    <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content quick-view-modal">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="quick-view-img"><img src="../assets/images/pro3/1.jpg" alt=""
+                                    class="img-fluid blur-up lazyload"></div>
+                        </div>
+                        <div class="col-lg-6 rtl-text">
+                            <div class="product-right">
+                                <h2>Women Pink Shirt</h2>
+                                <h3>$32.96</h3>
+                                <ul class="color-variant">
+                                    <li class="bg-light0"></li>
+                                    <li class="bg-light1"></li>
+                                    <li class="bg-light2"></li>
+                                </ul>
+                                <div class="border-product">
+                                    <h6 class="product-title">product details</h6>
+                                    <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque laudantium</p>
+                                </div>
+                                <div class="product-description border-product">
+                                    <div class="size-box">
+                                        <ul>
+                                            <li class="active"><a href="javascript:void(0)">s</a></li>
+                                            <li><a href="javascript:void(0)">m</a></li>
+                                            <li><a href="javascript:void(0)">l</a></li>
+                                            <li><a href="javascript:void(0)">xl</a></li>
+                                        </ul>
+                                    </div>
+                                    <h6 class="product-title">quantity</h6>
+                                    <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                        class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="quantity" class="form-control input-number"
+                                                value="1"> <span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                        class="ti-angle-right"></i></button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-buttons"><a href="#" class="btn btn-solid">add to cart</a> <a
+                                        href="#" class="btn btn-solid">view detail</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Quick-view modal popup end-->
+
+
+
+
+
+    <!-- exit modal popup start-->
+    <div class="modal fade bd-example-modal-lg theme-modal exit-modal" id="exit_popup" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body modal1">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="modal-bg">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="media">
+                                        <img src="../assets/images/stop.png"
+                                            class="stop img-fluid blur-up lazyload me-3" alt="">
+                                        <div class="media-body text-start align-self-center">
+                                            <div>
+                                                <h2>wait!</h2>
+                                                <h4>We want to give you
+                                                    <b>10% discount</b>
+                                                    <span>for your first order</span>
+                                                </h4>
+                                                <h5>Use discount code at checkout</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add to cart modal popup end-->
+
+
+    <!-- tap to top -->
+    <div class="tap-top top-cls">
+        <div>
+            <i class="fa fa-angle-double-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+
+{% include 'include/js.html' %}
+
+</body>
+
+</html>
