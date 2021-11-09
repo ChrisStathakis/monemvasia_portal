@@ -22,11 +22,11 @@ class HomepageView(TemplateView):
         context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Εδώ θα βρείτε πληροφορίες για τις τοπικές ' \
                                       'επιχειρήσεις και προϊόντα.'
         context['cities'] = City.objects.filter(active=True)
+
         context['featured'] = Company.my_query.featured()[:6]
-        context['main_companies'] = Company.my_query.first_priority()[:10]
-        context['companies'] = Company.my_query.normal_companies()[:10]
         context['product_categories'] = Category.my_query.is_featured()
-        context['banners'] = Banner.objects.filter(active=True)
+        context['big_banners'] = Banner.my_query.big_banner()
+        context['medium_banners'] = Banner.my_query.medium_banner()
         return context
 
 
@@ -88,8 +88,7 @@ class CityDetailView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         slug = self.kwargs['slug']
-        category = get_object_or_404(City, slug=slug)
-        self.city = category
+        self.city = get_object_or_404(City, slug=slug)
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -116,7 +115,7 @@ class SearchPageView(TemplateView):
 
 class ArticleDetailView(DetailView):
     model = Company
-    template_name = 'detail_view.html'
+    template_name = ''
     queryset = Company.objects.all()
 
 

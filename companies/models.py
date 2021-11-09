@@ -38,6 +38,7 @@ def upload_services(instance, filename):
 
 class CompanyCategory(models.Model):
     title = models.CharField(max_length=220)
+    image = models.ImageField(upload_to='companies/categories/', blank=True, null=True)
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL, related_name='childrens')
 
@@ -49,6 +50,9 @@ class CompanyCategory(models.Model):
 
     def have_childrens(self):
         return self.childrens.exists()
+
+    def tag_image(self):
+        return self.image.url if self.image else ''
 
 
 class Company(models.Model):
@@ -71,7 +75,6 @@ class Company(models.Model):
     city = models.ForeignKey(City, blank=True, null=True, on_delete=models.SET_NULL)
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='companies')
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
-
 
     # page_relates_fields
     service_title = models.CharField(max_length=220, default='ΥΠΗΡΕΣΙΕΣ')

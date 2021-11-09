@@ -1,0 +1,201 @@
+{% extends 'index.html' %} {% load  static %}
+
+{% block content %}
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>{{ page_title }}</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'homepage' %}">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb end -->
+
+    <!-- section start -->
+    <section class="section-b-space ratio_asos">
+        <div class="collection-wrapper">
+            <div class="container">
+                <div style="margin-top: 4%" class="row">
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+                                        <div class="top-banner-content small-section">
+                                            <h4>ΔΕΙΤΕ ΤΙΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h4>
+                                        </div>
+                                    </div>
+                                    <div class="collection-product-wrapper">
+                                        <div class="product-top-filter">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="filter-main-btn"><span
+                                                            class="filter-btn btn btn-theme"><i class="fa fa-filter"
+                                                                aria-hidden="true"></i> Filter</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-filter-content">
+                                                        <div class="search-count">
+                                                            <h5>Σύνολο επιχειρήσεων {{ companies.count }}</h5>
+                                                        </div>
+                                                        <div class="product-page-filter">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                {% for company in companies %}
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+                                                        {% include 'include/company_card.html' %}
+                                                    </div>
+                                                    {% empty %}
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+                                                    <br />
+                                                        <h4>ΔΕ ΒΡΕΘΗΚΑΝ ΑΠΟΤΕΛΕΣΜΑΤΑ</h4>
+                                                    </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="margin-top: 4%" class="row">
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+
+
+                                        <div class="top-banner-content small-section">
+                                            <h4>ΔΕΙΤΕ ΤΑ ΠΡΟΪΟΝΤΑ</h4>
+                                        </div>
+                                    </div>
+                                    <div class="collection-product-wrapper">
+                                        <div class="product-top-filter">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="filter-main-btn"><span
+                                                            class="filter-btn btn btn-theme"><i class="fa fa-filter"
+                                                                aria-hidden="true"></i> Filter</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-filter-content">
+                                                        <div class="search-count">
+                                                            <h5>ΣΥΝΟΛΟ ΠΡΟΪΟΝΤΩΝ {{ products.count }}</h5>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                {% for product in object_list %}
+                                                <div class="col-xl-3 col-6 col-grid-box">
+                                                    {% include 'include/product_card.html' %}
+                                                </div>
+                                                    {% empty %}
+                                                        <div class="col-xl-3 col-6 col-grid-box">
+                                                            <br/>
+                                                            <h4>ΔΕ ΒΡΕΘΗΚΑΝ ΠΡΟΪΟΝΤΑ</h4>
+                                                        </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="margin-top: 4%" class="row">
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+                                        <div class="top-banner-content small-section">
+                                            <h4>ΔΕΙΤΕ ΤΙΣ ΥΠΗΡΕΣΙΕΣ</h4>
+                                        </div>
+                                    </div>
+                                    <div class="collection-product-wrapper">
+                                        <div class="product-top-filter">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="filter-main-btn"><span
+                                                            class="filter-btn btn btn-theme"><i class="fa fa-filter"
+                                                                aria-hidden="true"></i> Filter</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-filter-content">
+                                                        <div class="search-count">
+                                                            <h5>ΣΥΝΟΛΟ {{ services.count }}</h5>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                {% for service in services %}
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+                                                        {% include 'include/company_card.html' %}
+                                                    </div>
+                                                        {% empty %}
+                                                         <div class="col-xl-3 col-6 col-grid-box">
+                                                            <h4>ΔΕ ΒΡΕΘΗΚΑΝ ΥΠΗΡΕΣΙΕΣ</h4>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section End -->
+
+{% endblock %}
+
+
+
+
+

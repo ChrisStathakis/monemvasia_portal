@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+    <div role="main" class="main">
+
+        <div class="row">
+            <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12 align-self-center p-static order-2 text-center">
+                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
+                     <br />
+                 </div>
+                 <div class="col-md-12 align-self-center order-1">
+                     <ul class="breadcrumb d-block text-center">
+                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
+                         <li class="active">{{ category }}</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </section>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΠΛΗΡΟΦΟΡΙΕΣ</h4>
+                        <a href="{% url 'accounts:logout' %}" class="btn btn-danger">ΑΠΟΣΥΝΔΕΣΗ</a>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item ">EMAIL: {{ user.username }} </li>
+                            <li class="list-group-item">ΟΝΟΜΑΤΕΠΩΝΥΜΟ:{{ user.profile.name }}</li>
+                            <li class="list-group-item">ΑΦΜ: {{ user.profile.taxes_id }}</li>
+                            <li class="list-group-item">ΤΗΛΕΦΩΝΟ:{{ user.profile.phone }}</li>
+
+                        </ul>
+                        <br>
+                        <hr>
+                        <a href="{% url 'accounts:update-profile' %}" class="btn btn-danger">ΑΛΛΑΓΗ ΣΤΟΙΧΕΙΩΝ</a>
+                        <a href="" class="btn btn-danger pull-right">ΑΛΛΑΓΗ PASSWORD</a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h4>ΕΤΑΙΡΙΕΣ</h4>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>ΣΤΟΙΧΕΙΑ ΓΙΑ ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΕΙΣΑΓΩΓΗΣ</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">ΤΙΤΛΟΣ ΕΤΑΙΡΙΑΣ | EMAIL</h4>
+                            <p>ΦΩΤΟΓΡΑΦΙΕΣ: LOGO IMAGE('718*982') | BACKGROUND_IMAGE(1970*550)</p>
+                            <hr>
+                            <p class="mb-0">
+                                ΔΙΕΥΘΥΝΣΗ | ΤΗΛΕΦΩΝΟ | ΚΙΝΗΤΟ | WEBSITE | FACEBOOK PAGE - INSTAGRAM PAGE
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {% for company in user.companies.all %}
+                    <div class="card" style="margin-bottom: 3%">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ company.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Κατηγορια: {{ company.get_business_type_display }}
+                                <br>
+                            </h6>
+                            <hr/>
+                            <p class="card-text">
+                                Πλάνο: {{ company.get_priority_display }}
+                                <br />
+                                 ΠΡΟΤΕΙΝΟΜΕΝΗ: {{ company.featured }}
+                                <br>
+                                ΜΕΓΙΣΤΗ ΠΟΣΟΤΗΤΑ ΠΡΟΪΌΝΤΩΝ/ΥΠΗΡΕΣΙΩΝ: {{ company.max_items }}
+                                <br>
+
+                                <span style="color:red">Λήξη Συνδρομής: {{ company.subscription_ends }}</span>
+                            </p>
+                            <a href="{{ company.get_edit_url }}" class="card-link">ΕΠΕΞΕΡΓΑΣΙΑ ΕΤΑΙΡΙΑΣ</a>
+                            <a target="_blank" href="{{ company.get_absolute_url }}" class="card-link">ΠΛΗΡΟΦΟΡΙΕΣ</a>
+                            <a href="{% url 'accounts:manage_links' company.slug %}" class="card-link">Link Tree</a>
+                            <!-- Button trigger modal -->
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">ΠΛΑΝΑ ΕΠΙΧΕΙΡΗΣΕΩΝ</h1>
+            <p class="lead">ΠΑΡΕΧΕΤΕ Η ΔΥΝΑΤΟΤΗΤΑ ΕΠΕΞΕΡΓΑΣΙΑΣ ΤΩΝ ΠΡΟΪΟΝΤΩΝ ΑΠΟ ΕΜΑΣ ΜΕ ΕΠΙΠΛΕΟΝ ΚΟΣΤΟΣ 10 € τα 6 ή 2 € το ένα, σε όλα τα προγράμματα</p>
+        </div>
+        <div class="row" style="margin: 3%">
+            <div class="card col-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">ΒΑΣΙΚΟ</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">€ 20<small class="text-muted">/ μήνα</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>6 προϊόντα</li>
+                  <li>Link Tree (INSTAGRAM FEED)</li>
+                  <li>1 Campaign Διαφήμισης</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">6 ΜΗΝΕΣ: € 100</button>
+              </div>
+            </div>
+            <div class="card col-4 box-shadow">
+              <div style="background-color: dodgerblue" class="card-header">
+                <h4  class="my-0 font-weight-normal">ΕΠΑΓΓΕΛΜΑΤΙΚΟ (ΠΡΟΤΕΙΝΟΜΕΝΟ)</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">€ 40 <small class="text-muted">/ μήνα</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 προϊόντα</li>
+                  <li>Link Tree (INSTAGRAM FEED)</li>
+                  <li>2 Campaign Διαφήμισης</li>
+                  <li>ΠΡΟΤΕΡΑΙΌΤΗΤΑ ΣΕ 2 ΠΡΟΪΟΝΤΑ ΣΑΣ</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">6 ΜΗΝΕΣ: € 200</button>
+              </div>
+            </div>
+            <div class="card col-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">ΠΡΟΧΩΡΗΜΕΝΟ</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">€ 100<small class="text-muted">/ μήνα</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>30 προϊόντα</li>
+                    <li>Link Tree (INSTAGRAM FEED)</li>
+                    <li>4 Campaign Διαφήμισης</li>
+                    <li>ΔΙΑΧΕΙΡΙΣΗ SOCIAL MEDIA</li>
+                    <li>ΠΡΟΤΕΡΑΙΌΤΗΤΑ ΣΕ 5 ΠΡΟΪΟΝΤΑ ΣΑΣ</li>
+                </ul>
+                <<button type="button" class="btn btn-lg btn-block btn-outline-primary">6 ΜΗΝΕΣ: € 500</button>
+              </div>
+            </div>
+
+
+        </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $('#modalN').click(function (evt) {
+            $('#exampleModal').show()
+        })
+    </script>
+{% endblock %}

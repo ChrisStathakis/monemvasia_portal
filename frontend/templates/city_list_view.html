@@ -30,15 +30,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3 collection-filter">
-
                         <!-- side-bar colleps block stat -->
                         <div class="collection-filter-block">
                             <!-- brand filter start -->
-                            <div class="collection-mobile-back">
-                                <span class="filter-back"><i class="fa fa-angle-left"
-                                        aria-hidden="true"></i> back</span>
-                            </div>
-                            <form method="get">
+                            <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
+                                        aria-hidden="true"></i> back</span></div>
                             <div class="collection-collapse-block open">
                                 <h3 class="collapse-block-title">ΠΟΛΗ</h3>
                                 <div class="collection-collapse-block-content">
@@ -58,6 +54,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="collection-collapse-block open">
                                 <h3 class="collapse-block-title">ΚΑΤΗΓΟΡΙΑ</h3>
                                 <div class="collection-collapse-block-content">
@@ -77,9 +74,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">ΦΙΛΤΡΑ</button>
-                            </form>
-
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar single product slider start -->
@@ -87,44 +81,86 @@
                             <h5 class="title-border">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h5>
                             <div class="offer-slider slide-1">
                                 <div>
-                                    {% for company in featured_companies|slice:":3" %}
-                                        <div class="media">
-                                            <a href="{{ company.get_absolute_url }}">
-                                                <img class="img-fluid blur-up lazyload"
-                                                    src="{{ company.tag_image }}" alt="">
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/1.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
                                             </a>
-                                            <div class="media-body align-self-center">
-                                                <div class="rating">
-                                                    {{ company.city }}
-                                                </div>
-                                                <a
-                                                    href="{{ company.get_absolute_url }}">
-                                                    <h6>{{ company }}</h6>
-                                                </a>
-                                            </div>
+                                            <h4>$500.00</h4>
                                         </div>
-                                    {% endfor %}
-
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/011.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/16.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
-                                   {% for company in featured_companies|slice:"3:" %}
-                                       <div class="media">
-                                            <a href="{{ company.get_absolute_url }}">
-                                                <img class="img-fluid blur-up lazyload"
-                                                    src="{{ company.tag_image }}" alt="">
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/001.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
                                             </a>
-                                            <div class="media-body align-self-center">
-                                                <div class="rating">
-                                                    {{ company.city }}
-                                                </div>
-                                                <a
-                                                    href="{{ company.get_absolute_url }}">
-                                                    <h6>{{ company }}</h6>
-                                                </a>
-                                            </div>
+                                            <h4>$500.00</h4>
                                         </div>
-                                    {% endfor %}
-
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/4.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a href=""><img class="img-fluid blur-up lazyload"
+                                                src="../assets/images/fashion/pro/19.jpg" alt=""></a>
+                                        <div class="media-body align-self-center">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i></div><a
+                                                href="product-page(no-sidebar).html">
+                                                <h6>Slim Fit Cotton Shirt</h6>
+                                            </a>
+                                            <h4>$500.00</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +173,7 @@
                                 <div class="col-sm-12">
                                     <div class="top-banner-wrapper">
                                         <a href="#">
-                                            <img src="{{ category.tag_image }}"
+                                            <img src="{% static 'assets/images/mega-menu/2.jpg' %}"
                                                 class="img-fluid blur-up lazyload" alt=""></a>
                                         <div class="top-banner-content small-section">
                                             <h4>ΔΕΙΤΕ ΤΙΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h4>

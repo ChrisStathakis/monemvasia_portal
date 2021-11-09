@@ -3,6 +3,8 @@ from django.shortcuts import reverse
 from tinymce.models import HTMLField
 # Create your models here.
 
+from .managers import BannerManager
+
 
 class City(models.Model):
     active = models.BooleanField(default=False)
@@ -19,11 +21,19 @@ class City(models.Model):
 
 
 class Banner(models.Model):
+    choices = (
+        ('a', 'Big Banner'),
+        ('b', 'Medium Banner')
+    )
     active = models.BooleanField(default=False)
     title = models.CharField(max_length=220)
     text = models.TextField(blank=True)
     image = models.ImageField(upload_to='banners/', )
     url = models.URLField(blank=True)
+    category = models.CharField(default='a', choices=choices, max_length=1)
+
+    objects = models.Manager()
+    my_query = BannerManager()
 
     def __str__(self):
         return self.title

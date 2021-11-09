@@ -11,5 +11,5 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
-    list_filter = ['active', ]
-    list_display = ['title', 'url', 'active']
+    list_filter = ['active', 'category', ]
+    list_display = ['title', 'url', 'category', 'active']

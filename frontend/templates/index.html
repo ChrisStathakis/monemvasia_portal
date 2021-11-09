@@ -13,7 +13,7 @@
     <!-- Home slider -->
     <section class="p-0">
         <div class="slide-1 home-slider">
-            {% for banner in banners %}
+            {% for banner in big_banners %}
             <div>
                 <div class="home">
                     <img src="{{ banner.image.url }}" alt="" class="bg-img blur-up lazyload">
@@ -42,7 +42,7 @@
     <section class="banner-padding banner-furniture ratio2_1">
         <div class="container-fluid">
             <div class="row partition3">
-                {% for company in featured %}
+                {% for banner in medium_banners %}
                     <div class="col-md-6">
                         <a href="{{ company.get_absolute_url }}">
                             <div class="collection-banner p-left text-start">
@@ -115,14 +115,14 @@
     <!-- Parallax banner -->
     <section class="p-0">
         <div class="full-banner parallax text-center p-left">
-            <img src="{% static 'assets/images/parallax/13.jpg' %}" alt="" class="bg-img blur-up lazyload">
+            <img src="{% static 'my_assets/photos/mon_back.jpg' %}" alt="" class="bg-img blur-up lazyload">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="banner-contain">
-                            <h2>2018</h2>
-                            <h3>fashion trends</h3>
-                            <h4>special offer</h4>
+                            <h2></h2>
+                            <h3></h3>
+                            <h4></h4>
                         </div>
                     </div>
                 </div>
@@ -130,6 +130,34 @@
         </div>
     </section>
     <!-- Parallax banner end -->
+
+        <!-- Tab product -->
+    <div class="title1 section-t-space">
+        <h4>ΔΕΙΤΕ</h4>
+        <h2 class="title-inner1">ΤΙΣ ΠΟΛΕΙΣ ΜΑΣ</h2>
+    </div>
+
+        <section class="section-b-space pt-0 ratio_asos">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="theme-tab">
+                        <div class="tab-content-cls">
+                            <div id="tab-4" class="tab-content active default">
+                                <div class="no-slider row">
+                                    {% for city in cities %}
+                                        {% include 'include/city_card.html' %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Tab product end -->
 
     {% endblock %}
 
