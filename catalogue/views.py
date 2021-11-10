@@ -9,20 +9,7 @@ from .models import Product, Company, Category
 from .forms import ProductForm
 
 
-class ProductListView(ListView):
-    template_name = 'category_list_view.html'
-    model = Product
-    paginate_by = 30
 
-    def get_queryset(self):
-        return Product.objects.filter(active=True)
-
-    def get_context_data(self,  **kwargs):
-        context = super(ProductListView, self).get_context_data(**kwargs)
-        context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
-        context['page_title'] = 'ΠΡΟΪΟΝΤΑ'
-        context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα'
-        return context
 
 
 class CategoryDetailView(ListView):

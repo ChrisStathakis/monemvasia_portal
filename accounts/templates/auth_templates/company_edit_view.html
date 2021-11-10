@@ -9,7 +9,10 @@
                         <h3>{{ company }}
                             <small>{{ company.get_business_type_display }}</small>
                         </h3>
+                        
                     </div>
+                    <br />
+                     <a href="{% url 'accounts:manage_links' company.slug %}" class='btn btn-primary'>Links </a>
                 </div>
             </div>
         </div>
@@ -166,6 +169,7 @@
                             <table class="table table-bordernone">
                                 <thead>
                                 <tr>
+                                    <th>ΕΙΚΟΝΑ</th>
                                     <th scope="col">ΠΡΟΪΟΝ</th>
                                     <th scope="col">ΤΙΜΗ</th>
                                     <th scope="col">ΚΑΤΑΣΤΑΣΗ</th>
@@ -175,6 +179,7 @@
                                 <tbody>
                                     {% for product in company.my_products.all %}
                                         <tr>
+                                            <td><img width="80" height="80" src="{{ product.tag_image }}"></td>
                                             <td>{{ product }}</td>
                                             <td>{{ product.tag_price }}</td>
                                             <td>{{ product.tag_active }}</td>
@@ -186,7 +191,7 @@
                             </table>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productImage">
-                              ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ
+                              ΠΡΟΣΘΗΚΗ ΠΡΟΪΟΝΤΟΣ
                             </button>
 
                             <!-- Modal -->
@@ -250,6 +255,70 @@
                              <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productImage">
                               ΠΡΟΣΘΗΚΗ ΥΠΗΡΕΣΙΑΣ
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="productImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ΠΡΟΣΘΗΚΗ ΠΡΟΪΟΝΤΟΣ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="post" class="form" enctype="multipart/form-data" action="{% url 'accounts:validate_product_or_service' company.slug 'product' %}">
+                                        {% csrf_token %}
+                                        {{ product_form }}
+                                        <br />
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-6'>
+                <div class="card">
+                    <div class="card-header">
+                        <h5> Links </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-status table-responsive latest-order-table">
+                            <table class="table table-bordernone">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ΤΙΤΛΟΣ</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col">ΚΑΤΗΓΟΡΙΑ</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in company.my_products.all %}
+                                        <tr>
+                                            <td>{{ product }}</td>
+                                            <td>{{ product.tag_price }}</td>
+                                            <td>{{ product.tag_active }}</td>
+                                            <td><a href="{{ product.get_edit_url }}" class="btn btn-primary"><i class="fa fa-edit"></i> </a> </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productImage">
+                              ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ
                             </button>
 
                             <!-- Modal -->

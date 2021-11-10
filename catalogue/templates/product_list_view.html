@@ -1,7 +1,6 @@
-{% extends 'index.html' %} {% load  static %}
+{% extends 'index.html' %} {% load static %}
 
 {% block content %}
-
     <!-- breadcrumb start -->
     <div class="breadcrumb-section">
         <div class="container">
@@ -59,7 +58,7 @@
                                 <h3 class="collapse-block-title">ΚΑΤΗΓΟΡΙΑ</h3>
                                 <div class="collection-collapse-block-content">
                                     <div class="collection-brand-filter">
-                                        {% for category in my_categories %}
+                                        {% for category in prod_cat %}
                                             <div class="form-check collection-filter-checkbox">
                                                 <input
                                                         name='category_name'
@@ -172,9 +171,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="top-banner-wrapper">
-                                        <a href="#">
-                                            <img src="{% static 'assets/images/mega-menu/2.jpg' %}"
-                                                class="img-fluid blur-up lazyload" alt=""></a>
+
                                         <div class="top-banner-content small-section">
                                             <h4>ΔΕΙΤΕ ΤΙΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h4>
                                         </div>
@@ -207,9 +204,9 @@
                                         </div>
                                         <div class="product-wrapper-grid">
                                             <div class="row margin-res">
-                                                {% for company in object_list %}
+                                                {% for product in object_list %}
                                                 <div class="col-xl-3 col-6 col-grid-box">
-                                                    {% include 'include/company_card.html' %}
+                                                    {% include 'include/product_card.html' %}
                                                 </div>
                                                 {% endfor %}
 
@@ -261,8 +258,3 @@
     <!-- section End -->
 
 {% endblock %}
-
-
-
-
-

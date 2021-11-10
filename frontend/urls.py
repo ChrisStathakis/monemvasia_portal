@@ -2,14 +2,14 @@ from django.urls import path
 
 from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView,
                     CompanyDetailView, CityListView, CityDetailView,
-                    edit_company_page, link_page_view,
+                    edit_company_page, link_page_view, ProductListView, ServiceListView
                     )
 
 from .action_views import (create_new_item_view, create_new_service_view, validate_edit_form_info_view,
                            edit_delete_product_view,edit_or_delete_service_view
                            )
 
-from catalogue.views import ProductListView, CategoryDetailView
+from catalogue.views import CategoryDetailView
 
 urlpatterns = [
     path('', HomepageView.as_view(), name='homepage'),
@@ -21,7 +21,9 @@ urlpatterns = [
     path('article/<str:slug>/', ArticleDetailView.as_view(), name='article'),
     path('contact/', ContactView.as_view(), name='contact'),
 
-    path('προιοντα/κατηγοριες/', ProductListView.as_view(), name='product_categories'),
+    path('προϊοντα/', ProductListView.as_view(), name='product_list_view'),
+    path('υπηρεσιες/', ServiceListView.as_view(), name='service_list_view'),
+    path('προιοντα/κατηγοριες/', ProductListView.as_view(), name='product_categories'), # maybe will get deleted
     path('προιοντα/κατηγορια/<str:slug>/', CategoryDetailView.as_view(), name='product_category'),
 
 

@@ -30,6 +30,38 @@ class HomepageView(TemplateView):
         return context
 
 
+class ProductListView(ListView):
+    template_name = 'product_list_view.html'
+    model = Product
+    paginate_by = 30
+
+    def get_queryset(self):
+        return Product.my_query.filter_data(self.request)
+
+    def get_context_data(self,  **kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
+        context['page_title'] = 'ΠΡΟΪΟΝΤΑ'
+        context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα'
+        return context
+
+
+class ServiceListView(ListView):
+    template_name = 'service_list_view.html'
+    model = CompanyService
+    paginate_by = 30
+
+    def get_queryset(self):
+        return CompanyService.my_query.filter_data(self.request)
+
+    def get_context_data(self,  **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
+        context['page_title'] = 'ΥΠΗΡΕΣΙΕΣ'
+        context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τις υπηρεσίες της περιοχής'
+        return context
+
+
 class CompanyDetailView(DetailView):
     model = Company
     queryset = Company.my_query.active()
@@ -57,8 +89,7 @@ class CategoryListView(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = self.model.objects.filter(category=self.category)
-        return self.model.filter_data(self.request, qs)
+        return Company.my_query.filter_data(self.request)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs)
@@ -106,9 +137,9 @@ class SearchPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(SearchPageView, self).get_context_data(**kwargs)
         q = self.request.GET.get('q', '')
-        context['products'] = Product.filter_data(self.request, Product.objects.filter(active=True))
-        context['companies'] = Company.filter_data(self.request, Company.objects.filter(status=True))
-        context['services'] = CompanyService.filter_data(self.request, CompanyService.objects.filter(company__status=True))
+        context['products'] = Product.my_query.filter_data(self.request)
+        context['companies'] = Company.my_query.filter_data(self.request)
+        context['services'] = CompanyService.my_query.filter_data(self.request)
         context['page_title'] = f'ΑΝΑΖΗΤΗΣΗ {q}'
         return context
 

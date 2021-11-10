@@ -18,6 +18,14 @@ class CompanyManager(models.Manager):
     def first_choice(self):
         return self.active().filter(first_choice=True)
 
+    def filter_data(self, request):
+        q = request.GET.get('q', None)
+        qs = self.active()
+        if q:
+            qs = qs.filter(title__icontains=q)
+
+        return qs
+
 
 class ServiceManager(models.Manager):
 
@@ -29,3 +37,12 @@ class ServiceManager(models.Manager):
 
     def is_primary(self):
         return self.filter(is_primary=True)
+
+
+    def filter_data(self, request):
+        q = request.GET.get('q', None)
+        qs = self.active()
+        if q:
+            qs = qs.filter(title__icontains=q)
+
+        return qs

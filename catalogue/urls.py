@@ -6,6 +6,7 @@ app_name = 'catalogue'
 
 
 urlpatterns = [
+
     path('products/edit/<int:pk>/', ProductUpdateView.as_view(), name='product_update'),
     path('products/delete/<int:pk>/', ProductDeleteView.as_view(), name='product_delete'),
 

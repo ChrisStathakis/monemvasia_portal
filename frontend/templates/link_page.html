@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+    <div class="title1 section-t-space">
+        <img src="{{ company.detail.tag_image }}">
+        <br>
+        <h2 class="title-inner1">{{ company }}</h2>
+    </div>
+    
+    <section class="tab-product m-0 vertical-tab" >
+        <div class="container">
+            <div class="row tab-border">
+                <div class="col-xl-2 p-0">
+                    <ul class="nav nav-tabs nav-material flex-column nav-border" id="top-tab" role="tablist">
+                        {% for category in link_categories %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="top-home-tab" data-bs-toggle="tab" href="#cat__{{ category.id }}" role="tab" aria-selected="false">{{ category }}</a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="col-xl-10">
+                    <div class="tab-content nav-material" id="top-tabContent">
+                        {% for category in link_categories %}
+                        <div class="tab-pane fade" id="cat__{{ category.id }}" role="tabpanel" aria-labelledby="top-home-tab">
+                           <table class="table">
+                               <thead>
+                                <tr>
+                                    <th>ΠΕΡΙΓΡΑΦΗ</th>
+                                    <th>Link</th>
+                                </tr>
+                               </thead>
+                               <tbody>
+                                    {% for ele in category.my_links.all %}
+                                        <tr>
+                                            <td>{{ ele }}</td>
+                                            <td><a style="width: 100%" href="{{ ele.url }}" target="_blank" class="btn btn-success">ΔΕΣ ΤΟ LINK</a> </td>
+                                        </tr>
+                                    {% endfor %}
+                               </tbody>
+                           </table>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="margin-bottom: 20%"></div>
+
+{% endblock %}

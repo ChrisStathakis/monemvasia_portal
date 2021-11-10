@@ -93,7 +93,7 @@ def edit_link_view(request, pk):
     form = InstagramLinkForm(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
-        return redirect(reverse('accounts:manage_links'))
+        return redirect(reverse('accounts:manage_links', kwargs={'slug': instance.category.company.slug}))
     return render(request, 'auth_templates/form_view.html', context={
         'page_title': f'ΕΠΕΞΕΡΓΑΣΙΑ {instance.title}',
         'back_url': reverse('accounts:manage_links', kwargs={'slug': instance.category.company.slug}),
@@ -104,19 +104,17 @@ def edit_link_view(request, pk):
 
 @login_required
 def delete_category_or_link_view(request, action, pk):
-    profile = request.user.profile
-    instance = None
+
     if action == 'link':
         instance = get_object_or_404(InstagramLink, id=pk)
+        instance.delete()
+
     if action == 'category':
         instance = get_object_or_404(InstagramCategories, id=pk)
-        qs = instance.my_links.all()
-        if qs.exists():
-            return redirect(reverse('accounts:manage_links', kwargs={'slug': instance.company.slug}))
-    if instance.profile != profile:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    instance.delete()
-    return redirect(reverse('accounts:manage_links', kwargs={'slug': instance.company.slug}))
+        instance.my_links.all().delete()
+        instance.delete()
+        return redirect(reverse('accounts:manage_links', kwargs={'slug': instance.company.slug}))
+    return request.META.get(HttpResponseRedirect('HTTP_REFERER'))
 
 
 @login_required
@@ -141,7 +139,8 @@ def validate_company_create_product_or_service_view(request, slug, action):
 
 @login_required
 def validate_company_create_image_view(request, slug):
-    company = get_object_or_404(Company, slug)
+    print('here!', slug)
+    company = get_object_or_404(Company, slug=slug)
     if company.owner != request.user:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     form = CompanyImageForm(request.POST, request.FILES, initial={'company': company})

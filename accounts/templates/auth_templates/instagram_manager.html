@@ -1,66 +1,77 @@
-{% extends 'index.html' %}
+{% extends 'auth_templates/dashboard.html' %}
 
 {% block content %}
-    <div class="main">
-        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-         <div class="container">
-             <div class="row">
-                 <div class="col-md-12 align-self-center p-static order-2 text-center">
-                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
-                     <br />
-                     <a target="_blank" href="{% url 'link_page' company.slug %}" class="btn btn-success">ΔΕΙΤΕ ΤΟ</a>
-                 </div>
-                 <div class="col-md-12 align-self-center order-1">
-                     <ul class="breadcrumb d-block text-center">
-                         <li><a href="{% url 'accounts:dashboard_view' %}">ΕΠΙΣΤΡΟΦΗ</a></li>
-                         <li class="active">LINK TREE {{ company }}</li>
-                     </ul>
-
-                 </div>
-             </div>
-         </div>
-     </section>
-        <section class="body">
+    <div class="container-fluid">
+        <div class="page-header">
             <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h4> ΟΙ ΚΑΤΗΓΟΡΙΕΣ </h4>
-                        </div>
-                        <div class="card-body">
-                            {% for category in instagram_categories %}
-                                <h4>{{ category }}</h4>
-                                <hr />
-                                <a href="{{ category.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a>
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>{{ company }}
+                            <small>{{ company.get_business_type_display }}</small>
+                        </h3>
+                        
+                    </div>
+                    <br />
+                     <a target="_blank" href="{% url 'link_page' company.slug %}" class="btn btn-success">ΔΕΙΤΕ ΤΟ</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                <hr />
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>ΤΙΤΛΟΣ</th>
-                                            <th>LINK</th>
-                                            <th>-</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for link in category.my_links.all %}
-                                            <tr>
-                                                <td>{{ link.title }}</td>
-                                                <td><a href="{{ link.url }}" target="_blank">{{ link.url }}</a> </td>
-                                                <td><a href="{{ link.get_edit_url }}" class="btn btn-info"><i class="fa fa-edit"></i> </a> </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            {% endfor %}
-                        </div>
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h5> ΚΑΤΗΓΟΡΙΕΣ </h5>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="card">
+                    
+
+
+                {% for category in instagram_categories %}
+                    <div style='margin-bottom: 10px;' class="card">
                         <div class="card-header">
-                            <h4>ΔΗΜΙΟΥΡΓΙΑ</h4>
+                            <h5> {{ category }} </h5>
+                            <br />
+                            <a href='{{ category.get_edit_url }}' class='btn btn-danger'>ΕΠΕΞΕΡΓΑΣΙΑ ΚΑΤΗΓΟΡΙΑΣ </a>
                         </div>
+                        <div class="card-body">
+                            <div class="user-status table-responsive latest-order-table">
+                                <table class="table table-bordernone">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ΤΙΤΛΟΣ</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">-</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for link in category.my_links.all %}
+                                        <tr>
+                                            <td>{{ link.title }}</td>
+                                            <td><a href="{{ link.url }}" target="_blank">{{ link.url|truncatechars_html:50 }}</a> </td>
+                                            <td><a href="{{ link.get_edit_url }}" class="btn btn-info"><i class="fa fa-edit"></i> </a> </td>
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                
+                {% endfor%}
+
+            </div>
+            <div class="col-6">
+              <div class="card">
+                    <div class="card-header">
+                        <h4>ΔΗΜΙΟΥΡΓΙΑ</h4>
+                    </div>
                         <div class="card-body">
                             <h4>ΔΗΜΙΟΥΡΓΙΑ ΚΑΤΗΓΟΡΙΑΣ</h4>
                             <form method="post" class="form" action="{% url 'accounts:validate_create_category' company.slug %}">
@@ -81,9 +92,19 @@
                             </form>
                         </div>
                     </div>
-                </div>
             </div>
-        </section>
+        </div>
     </div>
+
+    
+      
+    
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 {% endblock %}

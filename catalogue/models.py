@@ -27,7 +27,7 @@ class Product(models.Model):
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='my_products')
     title = models.CharField(max_length=220)
-    image = models.ImageField(blank=True, upload_to=upload_to, )
+    image = models.ImageField(blank=True, upload_to='company/images/', )
     is_offer = models.BooleanField(default=False, verbose_name='Προσφορά')
     category = models.ManyToManyField(Category, blank=True, verbose_name='Κατηγορία')
     notes = models.TextField(null=True, blank=True, verbose_name='Περιγραφή')

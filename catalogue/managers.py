@@ -22,4 +22,13 @@ class ProductManager(models.Manager):
         return self.active().filter(is_primary=True)
 
     def filter_data(self, request):
-        pass
+        q = request.GET.get('q', None)
+        cate_name = request.GET.getlist('category_name', None)
+        qs = self.active()
+        qs =
+
+        if q:
+            qs = qs.filter(title__icontains=q)
+
+
+        return qs
