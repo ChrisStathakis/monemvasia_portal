@@ -108,6 +108,9 @@ class Company(models.Model):
     def support_service(self)-> bool:
         return True if self.business_type in ['3', '4'] else False
 
+    def sub_value(self):
+        return 20 if self.business_type == '3' else 40 if self.business_type == '2' else 100
+
     @staticmethod
     def filter_data(request, qs):
         q = request.GET.get('q', None)

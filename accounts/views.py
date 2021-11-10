@@ -38,11 +38,18 @@ def dashboard_view(request):
     if not profile.permission_grand:
         return render(request, 'auth_templates/deny_access.html')
     form = ProfileForm(request.POST or None, instance=profile)
+    companies = user.companies.all()
+    total_sub, total_products = 0, 0
+    for com in companies:
+        total_sub += com.sub_value()
+        total_products += com.my_products.all().count()
     return render(request,
                   'auth_templates/dashboard.html',
                   context={
                       'user': user,
-                      'form': form
+                      'form': form,
+                      'total_sub': total_sub,
+                      'total_products': total_products
                   }
                   )
 
@@ -103,8 +110,9 @@ def update_profile_view(request):
 
 
 @login_required
-def update_company_info_view(request, slug):
+def company_info_view(request, slug):
     instance = get_object_or_404(Company, slug=slug)
+    info = instance.detail
     if instance.owner != request.user:
         return redirect('homepage')
     profile = instance.detail
@@ -125,8 +133,24 @@ def update_company_info_view(request, slug):
         'company': instance,
         'product_form': product_form,
         'service_form': service_form,
-        'image_form': image_form
+        'image_form': image_form,
+        'info': info
     })
+
+
+@login_required
+def update_company_info_view(request, pk):
+    company = get_object_or_404(Company, id=pk)
+    if company.owner != request.user:
+        return redirect('homepage')
+    profile = company.detail
+    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile, initial={'company': company})
+    if form.is_valid():
+        form.save()
+        return redirect(company.get_edit_url())
+    else:
+        print(form.errors)
+    return render(request, 'auth_templates/form_view.html', context={'form': form, 'back_url': company.get_edit_url(), 'page_title': f'{company}'})
 
 
 @login_required

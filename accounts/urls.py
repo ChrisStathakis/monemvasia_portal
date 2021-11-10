@@ -2,7 +2,7 @@ from django.urls import path
 
 
 from .views import (homepage_view, dashboard_view, logout_request, update_profile_view,
-                    manage_instagram_links_view, update_company_info_view, login_or_register_view
+                    manage_instagram_links_view, update_company_info_view, company_info_view, login_or_register_view
                     )
 
 from .action_views import (validate_category_creation_view, validate_link_creation_view, edit_category_view,
@@ -21,7 +21,8 @@ urlpatterns = [
     path('dashboard/', dashboard_view, name='dashboard_view'),
     path('update-profile/', update_profile_view, name='update-profile'),
     path('manage-instagram/<str:slug>/', manage_instagram_links_view, name='manage_links'),
-    path('update-company-info/<str:slug>/', update_company_info_view, name='update_company_info'),
+    path('update-company-info/<str:slug>/', company_info_view, name='update_company_info'),
+    path('update-company/<int:pk>/', update_company_info_view, name='update_company_data'),
 
     path('action/create/link/<str:slug>/', validate_link_creation_view, name='validate_create_link'),
     path('action/create/category/<str:slug>/', validate_category_creation_view, name='validate_create_category'),

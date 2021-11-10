@@ -158,15 +158,20 @@ def update_company_image_view(request, pk):
     image = get_object_or_404(CompanyImage, id=pk)
     if image.company.owner != request.user:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    form = CompanyImageForm(request.POST, request.FILES, instance=image)
+    form = CompanyImageForm(request.POST or None,
+                            request.FILES or None,
+                            instance=image
+                            )
     if form.is_valid():
         form.save()
         return redirect(image.company.get_edit_url())
+    else:
+        print(form.errors)
 
     return render(request, 'auth_templates/form_view.html', context={
         'form': form,
-        'page_title': '',
-        'back_url': '',
+        'page_title': f'ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΚΟΝΑΣ',
+        'back_url': image.company.get_edit_url(),
         'delete_url': image.get_delete_url()
     })
 

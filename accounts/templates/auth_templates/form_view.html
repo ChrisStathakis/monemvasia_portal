@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'auth_templates/dashboard.html' %}
 
 {% block extra_css %}
     <style>
@@ -10,46 +10,59 @@
 {% endblock %}
 
 {% block content %}
-    <div class="main">
-        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-         <div class="container">
-             <div class="row">
-                 <div class="col-md-12 align-self-center p-static order-2 text-center">
-                     <h1 class="text-dark font-weight-bold text-8">{{ page_title }}</h1>
-                     <br />
-                 </div>
-                 <div class="col-md-12 align-self-center order-1">
-                     <ul class="breadcrumb d-block text-center">
-                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
-                         <li class="active">{{ page_title }}</li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-     </section>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <h4>{{ page_title }}</h4>
-                <form method="post" class="form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form }}
-                    <br />
-                    <hr />
-                    <br />
-                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
-                </form>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>{{ page_title }}
+
+                        </h3>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="col-3">
-                <a href="{{ back_url }}" class="btn btn-warning">ΕΠΙΣΤΡΟΦΗ</a>
-                <br/>
-                <hr/>
-                {% if delete_url %}
-                    <a href="{{ delete_url }}" class="btn btn-danger">ΔΙΑΓΡΑΦΗ</a>
-                {% endif %}
+
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card tab2-card">
+                            <div class="card-header">
+                                <h5> ΕΠΕΞΕΡΓΑΣΙΑ</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active show" id="account-tab" data-bs-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="true" data-original-title="" title="">ΦΟΡΜΑ</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="permission-tabs" data-bs-toggle="tab" href="#permission" role="tab" aria-controls="permission" aria-selected="false" data-original-title="" title="">ΕΠΙΛΟΓΕΣ</a></li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                                        <form method="post" enctype="multipart/form-data" class="needs-validation user-add">
+                                            {% csrf_token %}
+                                            {{ form }}
+                                            <br /> <hr />
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="permission" role="tabpanel" aria-labelledby="permission-tabs">
+                                        <a href="{{ back_url }}" class="btn btn-warning">ΕΠΙΣΤΡΟΦΗ</a>
+                                        <br/> <br/> <br/> <hr/>
+                                        {% if delete_url %}<a href="{{ delete_url }}" class="btn btn-danger">ΔΙΑΓΡΑΦΗ</a> {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            <!-- Container-fluid Ends-->
+
 {% endblock %}
 
 {% block extra_js %}

@@ -1,276 +1,294 @@
-{% extends 'index.html' %}
-
-{% block extra_css %}
-    <style>
-        .form-control{
-            margin-bottom: 5%;
-        }
-
-    </style>
-{% endblock %}
+{% extends 'auth_templates/dashboard.html' %}
 
 {% block content %}
-    <div class="main">
-        <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-         <div class="container">
-             <div class="row">
-                 <div class="col-md-12 align-self-center p-static order-2 text-center">
-                     <h1 class="text-dark font-weight-bold text-8">{{ page_title }}</h1>
-                     <br />
-                 </div>
-                 <div class="col-md-12 align-self-center order-1">
-                     <ul class="breadcrumb d-block text-center">
-                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
-                         <li class="active">{{ page_title }}</li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-        </section>
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>{{ company }}
+                            <small>{{ company.get_business_type_display }}</small>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+            <div class="col-xl-6 xl-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h5> ΠΛΗΡΟΦΟΡΙΕΣ </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-status table-responsive latest-order-table">
+                            <table class="table table-bordernone">
+                                <thead>
+                                <tr>
+                                    <th scope="col">-</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ΑΦΜ</td>
+                                        <td>{{ company.owner.profile.taxes_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΚΑΤΗΓΟΡΙΑ</td>
+                                        <td>{{ company.instagramcategories_set.all }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΠΛΑΝΟ</td>
+                                        <td>{{ product.get_priority_display }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΠΟΛΗ</td>
+                                        <td>{{ company.city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΜΕΓΙΣΤΑ ΠΡΟΪΟΝΤΑ/ΥΠΗΡΕΣΙΕΣ</td>
+                                        <td>{{ company.max_items }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΕΠΙΣΚΕΨΙΜΟΤΗΤΑ</td>
+                                        <td>{{ product.counter }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΔΙΕΥΘΥΝΣΗ</td>
+                                        <td>{{ info.full_address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΤΗΛΕΦΩΝΑ</td>
+                                        <td>{{ info.full_phones }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ΕΜΑΙΛ</td>
+                                        <td>{{ info.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>website</td>
+                                        <td>{{ info.website }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FACEBOOK</td>
+                                        <td>{{ info.facebook_url }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>INSTAGRAM</td>
+                                        <td>{{ info.instagram_url }}</td>
+                                    </tr>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-                <p>
-                  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Link with href
-                  </a>
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Button with data-target
-                  </button>
-                </p>
-                <div class="collapse" id="collapseExample">
-                  <div class="card card-body">
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                  </div>
+
+
+                                </tbody>
+                            </table>
+                            <a href="{% url 'accounts:update_company_data' company.id %}" class="btn btn-success">ΕΠΕΞΕΡΓΑΣΙΑ</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 xl-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h5> ΕΙΚΟΝΕΣ </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-status table-responsive latest-order-table">
+                            <table class="table table-bordernone">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ΕΙΚΟΝΑ</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col">ΚΑΤΗΓΟΡΙΑ</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for image in company.images.all %}
+                                        <tr>
+                                            <td><img src="{{ image.image.url }}" class="image" width="50" height="50"> </td>
+                                            <td>{{ image.image.url }}</td>
+                                            <td>{{ image.category }}</td>
+                                            <td><a href="{{ image.get_edit_url }}" class="btn btn-primary"><i class="fa fa-edit"></i> </a> </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">
+                              ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="post" class="form" enctype="multipart/form-data" action="{% url 'accounts:create_company_image' company.slug %}">
+                                        {% csrf_token %}
+                                        {{ image_form }}
+                                        <br />
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div style="margin: 3%" class="row">
-            <div class="col-3">
+        <div class="row">
+            <div class="col-xl-6 xl-100">
                 <div class="card">
                     <div class="card-header">
-                        <h4>{{ page_title }}</h4>
+                        <h5> ΠΡΟΪΟΝΤΑ </h5>
                     </div>
                     <div class="card-body">
-                        <p>ΕΠΕΞΗΓΗΣΗ</p>
-                        <ul>
-                            <li>ΦΟΝΤΟ: ΑΝΑΛΥΣΗ ΕΙΚΟΝΑΣ 1970px*550px</li>
-                            <li>LOGO: ΑΝΑΛΥΣΗ ΕΙΚΟΝΑΣ 718px*982px</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                        <hr />
-                        <h4>ΕΠΕΞΕΡΓΑΣΙΑ ΕΤΑΙΡΙΑΣ</h4>
-                        <form method="post" class="form" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form }}
-                            <br />
-                            <hr />
-                            <br />
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
-                        </form>
+                        <div class="user-status table-responsive latest-order-table">
+                            <table class="table table-bordernone">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ΠΡΟΪΟΝ</th>
+                                    <th scope="col">ΤΙΜΗ</th>
+                                    <th scope="col">ΚΑΤΑΣΤΑΣΗ</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in company.my_products.all %}
+                                        <tr>
+                                            <td>{{ product }}</td>
+                                            <td>{{ product.tag_price }}</td>
+                                            <td>{{ product.tag_active }}</td>
+                                            <td><a href="{{ product.get_edit_url }}" class="btn btn-primary"><i class="fa fa-edit"></i> </a> </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productImage">
+                              ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="productImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ΠΡΟΣΘΗΚΗ ΠΡΟΪΟΝΤΟΣ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="post" class="form" enctype="multipart/form-data" action="{% url 'accounts:validate_product_or_service' company.slug 'product' %}">
+                                        {% csrf_token %}
+                                        {{ product_form }}
+                                        <br />
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
-
             </div>
-            <div class="col-6">
+            <div class="col-xl-6 xl-100">
                 <div class="card">
                     <div class="card-header">
-                        <h4>ΦΩΤΟΓΡΑΦΙΕΣ</h4>
-                        <p>ΠΡΟΣΘΗΚΗ ΕΙΚΟΝΑΣ</p>
-                        <form method="post" class="form" action="">
-                            {% csrf_token %}
-                            {{ image_form }}
-                        </form>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ΦΩΤΟ</th>
-                                    <th>ΚΑΤΗΓΟΡΙΑ</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for image in company.images.all %}
-                                    <tr>
-                                        <td><img src="{{ image.image.url }}" width="200" height="200" class="img-thumbnail" ></td>
-                                        <td></td>
-                                        <td><a href="" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {% if company.support_products %}
-                <div class="card">
-                    <div class="card-header">
-                        <h4>ΠΡΟΪΟΝΤΑ</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>-</th>
-                                    <th>ΠΡΟΪΟΝ</th>
-                                    <th>ΚΑΤΗΓΟΡΙΕΣ</th>
-                                    <th>ΤΙΜΗ</th>
-                                    <th>ΚΑΤΑΣΤΑΣΗ</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for product in company.my_products.all %}
-                                    <tr>
-                                        <td><img {% if product.image %}src="{{ product.image.url }}" {% else  %}  {% endif %}width="100" height="100" /></td>
-                                        <td>{{ product.title }}</td>
-                                        <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
-                                        <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
-                                        <td></td>
-                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {% endif %}
-                {% if company.support_service %}
-                    <div class="card">
-                    <div class="card-header">
-                        <h4>ΥΠΗΡΕΣΙΕΣ</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>-</th>
-                                    <th>ΥΠΗΡΕΣΙΑ</th>
-                                    <th>ΚΑΤΗΓΟΡΙΕΣ</th>
-                                    <th>ΤΙΜΗ</th>
-                                    <th>ΕΧΕΙ ΠΡΟΤΕΡΙΟΤΗΤΑ</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for product in company.services.all %}
-                                    <tr>
-                                        <td><img {% if product.image %}src="{{ product.image.url }}" {% else  %}  {% endif %} width="100" height="100" /></td>
-                                        <td>{{ product.title }}</td>
-                                        <td>{% for cat in product.category.all %} {{ cat }} | {% endfor%}</td>
-                                        <td>ΑΡΧΙΚΗ ΤΙΜΗ {{ product.price }} | ΤΕΛΙΚΗ ΤΙΜΗ {{ product.final_price }}</td>
-                                        <td>{{ product.tag_primary }}</td>
-                                        <td><a href="{{ product.get_edit_url }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
+                        <h5>ΥΠΗΡΕΣΙΕΣ</h5>
 
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {% endif %}
-            </div>
-            <div class="col-3">
-                <a href="{{ back_url }}" class="btn btn-warning">ΕΠΙΣΤΡΟΦΗ</a>
-                <br/>
-                <hr/>
-                <div class="card">
-                    <div class="card-header">
-                        <h4>ΠΛΗΡΟΦΟΡΙΕΣ</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
-                            <tbody>
+                        <div class="user-status table-responsive latest-order-table">
+                            <table class="table table-bordernone">
+                                <thead>
                                 <tr>
-                                    <th>ΕΙΔΟΣ</th>
-                                    <td>{{ company.get_business_type_display }}</td>
+                                    <th scope="col">ΠΡΟΪΟΝ</th>
+                                    <th scope="col">ΤΙΜΗ</th>
+                                    <th scope="col">ΚΑΤΑΣΤΑΣΗ</th>
+                                    <th scope="col">-</th>
                                 </tr>
-                                <tr>
-                                    <th>ΠΛΑΝΟ ΠΛΗΡΩΜΗΣ</th>
-                                    <td>{{ company.get_priority_display }}</td>
-                                </tr>
-                                <tr>
-                                    <th>ΤΕΛΟΣ ΣΥΝΔΡΟΜΗΣ</th>
-                                    <td>{{ company.subscription_ends }}</td>
-                                </tr>
-                                <tr>
-                                    <th>ΜΕΓΙΣΤΗ ΠΟΣΟΤΗΤΑ ΥΠΗΡ./ ΠΡΟΪΟΝ</th>
-                                    <td>{{ company.max_items }}</td>
-                                </tr>
-                                <tr>
-                                    <th>ΠΟΛΗ</th>
-                                    <td>{{ company.city }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {% for service in company.services.all %}
+                                        <tr>
+                                            <td>{{ service }}</td>
+                                            <td>{{ service.tag_price }}</td>
+                                            <td>{{ service.tag_active }}</td>
+                                            <td><a href="{{ service.get_edit_url }}" class="btn btn-primary"><i class="fa fa-edit"></i> </a> </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                             <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productImage">
+                              ΠΡΟΣΘΗΚΗ ΥΠΗΡΕΣΙΑΣ
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="productImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ΠΡΟΣΘΗΚΗ ΠΡΟΪΟΝΤΟΣ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="post" class="form" enctype="multipart/form-data" action="{% url 'accounts:validate_product_or_service' company.slug 'product' %}">
+                                        {% csrf_token %}
+                                        {{ product_form }}
+                                        <br />
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                {% if company.support_service %}
-                <div class="card">
-                    <div class="card-header">
-                        <h4>ΔΗΜΙΟΥΡΓΙΑ ΥΠΗΡΕΣΙΑΣ</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" class="form" action="{% url 'accounts:validate_product_or_service' company.slug 'service' %}">
-                            {{ service_form }}
-                            <br />
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
-                        </form>
-                    </div>
-                </div>
-                {% endif %}
-                {% if company.support_products %}
-                <div class="card">
-                    <div class="card-header">
-                        <h4>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΪΟΝΤΟΣ</h4>
-                    </div>
-                    <div class="card-body">
-                        <form enctype="multipart/form-data" method="post" class="form" action="{% url 'accounts:validate_product_or_service' company.slug 'product' %}">
-                            {% csrf_token %}
-                            {{ product_form }}
-                            <br />
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
-                        </form>
-                    </div>
-                </div>
-                {% endif %}
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block extra_js %}
-    {{ form.media }}
-    <script>
-        $('#myModal').modal('hide');
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 {% endblock %}
