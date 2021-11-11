@@ -36,6 +36,7 @@ class ProductListView(ListView):
     paginate_by = 30
 
     def get_queryset(self):
+        print('here!')
         return Product.my_query.filter_data(self.request)
 
     def get_context_data(self,  **kwargs):
@@ -86,10 +87,12 @@ class CategoryListView(ListView):
         slug = self.kwargs['slug']
         category = get_object_or_404(CompanyCategory, slug=slug)
         self.category = category
+        self.slug = slug
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Company.my_query.filter_data(self.request)
+
+        return Company.my_query.filter_data(self.request, slug=self.slug)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs)

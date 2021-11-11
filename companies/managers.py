@@ -18,9 +18,9 @@ class CompanyManager(models.Manager):
     def first_choice(self):
         return self.active().filter(first_choice=True)
 
-    def filter_data(self, request):
+    def filter_data(self, request, slug=None):
         q = request.GET.get('q', None)
-        qs = self.active()
+        qs = self.active().filter(category__slug=slug) if slug else self.active()
         if q:
             qs = qs.filter(title__icontains=q)
 
