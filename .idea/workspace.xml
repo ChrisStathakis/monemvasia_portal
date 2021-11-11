@@ -2,32 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c399419-d09a-4363-b0a6-a560521ec4d1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/catalogue/templates/product_list_view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/templates/link_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/templates/service_list_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/monemvasia_portal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/monemvasia_portal.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/action_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/action_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/auth_templates/company_edit_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/auth_templates/company_edit_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/auth_templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/auth_templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/auth_templates/instagram_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/auth_templates/instagram_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalogue/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalogue/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalogue/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalogue/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalogue/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalogue/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalogue/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalogue/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/companies/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/companies/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/context_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/include/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/include/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/include/product_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/product_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/include/service_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/service_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/product_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/company_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/company_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/include/company_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/company_card.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,11 +21,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="managers.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/catalogue/managers.py">
+      <file leaf-file-name="company_detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+            <state relative-caret-position="376">
+              <caret line="277" column="105" selection-start-line="277" selection-start-column="105" selection-end-line="277" selection-end-column="105" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/companies/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="141" selection-start-line="141" selection-end-line="141" />
             </state>
           </provider>
         </entry>
@@ -92,13 +81,11 @@
         <option value="$PROJECT_DIR$/companies/views.py" />
         <option value="$PROJECT_DIR$/companies/signals.py" />
         <option value="$PROJECT_DIR$/frontend/templates/include/js.html" />
-        <option value="$PROJECT_DIR$/frontend/templates/include/company_card.html" />
         <option value="$PROJECT_DIR$/frontend/context_proccesor.py" />
         <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
         <option value="$PROJECT_DIR$/companies/context_processors.py" />
         <option value="$PROJECT_DIR$/frontend/templates/include/css.html" />
         <option value="$PROJECT_DIR$/frontend/templates/include/head.html" />
-        <option value="$PROJECT_DIR$/frontend/templates/company_detail.html" />
         <option value="$PROJECT_DIR$/frontend/templates/city_list_view.html" />
         <option value="$PROJECT_DIR$/frontend/managers.py" />
         <option value="$PROJECT_DIR$/frontend/admin.py" />
@@ -133,6 +120,8 @@
         <option value="$PROJECT_DIR$/catalogue/templates/product_list_view.html" />
         <option value="$PROJECT_DIR$/frontend/context_processor.py" />
         <option value="$PROJECT_DIR$/catalogue/managers.py" />
+        <option value="$PROJECT_DIR$/frontend/templates/include/company_card.html" />
+        <option value="$PROJECT_DIR$/frontend/templates/company_detail.html" />
       </list>
     </option>
   </component>
@@ -161,7 +150,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="280" />
-    <option name="y" value="247" />
+    <option name="y" value="246" />
     <option name="width" value="1940" />
     <option name="height" value="1060" />
   </component>
@@ -180,7 +169,18 @@
             <path>
               <item name="monemvasia_portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="monemvasia_portal" type="462c0819:PsiDirectoryNode" />
+              <item name="companies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monemvasia_portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="monemvasia_portal" type="462c0819:PsiDirectoryNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monemvasia_portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="monemvasia_portal" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -261,7 +261,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -270,9 +271,9 @@
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3209352" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1640625" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1640625" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="manage.py@monemvasia_portal" order="12" visible="true" weight="0.32412326" />
+      <window_info anchor="bottom" id="manage.py@monemvasia_portal" order="12" visible="true" weight="0.32284543" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -290,25 +291,25 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1640625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info active="true" anchor="bottom" id="manage.py@monemvasia_portal" order="12" visible="true" weight="0.3269494" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3209352" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +367,6 @@
     <entry file="file://$PROJECT_DIR$/frontend/templates/company_list_view.html" />
     <entry file="file://$PROJECT_DIR$/frontend/templates/include/css.html" />
     <entry file="file://$PROJECT_DIR$/../../Multikart/multikart_all_in_one/front-end/contact.html" />
-    <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html" />
     <entry file="file://$PROJECT_DIR$/frontend/templates/city_list_view.html" />
     <entry file="file://$PROJECT_DIR$/frontend/admin.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -376,13 +376,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Multikart_html/multikart_all_in_one/front-end/yoga.html" />
-    <entry file="file://$PROJECT_DIR$/frontend/templates/include/company_card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="16" column="16" lean-forward="true" selection-end-line="40" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/templates/include/head.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -423,13 +416,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Multikart/multikart_all_in_one/back-end/create-user.html" />
-    <entry file="file://$PROJECT_DIR$/companies/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="141" selection-start-line="141" selection-end-line="141" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/companies/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -451,10 +437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="402" lean-forward="true" selection-start-line="402" selection-end-line="402" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -479,18 +461,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/templates/link_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="e#935#2506#0#HTML" />
-            <element signature="e#1786#1805#0#HTML" expanded="true" />
-            <element signature="e#2236#2262#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/templates/link_page.html" />
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -561,13 +532,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/templates/service_list_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="208" column="77" lean-forward="true" selection-start-line="208" selection-start-column="77" selection-end-line="208" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/templates/service_list_view.html" />
     <entry file="file://$PROJECT_DIR$/frontend/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -620,19 +585,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catalogue/templates/product_list_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="43" column="71" selection-start-line="43" selection-start-column="62" selection-end-line="43" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/catalogue/templates/product_list_view.html" />
     <entry file="file://$PROJECT_DIR$/frontend/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -652,8 +608,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/catalogue/managers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        <state relative-caret-position="223">
+          <caret line="29" column="76" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="29" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/templates/include/company_card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/companies/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="277" column="105" selection-start-line="277" selection-start-column="105" selection-end-line="277" selection-end-column="105" />
         </state>
       </provider>
     </entry>

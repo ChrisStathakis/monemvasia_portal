@@ -24,8 +24,10 @@ class ProductManager(models.Manager):
     def filter_data(self, request):
         q = request.GET.get('q', None)
         cate_name = request.GET.getlist('category_name', None)
+        city_name = request.GET.getlist('city_name', None)
         qs = self.active()
-        qs =
+        qs = qs.filter(category__id__in=cate_name) if cate_name else qs
+        qs = qs.filter(company__city__id__in=city_name) if city_name else qs
 
         if q:
             qs = qs.filter(title__icontains=q)
