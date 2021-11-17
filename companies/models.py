@@ -75,6 +75,7 @@ class Company(models.Model):
     city = models.ForeignKey(City, blank=True, null=True, on_delete=models.SET_NULL)
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='companies')
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
+    google_map_location = models.URLField(blank=True, null=True, max_length=1000)
 
     # page_relates_fields
     service_title = models.CharField(max_length=220, default='ΥΠΗΡΕΣΙΕΣ')
@@ -110,6 +111,14 @@ class Company(models.Model):
 
     def sub_value(self):
         return 20 if self.business_type == '3' else 40 if self.business_type == '2' else 100
+
+    def get_background_image(self):
+        qs = self.images.filter(background_img=True)
+        return qs.first().image.url if qs.exists() else None
+
+    def rest_photos(self):
+        return self.images.filter(background_img=False)
+
 
     @staticmethod
     def filter_data(request, qs):
@@ -152,9 +161,11 @@ class CompanyInformation(models.Model):
         return self.logo_image.url if self.logo_image else ''
 
 
+
 class CompanyImage(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='companies/images/')
+    background_img = models.BooleanField(default=False, verbose_name='ΕΞΩΦΥΛΛΟ')
 
     class Meta:
         verbose_name_plural = '2. ΕΙΚΟΝΕΣ ΕΠΙΧΕΙΡΗΣΕΩΝ'
@@ -164,6 +175,8 @@ class CompanyImage(models.Model):
 
     def get_delete_url(self):
         return reverse('accounts:delete_company_image', kwargs={'pk': self.pk})
+
+
 
 
 class CompanyService(models.Model):

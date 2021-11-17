@@ -12,8 +12,8 @@ from contact.forms import BusinessContactForm
 
 
 def homepage_view(request):
-    print('here moth!')
     user = request.user
+    print('here moth!', user, user.is_authenticated)
     if user.is_authenticated:
         return redirect('accounts:dashboard_view')
     return redirect('accounts:register')

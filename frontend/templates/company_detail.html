@@ -20,8 +20,6 @@
 <body class="theme-color-2 section-white">
 
 
-
-
     <!-- header start -->
     <header>
         <div class="mobile-fix-option"></div>
@@ -42,7 +40,7 @@
                             <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i>
                                 ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ
                                 <ul class="onhover-show-div">
-                                    <li><a href="">ΣΥΝΔΕΣΗ</a></li>
+                                    <li><a href="{% url 'accounts:register' %}">ΣΥΝΔΕΣΗ</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -77,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="brand-logo">
-                                <a href="{{ company.get_absolute_url }}"><img src="{{ profile.tag_image }}"
+                                <a href="{{ company.get_absolute_url }}"><img width="120" height="160" src="{{ profile.tag_image }}"
                                         class="img-fluid blur-up lazyload" alt="">
                                 </a>
                             </div>
@@ -91,7 +89,7 @@
                                             <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
                                                     aria-hidden="true"></i></div>
                                         </li>
-                                        <li><a href="index.html">ΕΠΙΣΤΡΟΦΗ ΣΤΟ SITE</a></li>
+                                        <li><a href="{% url 'homepage' %}">ΕΠΙΣΤΡΟΦΗ ΣΤΟ SITE</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -110,7 +108,7 @@
         <div class="slider-animate home-slider">
             <div>
                 <div class="home">
-                    <img src="" alt="" class="bg-img blur-up lazyload">
+                    <img src="{{ object.get_background_image }}" alt="" class="bg-img blur-up lazyload">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -120,7 +118,7 @@
                                         <h1 class="animated" data-animation-in="fadeInUp" data-delay-in="0.3">
                                             {{ company }}</h1>
                                         {% if profile.website %}
-                                            <a href="{{ profile.website }}" class="btn btn-solid animated"
+                                            <a target="_blank" href="{{ profile.website }}" class="btn btn-solid animated"
                                             data-animation-in="fadeInUp" data-delay-in="0.5">ΕΠΙΣΚΕΥΤΕΙΤΕ ΤΟ SITE</a>
                                         {% endif %}
                                     </div>
@@ -136,7 +134,7 @@
 
 
     <!-- about section-->
-    <section>
+    <section style="margin-bottom: 3%">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
@@ -168,6 +166,7 @@
                     <div class="product-5 product-m no-arrow">
                         {% for product in products %}
                             {% include 'include/product_card.html' %}
+                            {% empty %}
                         {% endfor %}
 
                     </div>
@@ -184,7 +183,7 @@
                 <div class="col-12">
                     <div class="title3">
                         <h4>exclusive products</h4>
-                        <h2 class="title-inner3">ΥΠΗΡΕΣΙΕΣ</h2>
+                        <h2 class="title-inner3">ΥΠΗΡΕΣΙΕΣ {{ services.count }}</h2>
                         <div class="line"></div>
                     </div>
                 </div>
@@ -213,36 +212,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form class="theme-form">
-                        <div class="form-row row">
-                            <div class="col-md-6">
-                                <label for="name">First Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Your name"
-                                    required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email">Last Name</label>
-                                <input type="text" class="form-control" id="last-name" placeholder="Email" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Phone number</label>
-                                <input type="text" class="form-control" id="review" placeholder="Enter your number"
-                                    required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="review">Write Your Message</label>
-                                <textarea class="form-control" placeholder="Write Your Message"
-                                    id="exampleFormControlTextarea1" rows="6"></textarea>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-solid" type="submit">Send Your Message</button>
-                            </div>
-                        </div>
-                    </form>
+                   <!--Google map-->
+                    <iframe src="{{ object.google_map_location }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+
+                    </iframe>
+                    <!--Google Maps-->
                 </div>
                 <div class="col-md-6">
                     <div class="contact-right">
@@ -296,12 +270,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="title-borderless"># instagram</h2>
+                    <h2 class="title-borderless"># ΦΩΤΟΓΡΑΦΙΕΣ</h2>
                     <div class="slide-7 no-arrow slick-instagram">
+                        {% for photo in object.rest_photos.all %}
                         <div>
                             <a href="#">
                                 <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/1.jpg" alt="Avatar" class="bg-img"
+                                    <img src="{{ photo.image.url }}" alt="Avatar" class="bg-img"
                                         style="width:100%">
                                     <div class="overlay">
                                         <i class="fa fa-instagram" aria-hidden="true"></i>
@@ -309,72 +284,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/2.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/3.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/4.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/5.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/6.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box">
-                                    <img src="../assets/images/yoga/instagram/7.jpg" class="bg-img" alt="Avatar"
-                                        style="width:100%">
-                                    <div class="overlay">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

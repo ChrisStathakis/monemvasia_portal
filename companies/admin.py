@@ -24,7 +24,7 @@ class CompanyInfoInline(admin.TabularInline):
         ('rest', {
             'fields': (
                 'description',
-                ('facebook_url', 'instagram_url')
+                ('facebook_url', 'instagram_url',)
             )
         }),
 
@@ -74,7 +74,7 @@ class CompanyAdmin(admin.ModelAdmin):
         }),
         ('Page Detail', {
             'fields': (
-                ('service_title',),
+                ('service_title', 'google_map_location'),
             )
         }),
         ('rest', {

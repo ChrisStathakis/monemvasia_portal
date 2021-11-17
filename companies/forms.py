@@ -30,9 +30,9 @@ class CompanyServiceForm(BaseForm, forms.ModelForm):
         fields = ['title', 'image', 'text', 'price']
 
 
-class CompanyImageForm(BaseForm, forms.ModelForm):
+class CompanyImageForm( forms.ModelForm):
     company = forms.ModelChoiceField(queryset=Company.objects.all(), widget=forms.HiddenInput(), required=True)
 
     class Meta:
         model = CompanyImage
-        fields = '__all__'
+        fields = ['background_img', 'image', 'company']
