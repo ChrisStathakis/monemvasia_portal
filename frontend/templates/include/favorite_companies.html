@@ -1,0 +1,43 @@
+
+<div class="theme-card">
+    <h5 class="title-border">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h5>
+    <div class="offer-slider slide-1">
+        <div>
+            {% for company in main_companies|slice:":3" %}
+                <div class="media">
+                    <a href="{{ company.get_absolute_url }}">
+                        <img class="img-fluid blur-up lazyload"
+                             src="{{ company.tag_image }}" alt="">
+                    </a>
+                    <div class="media-body align-self-center">
+                        <div class="rating">
+                            {{ company.city }}
+                        </div>
+                        <a href="{{ company.get_absolute_url }}">
+                            <h6>{{ company }}</h6>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div>
+            {% for company in main_companies|slice:"3:" %}
+                <div class="media">
+                    <a href="{{ company.get_absolute_url }}">
+                        <img class="img-fluid blur-up lazyload"
+                             src="{{ company.tag_image }}" alt="">
+                    </a>
+                    <div class="media-body align-self-center">
+                        <div class="rating">
+                            {{ company.city }}
+                        </div>
+                        <a href="{{ company.get_absolute_url }}">
+                            <h6>{{ company }}</h6>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

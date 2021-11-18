@@ -2,7 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.text import slugify
 
-from .models import CompanyCategory, Company, CompanyInformation
+from .models import CompanyCategory, Company, CompanyInformation, CompanyImage
 
 
 @receiver(post_save, sender=CompanyCategory)
@@ -26,3 +26,11 @@ def create_slug_for_company(sender, instance, **kwargs):
         service.save()
     for product in instance.my_products.all():
         product.save()
+
+
+@receiver(post_save, sender=CompanyImage)
+def update_background_image(sender, instance, **kwargs):
+    company = instance.company
+    if instance.background_img:
+        qs = company.images.filter(background_img=True).exclude(id=instance.id)
+        qs.update(background_img=False)

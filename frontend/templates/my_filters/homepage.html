@@ -1,0 +1,6 @@
+
+<form method="get">
+    {% if city_filter %} {% include 'my_filters/city_filter.html' %} {% endif %}
+    {% if company_category_filter %} {% include 'my_filters/company_categories.html' %} {% endif %}
+    <button type="submit" class="btn btn-primary">ΦΙΛΤΡΑ</button>
+</form>

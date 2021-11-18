@@ -11,7 +11,7 @@ class BaseForm(forms.Form):
             field.widget.attrs['class'] = 'form-control'
 
 
-class ContactForm(forms.ModelForm):
+class ContactForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = Contact

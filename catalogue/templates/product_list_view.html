@@ -35,23 +35,10 @@
                             <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
                                         aria-hidden="true"></i> back</span></div>
                             <div class="collection-collapse-block open">
+                                <a href="{{ request.path }}" class="btn btn-warning">ΚΑΘΑΡΙΣΜΟΣ</a>
                                 <h3 class="collapse-block-title">ΠΟΛΗ</h3>
-                                <div class="collection-collapse-block-content">
-                                    <div class="collection-brand-filter">
-                                        {% for city in cities %}
-                                            <div class="form-check collection-filter-checkbox">
-                                                <input
-                                                        name='city_name'
-                                                        value="{{ city.id }}"
-                                                        type="checkbox"
-                                                        class="form-check-input"
-                                                        id="city_{{ city.id }}"
-                                                >
-                                                <label class="form-check-label" for="city_{{ city.id }}">{{ city }}</label>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+                                <a href="{{ request.path }}" class="btn btn-warning">ΚΑΘΑΡΙΣΜΟΣ ΦΙΛΤΡΩΝ</a>
+                                {% include 'my_filters/homepage.html' %}
                             </div>
 
                             <div class="collection-collapse-block open">
@@ -76,93 +63,7 @@
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar single product slider start -->
-                        <div class="theme-card">
-                            <h5 class="title-border">ΠΡΟΤΕΙΝΟΜΕΝΕΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h5>
-                            <div class="offer-slider slide-1">
-                                <div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/1.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/011.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/16.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/001.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/4.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="../assets/images/fashion/pro/19.jpg" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'include/favorite_companies.html' %}
                         <!-- side-bar single product slider end -->
 
                     </div>
@@ -212,6 +113,7 @@
 
                                             </div>
                                         </div>
+                                        {% comment %}
                                         <div class="product-pagination">
                                             <div class="theme-paggination-block">
                                                 <div class="row">
@@ -246,6 +148,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endcomment %}
                                     </div>
                                 </div>
                             </div>

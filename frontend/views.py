@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, DetailView, FormView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,6 +8,8 @@ from jobPostings.models import JobPost
 
 from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm
 from companies.models import CompanyCategory
+from contact.forms import ContactForm
+from contact.models import Contact
 from catalogue.models import Product, Category
 from .models import Banner
 
@@ -44,6 +46,7 @@ class ProductListView(ListView):
         context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
         context['page_title'] = 'ΠΡΟΪΟΝΤΑ'
         context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα'
+        context['city_filter'] = True
         return context
 
 
@@ -60,6 +63,7 @@ class ServiceListView(ListView):
         context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
         context['page_title'] = 'ΥΠΗΡΕΣΙΕΣ'
         context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τις υπηρεσίες της περιοχής'
+        context['city_filter'] = True
         return context
 
 
@@ -102,6 +106,8 @@ class CategoryListView(ListView):
         context['page_title'] = f'{self.category}'
         context['page_description'] = f'Καλώς ήρθατε στο monemvasia.org. Επισκευτείτε την κατηγορια {self.category} ' \
                                       f'και δείτε τις τοπικές επιχειρήσεις'
+        context['city_filter'] = True
+        context['company_category_filter'] = True
         return context
 
 
@@ -153,29 +159,24 @@ class ArticleDetailView(DetailView):
     queryset = Company.objects.all()
 
 
-class ContactView(FormView):
-    pass
+class ContactView(CreateView):
+    template_name = 'contact_page.html'
+    form_class = ContactForm
+    model = Contact
+    success_url = ''
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        context['page_title'] = 'ΕΠΙΚΟΙΝΩΝΙΑ'
+        return context
+
+    def form_valid(self, form):
+        form.save()
+
+        return super(ContactView, self).form_valid(form)
 
 
-@login_required
-def edit_company_page(request, slug):
-    user = request.user
-    obj = get_object_or_404(Company, slug=slug)
-    if obj.owner != user:
-        messages.warning(request, 'Η ΣΥΓΚΕΚΡΙΜΕΝΗ ΣΕΛΙΔΑ ΔΕ ΣΑΣ ΑΝΗΚΕΙ')
 
-    form = FrontEndCompanyInformationForm(request.POST or None, instance=obj.detail)
-    service_form = CompanyServiceForm(request.POST or None, initial={'company': obj})
-    item_form = ProductForm(request.POST or None, initial={'company': obj})
-
-    return render(request, 'edit_customer_page.html', context={
-        'form': form,
-        'obj': obj,
-        'service_form': service_form,
-        'item_form': item_form,
-        'detail': obj.detail,
-        'object': obj
-    })
 
 
 def link_page_view(request, slug):

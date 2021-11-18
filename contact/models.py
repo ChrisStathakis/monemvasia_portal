@@ -9,10 +9,10 @@ class Contact(models.Model):
         ('b', 'ΓΙΑ ΕΠΙΧΕΙΡΗΣΕΙΣ')
     )
     timestamp = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(choices=CHOICES, max_length=1, default='a')
+    category = models.CharField(choices=CHOICES, max_length=1, default='a', verbose_name='ΚΑΤΗΓΟΡΙΑ')
     email = models.EmailField()
-    title = models.CharField(max_length=200)
-    text = models.TextField()
+    title = models.CharField(max_length=200, verbose_name='ΤΙΤΛΟΣ')
+    text = models.TextField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
 
     def __str__(self):
         return f'{self.email}'

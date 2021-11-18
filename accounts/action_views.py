@@ -1,22 +1,31 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .forms import InstagramCategoriesForm, InstagramLinkForm, LoginForm
 from .models import InstagramCategories, InstagramLink
 from companies.models import Company, CompanyService, CompanyImage
 from companies.forms import CompanyServiceForm, CompanyImageForm
 from catalogue.forms import ProductForm
-from catalogue.models import Product
-
 from contact.forms import ContactForm, BusinessContactForm
+
+SITE_EMAIL = settings.SITE_EMAIL
 
 
 def validate_register_form_view(request):
     register_form = BusinessContactForm(request.POST or None)
     success = False
     if register_form.is_valid():
-        register_form.save()
+        new_user = register_form.save()
+        send_mail(
+            'ΑΙΤΗΣΗ ΕΓΓΡΑΦΗΣ monemvasia.org',
+            'ΣΑΣ ΕΥΧΑΡΙΣΤΟΥΜΕ ΓΙΑ ΤΗΝ ΠΡΟΤΙΜΗΣΗ. ΘΑ ΕΠΙΚΟΙΝΩΝΗΣΟΥΜΕ ΣΥΝΤΟΜΑ ΜΑΖΙ ΣΑΣ',
+            SITE_EMAIL,
+            [new_user.email, SITE_EMAIL],
+            fail_silently=True
+        )
         success = True
     else:
         print(register_form.errors)

@@ -184,3 +184,5 @@ MEDIUM_PLAN = 40
 LARGE_PLAN = 100
 PRIMARY_COMPANY = 10
 
+
+SITE_EMAIL = 'lirageika@hotmail.gr'
