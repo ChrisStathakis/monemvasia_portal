@@ -117,7 +117,10 @@ def company_info_view(request, slug):
     if instance.owner != request.user:
         return redirect('homepage')
     profile = instance.detail
-    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile, initial={'company': instance})
+    form = FrontEndCompanyInformationForm(request.POST or None,
+                                          request.FILES,
+                                          instance=profile,
+                                          initial={'company': instance})
     if request.POST:
         form = FrontEndCompanyInformationForm(request.POST, request.FILES, instance=profile, initial={'company': instance})
         if form.is_valid():
@@ -145,12 +148,18 @@ def update_company_info_view(request, pk):
     if company.owner != request.user:
         return redirect('homepage')
     profile = company.detail
-    form = FrontEndCompanyInformationForm(request.POST or None, instance=profile, initial={'company': company})
-    if form.is_valid():
-        form.save()
-        return redirect(company.get_edit_url())
-    else:
-        print(form.errors)
+    form = FrontEndCompanyInformationForm(instance=profile, initial={'company': company})
+    if request.POST:
+        form = FrontEndCompanyInformationForm(request.POST,
+                                              request.FILES,
+                                              instance=profile,
+                                              initial={'company': company}
+                                              )
+        if form.is_valid():
+            form.save()
+            return redirect(company.get_edit_url())
+        else:
+            print(form.errors)
     return render(request, 'auth_templates/form_view.html', context={'form': form, 'back_url': company.get_edit_url(), 'page_title': f'{company}'})
 
 

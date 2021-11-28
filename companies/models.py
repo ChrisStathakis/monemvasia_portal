@@ -65,7 +65,7 @@ class Company(models.Model):
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
     featured = models.BooleanField(default=False)
     first_choice = models.BooleanField(default=False)
-    category = models.ManyToManyField(CompanyCategory, null=True, blank=True)
+    category = models.ManyToManyField(CompanyCategory, null=True, blank=True, related_name='my_companies')
     status = models.BooleanField(default=False)
     subscription_ends = models.DateField(null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_OPTIONS, default='3')

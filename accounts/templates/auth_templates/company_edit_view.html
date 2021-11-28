@@ -12,6 +12,10 @@
                         
                     </div>
                     <br />
+                    <div {% if company.active %} style="color: green" {% else %} style="color: red"  {% endif %}class="page-header-left">
+                        <h4>ΛΗΞΗ ΣΥΝΔΡΟΜΗΣ: {{  company.subscription_ends }}</h4>
+                    </div>
+                    <br />
                      <a href="{% url 'accounts:manage_links' company.slug %}" class='btn btn-primary'>Links </a>
                 </div>
             </div>
@@ -24,6 +28,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5> ΠΛΗΡΟΦΟΡΙΕΣ </h5>
+
                     </div>
                     <div class="card-body">
                         <div class="user-status table-responsive latest-order-table">
@@ -45,7 +50,7 @@
                                     </tr>
                                     <tr>
                                         <td>ΠΛΑΝΟ</td>
-                                        <td>{{ product.get_priority_display }}</td>
+                                        <td>{{ company.get_priority_display }}</td>
                                     </tr>
                                     <tr>
                                         <td>ΠΟΛΗ</td>

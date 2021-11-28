@@ -20,9 +20,14 @@ class CompanyManager(models.Manager):
 
     def filter_data(self, request, slug=None):
         q = request.GET.get('q', None)
+        city_name = request.GET.getlist('city_name', None)
+        category_name = request.GET.getlist('category_name', None)
         qs = self.active().filter(category__slug=slug) if slug else self.active()
+        qs = qs.filter(category__in=category_name) if category_name else qs
+        qs = qs.filter(city__id__in=city_name) if city_name else qs
+
         if q:
-            qs = qs.filter(title__icontains=q)
+            qs = qs.filter(title__search=q)
 
         return qs
 

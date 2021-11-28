@@ -12,7 +12,7 @@ class BaseForm(forms.Form):
 
 
 class FrontEndCompanyInformationForm(BaseForm, forms.ModelForm):
-    company = forms.ModelChoiceField(queryset=Company.objects.all(), widget=forms.HiddenInput())
+    company = forms.ModelChoiceField(queryset=Company.objects.all(), widget=forms.HiddenInput(), required=True)
 
     class Meta:
         model = CompanyInformation

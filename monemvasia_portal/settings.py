@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
 
     'frontend',
     'myAds',
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'tinymce',
     'storages',
     'mptt',
+
+
 
 ]
 
@@ -186,3 +189,4 @@ PRIMARY_COMPANY = 10
 
 
 SITE_EMAIL = 'lirageika@hotmail.gr'
+
