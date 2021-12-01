@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 
 
 class CompanyManager(models.Manager):
@@ -27,7 +28,12 @@ class CompanyManager(models.Manager):
         qs = qs.filter(city__id__in=city_name) if city_name else qs
 
         if q:
-            qs = qs.filter(title__search=q)
+            vector = SearchVector('title', weight='A', config='english') + SearchVector('city__title', weight='B')
+            query = SearchQuery(q, search_type='phrase')
+            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-rank')
+            #s = qs.filter(title__search=q)
+
+
 
         return qs
 

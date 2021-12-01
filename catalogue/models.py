@@ -1,15 +1,9 @@
 from django.db import models
-from django.db.models import Sum, Q, F
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-from django.utils.safestring import mark_safe
-from django.conf import settings
-from django.utils.text import slugify
+from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.indexes import GinIndex
 
-import os, datetime
-from decimal import Decimal
 from tinymce.models import HTMLField
 from .categories import Category
 from companies.models import Company
@@ -43,8 +37,14 @@ class Product(models.Model):
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Εκπτωτική Τιμή')
     final_price = models.DecimalField(default=0, decimal_places=2, max_digits=10, blank=True, verbose_name='Τιμή Πώλησης')
 
+    vector_column = SearchVectorField(null=True)
+
     objects = models.Manager()
     my_query = ProductManager()
+
+    class Meta:
+        indexes = (GinIndex(fields=["vector_column"]), )
+        verbose_name_plural = 'ΠΡΟΪΟΝΤΑ'
 
     def save(self, *args, **kwargs):
         self.subscribe = self.company.status

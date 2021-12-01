@@ -146,7 +146,7 @@ class SearchPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(SearchPageView, self).get_context_data(**kwargs)
         q = self.request.GET.get('q', '')
-        context['products'] = Product.my_query.filter_data(self.request)
+        context['products'] = Product.my_query.filter_data(self.request)[:30]
         context['companies'] = Company.my_query.filter_data(self.request)
         context['services'] = CompanyService.my_query.filter_data(self.request)
         context['page_title'] = f'ΑΝΑΖΗΤΗΣΗ {q}'
@@ -174,8 +174,6 @@ class ContactView(CreateView):
         form.save()
 
         return super(ContactView, self).form_valid(form)
-
-
 
 
 

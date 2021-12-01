@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 
 class CategoryManager(models.Manager):
@@ -30,7 +31,9 @@ class ProductManager(models.Manager):
         qs = qs.filter(company__city__id__in=city_name) if city_name else qs
 
         if q:
-            qs = qs.filter(title__icontains=q)
-
+            # vector = SearchVector('title', weight='A') + SearchVector('company__title', weight='B', config='english')
+            # query = SearchQuery(q, search_type='websearch')
+            # qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-rank')
+            qs = qs.filter(title__search=q)
 
         return qs

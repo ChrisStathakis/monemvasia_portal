@@ -26,7 +26,7 @@ SECRET_KEY = 'yyh1n18el)qz*93giw&hn)x5^h*1$1i51c1ll&l*$k2p*o6nuk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-REAL_DB = True
+REAL_DB = False
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'tinymce',
     'storages',
     'mptt',
+    'import_export'
 
 
 
@@ -117,7 +118,18 @@ if REAL_DB:
             'PORT': 5432,
         }
     }
+else:
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'monemvasia_portal',
+            'USER': 'postgres',
+            'PASSWORD': 'asopos10',
+            'HOST': 'localhost',
+            'PORT': 5432,
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
