@@ -21,12 +21,9 @@
                         <div class="col-lg-6 subscribe-wrapper">
                             <div class="subscribe-block">
                                 <h2>newsletter</h2>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleFormControlInput3"
-                                            placeholder="Enter your email">
-                                        <button type="submit" class="btn btn-solid">subscribe</button>
-                                    </div>
+                                <form  action="{% url 'validate_newsletter' %}">
+                                    {{ newsletter_form }}
+                                    <button type="submit" class="btn btn-success">ΕΓΓΡΑΦΗ</button>
                                 </form>
                             </div>
                         </div>

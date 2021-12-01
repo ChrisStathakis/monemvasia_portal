@@ -27,7 +27,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('αγγελιες/', include('jobPostings.urls')),
     path('catalogue/', include('catalogue.urls')),
-    path('company/', include('companies.urlpatterns'))
+    path('company/', include('companies.urlpatterns')),
+    path('newsletter/', include('newsletters.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

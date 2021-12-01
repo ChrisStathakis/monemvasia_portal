@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts',
     'catalogue',
     'contact',
+    'newsletters',
 
     'tinymce',
     'storages',
@@ -86,6 +87,7 @@ TEMPLATES = [
                 'frontend.context_processor.initial_data',
                 'myAds.context_processors.get_ads',
                 'companies.context_processors.navbar_categories',
+                'newsletters.context_processors.newsletter_data',
             ],
         },
     },
