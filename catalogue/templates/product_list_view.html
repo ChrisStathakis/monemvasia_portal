@@ -27,6 +27,7 @@
     <section class="section-b-space ratio_asos">
         <div class="collection-wrapper">
             <div class="container">
+                <form method="get">
                 <div class="row">
                     <div class="col-sm-3 collection-filter">
                         <!-- side-bar colleps block stat -->
@@ -36,30 +37,10 @@
                                         aria-hidden="true"></i> back</span></div>
                             <div class="collection-collapse-block open">
                                 <a href="{{ request.path }}" class="btn btn-warning">ΚΑΘΑΡΙΣΜΟΣ</a>
-
-
                                 {% include 'my_filters/homepage.html' %}
                             </div>
 
-                            <div class="collection-collapse-block open">
-                                <h3 class="collapse-block-title">ΚΑΤΗΓΟΡΙΑ</h3>
-                                <div class="collection-collapse-block-content">
-                                    <div class="collection-brand-filter">
-                                        {% for category in prod_cat %}
-                                            <div class="form-check collection-filter-checkbox">
-                                                <input
-                                                        name='category_name'
-                                                        value="{{ category.id }}"
-                                                        type="checkbox"
-                                                        class="form-check-input"
-                                                        id="category_{{ category.id }}"
-                                                >
-                                                <label class="form-check-label" for="category_{{ category.id }}">{{ category }}</label>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar single product slider start -->
@@ -90,7 +71,7 @@
                                                 <div class="col-12">
                                                     <div class="product-filter-content">
                                                         <div class="search-count">
-                                                            <h5>Showing Products 1-24 of 10 Result</h5>
+                                                            <h5>ΣΥΝΟΛΙΚΑ ΠΡΟΪΟΝΤΑ -</h5>
                                                         </div>
                                                         <div class="product-page-filter">
                                                             <select>
@@ -120,31 +101,29 @@
                                                      <div class="col-xl-6 col-md-6 col-sm-12">
                                                         <nav aria-label="Page navigation">
                                                             <ul class="pagination">
-                                                                <li class="page-item">
-                                                                    <a class="page-link" href="?page=1"
-                                                                        aria-label="Previous"><span
+                                                            <li class="page-item"><a class="page-link" href="?page=1">ΑΡΧΙΚΗ</a>
+                                                            </li>
+                                                                {% if page_obj.has_previous %}
+                                                                    <li class="page-item">
+                                                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                                                           aria-label="Previous"><span
                                                                             aria-hidden="true"><i
                                                                                 class="fa fa-chevron-left"
                                                                                 aria-hidden="true"></i></span> <span
-                                                                            class="sr-only">Previous</span></a>
-                                                                </li>
-                                                                {% if page_obj.has_previous %}
-                                                                    <li class="page-item active"><a class="page-link"
-                                                                        href="?page={{ page_obj.previous_page_number }}">{{ page_obj }}</a></li>
+                                                                                class="sr-only">Previous</span></a>
+                                                                    </li>
                                                                 {% endif %}
-                                                            <li class="page-item"><a class="page-link"
-                                                                        href="?page=1">1</a>
-                                                                </li>
+                                                                <li class="page-item active"><a class="page-link" href="?page={{ page_obj.paginator }}">{{ page_obj.number }}</a></li>
 
                                                             {% if page_obj.has_next %}
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                                                                </li>
-                                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"
                                                                         aria-label="Next"><span aria-hidden="true"><i
                                                                                 class="fa fa-chevron-right"
                                                                                 aria-hidden="true"></i></span> <span
                                                                             class="sr-only">Next</span></a></li>
+                                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                                                                        aria-label="Next">ΤΕΛΕΥΤΑΙΑ</a></li>
+
 
                                                             {% endif %}
 
@@ -152,11 +131,7 @@
                                                             </ul>
                                                         </nav>
                                                     </div>
-                                                    <div class="col-xl-6 col-md-6 col-sm-12">
-                                                        <div class="product-search-count-bottom">
-                                                            <h5>Showing Products 1-24 of 10 Result</h5>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
 
@@ -170,9 +145,31 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </section>
     <!-- section End -->
 
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $('btnModal').click((evt)=>{
+            evt.preventDefault();
+            const btn = $(this);
+            const url = btn.attr('data-href');
+            $('#modal_area').empty();
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                url: url,
+
+                success: function (data) {
+                    $('#modal_area').html(data.result);
+                    $('#productModal').modal('show')
+                }
+            })
+        })
+    </script>
 {% endblock %}

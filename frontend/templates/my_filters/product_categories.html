@@ -1,0 +1,22 @@
+{% load frontend_tags %}
+<div class="collection-collapse-block open">
+    <h3 class="collapse-block-title">ΚΑΤΗΓΟΡΙΑ</h3>
+    <div class="collection-collapse-block-content">
+        <div class="collection-brand-filter">
+            {% for category in prod_cat %}
+
+                <div class="form-check collection-filter-checkbox">
+                    <input
+                            name='cate_name'
+                            value="{{ category.slug }}"
+                            type="checkbox"
+                            class="form-check-input"
+                            id="cate_{{ category.id }}"
+                            {% if category.slug|stringformat:"s" in request.GET|get_item:'cate_name' %} checked {% endif %}
+                    >
+                    <label class="form-check-label" for="cate_{{ category.id }}">{{ category }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

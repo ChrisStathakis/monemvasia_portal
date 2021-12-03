@@ -59,6 +59,9 @@ class Product(models.Model):
     def get_absolute_url(self):
         return self.company.get_absolute_url()
 
+    def get_modal_url(self):
+        return reverse('ajax_product_modal', kwargs={'slug': self.slug})
+
     def get_edit_url(self):
         return reverse('catalogue:product_update', kwargs={'pk': self.id})
 

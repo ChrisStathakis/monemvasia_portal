@@ -35,18 +35,20 @@ class HomepageView(TemplateView):
 class ProductListView(ListView):
     template_name = 'product_list_view.html'
     model = Product
-    paginate_by = 30
+    paginate_by = 16
 
     def get_queryset(self):
-
+        self.initial_list = Product.my_query.active()
         return Product.my_query.filter_data(self.request)
 
     def get_context_data(self,  **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        context['prod_cat'] = Category.objects.filter(active=True, parent__isnull=True)
+        product_cats = list(self.initial_list.values_list('category__id', flat=True).distinct())
+        categories = Category.objects.filter(id__in=product_cats)
+        context['prod_cat'] = categories
         context['page_title'] = 'ΠΡΟΪΟΝΤΑ'
         context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Σε αυτή την σελίδα θα δείτε όλα τα τοπικα προϊόντα'
-        context['city_filter'] = True
+        context['city_filter'], context['product_cat_filter'] = 2*[True]
         return context
 
 

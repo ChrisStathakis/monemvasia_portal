@@ -27,7 +27,7 @@
         <div class="rating">
             {{ product.company }}
         </div>
-        <a href="{{ product.get_absolute_url }}">
+        <a class="btnModal" data-href="{{ product.get_modal_url }}">
             <h6>{{ product }}</h6>
         </a>
         <h4>{{ product.tag_final_value }}</h4>

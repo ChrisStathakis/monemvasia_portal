@@ -8,6 +8,8 @@ from .action_views import (create_new_item_view, create_new_service_view, valida
                            edit_delete_product_view,edit_or_delete_service_view
                            )
 
+from .ajax_views import ajax_product_modal_view
+
 from catalogue.views import CategoryDetailView
 
 urlpatterns = [
@@ -38,5 +40,9 @@ urlpatterns = [
     path('action/edit-info/<str:slug>/', validate_edit_form_info_view, name='validate_company_info'),
     path('action/edit-service/<int:pk>/<str:action>/', edit_or_delete_service_view, name='edit_or_delete_service_view'),
     path('action/edit-product/<int:pk>/<str:action>/', edit_delete_product_view, name='edit_or_delete_item_view'),
+
+
+    # ajax
+    path('ajax/product-modal/<str:slug>/', ajax_product_modal_view, name='ajax_product_modal')
 
 ]
