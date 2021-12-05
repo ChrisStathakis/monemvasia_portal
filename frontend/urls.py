@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 from .views import (HomepageView, ArticleDetailView, CategoryListView, ContactView, SearchPageView,
                     CompanyDetailView, CityListView, CityDetailView, link_page_view, ProductListView, ServiceListView

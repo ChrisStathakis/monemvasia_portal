@@ -9,11 +9,8 @@ from .models import Product, Company, Category
 from .forms import ProductForm
 
 
-
-
-
 class CategoryDetailView(ListView):
-    template_name = 'category_list_view.html'
+    template_name = 'product_list_view.html'
     model = Product
     paginate_by = 30
 

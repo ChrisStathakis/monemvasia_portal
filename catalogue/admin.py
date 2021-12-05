@@ -1,7 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-# Register your models here.
-
+from mptt.admin import DraggableMPTTAdmin
 from .models import Product, Category
 
 
@@ -14,8 +13,8 @@ class ProductAdmin(ImportExportModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'parent', 'is_featured', 'active']
+class CategoryAdmin(DraggableMPTTAdmin):
+    list_display = ['tree_actions', 'indented_title', 'name', 'parent', 'is_featured', 'active']
     list_filter = ['is_featured', 'active', 'parent']
     list_select_related = ['parent', ]
     search_fields = ['name', ]

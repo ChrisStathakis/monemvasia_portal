@@ -37,7 +37,7 @@ class Product(models.Model):
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Εκπτωτική Τιμή')
     final_price = models.DecimalField(default=0, decimal_places=2, max_digits=10, blank=True, verbose_name='Τιμή Πώλησης')
 
-    vector_column = SearchVectorField(null=True)
+    vector_column = SearchVectorField(null=True, blank=True)
 
     objects = models.Manager()
     my_query = ProductManager()

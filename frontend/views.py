@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from companies.models import Company, CompanyService, City, BUSINESS_TYPE, CompanyInformation
@@ -12,6 +13,8 @@ from contact.forms import ContactForm
 from contact.models import Contact
 from catalogue.models import Product, Category
 from .models import Banner
+
+
 
 
 class HomepageView(TemplateView):
@@ -127,6 +130,7 @@ class CityListView(ListView):
 class CityDetailView(ListView):
     template_name = 'city_detail_view.html'
     model = Company
+    paginate_by = 16
 
     def dispatch(self, request, *args, **kwargs):
         slug = self.kwargs['slug']
@@ -139,6 +143,8 @@ class CityDetailView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CityDetailView, self).get_context_data(**kwargs)
         context['company_categories'] = BUSINESS_TYPE
+        context['company_category_filter'] = True
+        context['page_title'] = self.city
         return context
 
 

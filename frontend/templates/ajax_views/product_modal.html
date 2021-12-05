@@ -1,21 +1,46 @@
+<!-- Quick-view modal popup start-->
+    <div class="modal fade bd-example-modal-lg" id="productModal" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content quick-view-modal">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="quick-view-img"><img src="{{ obj.tag_image }}" alt=""
+                                    class="img-fluid blur-up lazyload"></div>
+                        </div>
+                        <div class="col-lg-6 rtl-text">
+                            <div class="product-right">
+                                <h2>{{ obj }}</h2>
+                                <h3>{{ obj.final_price }}</h3>
+                                <p>{{ obj.company }}</p>
+                                <div class="border-product">
+                                    <h6 class="product-title">ΠΕΡΟΓΡΑΦΗ</h6>
+                                    {{ obj.text|safe }}
+                                </div>
+                                <div class="product-description border-product">
+                                    <div class="size-box">
+                                        <ul>
+                                            {% for category in obj.category.all %}
+                                                <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
 
-<!-- Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">{{ obj.title }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                                    <br />
+                                </div>
+                                <div class="product-buttons">
+                                    <a href="{{ obj.company.get_absolute_url }}" class="btn btn-solid">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+    <!-- Quick-view modal popup end-->
+
+
+

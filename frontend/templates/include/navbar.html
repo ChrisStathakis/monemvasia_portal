@@ -92,7 +92,17 @@
 
                                             </ul>
                                         </li>
-                                        <li><a href="{% url 'product_list_view' %}">ΠΡΟΪΟΝΤΑ</a></li>
+                                        <li>
+                                            <a href="#">ΠΡΟΪΟΝΤΑ</a>
+                                            <ul>
+                                                {% for category in product_categories %}
+                                                    <li><a href="{{ category.get_absolute_url }}">{{ category }}fd </a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+
                                         <li><a href="{% url 'service_list_view' %}">ΥΠΗΡΕΣΙΕΣ</a></li>
                                     </ul>
                                 </nav>

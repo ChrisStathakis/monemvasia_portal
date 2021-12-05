@@ -16,6 +16,9 @@ class CategoryManager(models.Manager):
     def is_featured(self):
         return self.active().filter(is_featured=True)
 
+    def is_parent(self):
+        return self.active().filter(parent__isnull=True)
+
 
 class ProductManager(models.Manager):
 
@@ -46,14 +49,12 @@ class ProductManager(models.Manager):
 
 
     def search(self, text):
-        # text = request.GET.get('q', None)
+        # qs = self.active().annotate(search=SearchVector('title', 'text')).filter(search=text)
+        search_vector = SearchVector('title', weight='A') + SearchVector('text', weight='B')
         search_query = SearchQuery(text)
-        search_rank = SearchRank(product_search_vectors, search_query)
-        trigram_similarity = TrigramSimilarity('title', text)
-        return self.get_queryset().annotate(
-            search=product_search_vectors
-        ).filter(
-            search=search_query
-        ).annotate(
-            rank=search_rank + trigram_similarity
-        ).order_by('-rank')
+        return (
+            self.active().annotate(
+                search=search_vector, rank=SearchRank(search_vector, search_query)
+            ).filter(search=search_query)
+            .order_by('-rank')
+        )

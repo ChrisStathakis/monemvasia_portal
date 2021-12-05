@@ -26,7 +26,8 @@ SECRET_KEY = 'yyh1n18el)qz*93giw&hn)x5^h*1$1i51c1ll&l*$k2p*o6nuk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-REAL_DB = False
+REAL_DB = True
+
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -85,10 +86,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
                 'frontend.context_processor.initial_data',
-                'myAds.context_processors.get_ads',
                 'companies.context_processors.navbar_categories',
                 'newsletters.context_processors.newsletter_data',
+
             ],
         },
     },
@@ -203,4 +205,4 @@ PRIMARY_COMPANY = 10
 
 
 SITE_EMAIL = 'lirageika@hotmail.gr'
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
