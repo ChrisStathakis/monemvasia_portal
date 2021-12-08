@@ -1,8 +1,10 @@
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.utils.text import slugify
+from django.core.cache import cache
+from .models import CompanyCategory, Company, CompanyInformation, CompanyImage, CompanyService
 
-from .models import CompanyCategory, Company, CompanyInformation, CompanyImage
+from monemvasia_portal.cache_keys import FEATURED_SERVICES, FEATURED_COMPANIES
 
 
 @receiver(post_save, sender=CompanyCategory)
@@ -34,3 +36,27 @@ def update_background_image(sender, instance, **kwargs):
     if instance.background_img:
         qs = company.images.filter(background_img=True).exclude(id=instance.id)
         qs.update(background_img=False)
+
+
+@receiver(post_delete, sender=Company, dispatch_uid='company_deleted')
+def refresh_cache_after_company_delete(sender, instance, **kwargs):
+    if instance.featured:
+        cache.delete(FEATURED_COMPANIES)
+
+
+@receiver(post_save, sender=Company, dispatch_uid='company_updated')
+def refresh_cache_after_company_updated(sender, instance, **kwargs):
+    if instance.featured:
+        cache.delete(FEATURED_COMPANIES)
+
+
+@receiver(post_delete, sender=CompanyService, dispatch_uid='service_deleted')
+def refresh_cache_after_service_delete(sender, instance, **kwargs):
+    if instance.featured:
+        cache.delete(FEATURED_SERVICES)
+
+
+@receiver(post_save, sender=CompanyService, dispatch_uid='service_updated')
+def refresh_cache_after_service_updated(sender, instance, **kwargs):
+    if instance.featured:
+        cache.delete(FEATURED_COMPANIES)

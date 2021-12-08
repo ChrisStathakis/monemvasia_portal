@@ -206,3 +206,16 @@ PRIMARY_COMPANY = 10
 
 SITE_EMAIL = 'lirageika@hotmail.gr'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+REDIS_URL = config('REDIS_URL') if REAL_DB else 'redis://127.0.0.1:6379/1'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}

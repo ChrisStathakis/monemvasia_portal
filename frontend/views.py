@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
+from django.core.cache import cache
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -13,8 +14,7 @@ from contact.forms import ContactForm
 from contact.models import Contact
 from catalogue.models import Product, Category
 from .models import Banner
-
-
+from monemvasia_portal.cache_keys import BIG_BANNERS_KEY, MEDIUM_BANNERS_KEY
 
 
 class HomepageView(TemplateView):
@@ -26,12 +26,10 @@ class HomepageView(TemplateView):
         context['page_title'] = 'Αρχική Σελίδα'
         context['page_description'] = 'Καλώς ήρθατε στο monemvasia.org. Εδώ θα βρείτε πληροφορίες για τις τοπικές ' \
                                       'επιχειρήσεις και προϊόντα.'
-        context['cities'] = City.objects.filter(active=True)
 
-        context['featured'] = Company.my_query.featured()[:6]
-        context['product_categories'] = Category.my_query.is_featured()
-        context['big_banners'] = Banner.my_query.big_banner()
-        context['medium_banners'] = Banner.my_query.medium_banner()
+        context['big_banners'] = cache.get_or_set(BIG_BANNERS_KEY, Banner.my_query.big_banner())
+        context['medium_banners'] = cache.get_or_set(MEDIUM_BANNERS_KEY, Banner.my_query.medium_banner())
+
         return context
 
 

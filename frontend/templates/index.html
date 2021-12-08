@@ -44,16 +44,16 @@
             <div class="row partition3">
                 {% for banner in medium_banners %}
                     <div class="col-md-6">
-                        <a href="{{ company.get_absolute_url }}">
+                        <a href="{{ banner.url }}">
                             <div class="collection-banner p-left text-start">
                                 <div class="img-part">
-                                    <img src="{{ company.detail.tag_image }}" alt=""
+                                    <img src="{{ banner.image.url }}" alt=""
                                         class="img-fluid blur-up lazyload bg-img">
                                 </div>
                                 <div class="contain-banner">
                                     <div>
-                                        <h4>{{ company.get_business_type_display }}</h4>
-                                        <h2>{{ company }}</h2>
+                                        <h4>{{ banner.get_business_type_display }}</h4>
+                                        <h2>{{ banner }}</h2>
                                     </div>
                                 </div>
                             </div>
