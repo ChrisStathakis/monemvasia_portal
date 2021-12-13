@@ -27,7 +27,7 @@ SECRET_KEY = 'yyh1n18el)qz*93giw&hn)x5^h*1$1i51c1ll&l*$k2p*o6nuk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 REAL_DB = True
-
+PRODUCTION = False
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -208,14 +208,14 @@ SITE_EMAIL = 'lirageika@hotmail.gr'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
-REDIS_URL = config('REDIS_URL') if REAL_DB else 'redis://127.0.0.1:6379/1'
+REDIS_URL = config('REDIS_URL') if PRODUCTION else 'redis://127.0.0.1:6379/1'
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_URL,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": config('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
 }
