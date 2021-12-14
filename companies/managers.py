@@ -47,7 +47,7 @@ class ServiceManager(models.Manager):
         return self.filter(active=True)
 
     def is_primary(self):
-        return self.filter(is_primary=True)
+        return self.active().filter(is_primary=True)
 
 
     def filter_data(self, request):

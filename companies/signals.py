@@ -52,11 +52,11 @@ def refresh_cache_after_company_updated(sender, instance, **kwargs):
 
 @receiver(post_delete, sender=CompanyService, dispatch_uid='service_deleted')
 def refresh_cache_after_service_delete(sender, instance, **kwargs):
-    if instance.featured:
+    if instance.is_primary:
         cache.delete(FEATURED_SERVICES)
 
 
 @receiver(post_save, sender=CompanyService, dispatch_uid='service_updated')
 def refresh_cache_after_service_updated(sender, instance, **kwargs):
-    if instance.featured:
+    if instance.is_primary:
         cache.delete(FEATURED_COMPANIES)

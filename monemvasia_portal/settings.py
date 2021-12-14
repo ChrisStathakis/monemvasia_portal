@@ -210,19 +210,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 REDIS_URL = config('REDIS_URL') if PRODUCTION else 'redis://127.0.0.1:6379/1'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        # Use secure Redis URL available in Redis 6+.
-        # For premium instance on Heroku, this is a rediss:// url.
-        'LOCATION': config('REDIS_URL'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            "PASSWORD": config("redis_password"),
-            'CONNECTION_POOL_KWARGS': {
-                'ssl_cert_reqs': None
+if PRODUCTION:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            # Use secure Redis URL available in Redis 6+.
+            # For premium instance on Heroku, this is a rediss:// url.
+            'LOCATION': config('REDIS_URL'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                "PASSWORD": config("redis_password"),
+                'CONNECTION_POOL_KWARGS': {
+                    'ssl_cert_reqs': None
+                },
             },
-        },
+        }
     }
-}
+else:
 
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            # Use secure Redis URL available in Redis 6+.
+            # For premium instance on Heroku, this is a rediss:// url.
+            'LOCATION': config('REDIS_URL'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            },
+        }
+    }

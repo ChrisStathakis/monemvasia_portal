@@ -2,6 +2,15 @@ from django.contrib import admin
 
 from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage
 
+import datetime
+from dateutil.relativedelta import relativedelta
+
+
+def add_subscription_action(modeladmin, request, queryset):
+    for ele in queryset:
+        ele.subscription_ends = ele.subscription_ends +  relativedelta(months=1)
+        ele.save()
+
 
 class CompanyImageInline(admin.TabularInline):
     model = CompanyImage
@@ -31,6 +40,7 @@ class CompanyInfoInline(admin.TabularInline):
     )
 
 
+
 @admin.register(CompanyCategory)
 class CompanyCategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'parent']
@@ -57,7 +67,7 @@ class CompanyAdmin(admin.ModelAdmin):
     readonly_fields = ['item_support', 'status', 'counter']
     search_fields = ['title', ]
     inlines = [CompanyImageInline, ]
-
+    actions = [add_subscription_action, ]
     fieldsets = (
         ('Active and Subs', {
             'fields': (
