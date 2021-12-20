@@ -42,6 +42,10 @@ class CompanyCategory(models.Model):
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL, related_name='childrens')
 
+    class Meta:
+        verbose_name_plural = '5. ΚΑΤΗΓΟΡΙΕΣ ΕΤΑΙΡΙΩΝ'
+        verbose_name = 'ΚΑΤΗΓΟΡΙΑ ΕΤΑΙΡΙΑΣ'
+
     def __str__(self):
         return self.title
 

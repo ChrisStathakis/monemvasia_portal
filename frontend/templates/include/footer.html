@@ -21,8 +21,8 @@
                         <div class="col-lg-6 subscribe-wrapper">
                             <div class="subscribe-block">
                                 <h2>newsletter</h2>
-                                <form  action="{% url 'validate_newsletter' %}">
-                                    {{ newsletter_form }}
+                                <form style="color:white" method="post" class="form" action="{% url 'validate_newsletter' %}">
+                                    {{ newsletter_form.as_p }}
                                     <button type="submit" class="btn btn-success">ΕΓΓΡΑΦΗ</button>
                                 </form>
                             </div>

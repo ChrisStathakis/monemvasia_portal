@@ -26,8 +26,9 @@ SECRET_KEY = 'yyh1n18el)qz*93giw&hn)x5^h*1$1i51c1ll&l*$k2p*o6nuk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-REAL_DB = True
-PRODUCTION = True
+REAL_DB = False
+PRODUCTION = False
+
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -233,7 +234,7 @@ else:
             'BACKEND': 'django_redis.cache.RedisCache',
             # Use secure Redis URL available in Redis 6+.
             # For premium instance on Heroku, this is a rediss:// url.
-            'LOCATION': config('REDIS_URL'),
+            'LOCATION': REDIS_URL,
             'OPTIONS': {
                 'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             },

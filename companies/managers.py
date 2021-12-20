@@ -32,10 +32,8 @@ class CompanyManager(models.Manager):
             query = SearchQuery(q, search_type='phrase')
             qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-rank')
             #s = qs.filter(title__search=q)
-
-
-
         return qs
+
 
 
 class ServiceManager(models.Manager):

@@ -8,7 +8,7 @@ from .managers import BannerManager
 
 class City(models.Model):
     active = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='cities/')
+    image = models.ImageField(upload_to='cities/', help_text='1370*385')
     title = models.CharField(unique=True, max_length=220)
     slug = models.SlugField(blank=True, allow_unicode=True)
     text = HTMLField(blank=True, null=True)
@@ -19,6 +19,8 @@ class City(models.Model):
     def get_absolute_url(self):
         return reverse('city_detail', kwargs={'slug': self.slug})
 
+    def tag_image(self):
+        return self.image.url if self.image else None
 
 class Banner(models.Model):
     choices = (

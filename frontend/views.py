@@ -136,13 +136,14 @@ class CityDetailView(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        return self.model.filter_data(self.request, self.city.company_set.all())
+        return self.model.filter_data(self.request, Company.my_query.active().filter(city=self.city))
 
     def get_context_data(self, **kwargs):
         context = super(CityDetailView, self).get_context_data(**kwargs)
-        context['company_categories'] = BUSINESS_TYPE
-        context['company_category_filter'] = True
         context['page_title'] = self.city
+        context['company_category_filter'] = True
+        context['my_categories'] = CompanyCategory.objects.filter(parent__isnull=True)
+
         return context
 
 

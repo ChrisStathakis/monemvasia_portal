@@ -63,8 +63,9 @@ class CompanyInformation(admin.ModelAdmin):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_filter = ['status', 'business_type', 'featured', 'priority', 'category']
-    list_display = ['title', 'max_items', 'owner', 'priority', 'subscription_ends', 'featured','status']
+    list_display = ['title', 'subscription_ends', 'priority', 'max_items', 'owner', 'featured', 'status']
     readonly_fields = ['item_support', 'status', 'counter']
+    list_editable = ['subscription_ends', ]
     search_fields = ['title', ]
     inlines = [CompanyImageInline, ]
     actions = [add_subscription_action, ]

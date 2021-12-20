@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from django.core.cache import cache
 from .models import CompanyCategory, Company, CompanyInformation, CompanyImage, CompanyService
 
-from monemvasia_portal.cache_keys import FEATURED_SERVICES, FEATURED_COMPANIES
+from monemvasia_portal.cache_keys import FEATURED_SERVICES, FEATURED_COMPANIES, NAVBAR_CATEGORIES
 
 
 @receiver(post_save, sender=CompanyCategory)
@@ -60,3 +60,13 @@ def refresh_cache_after_service_delete(sender, instance, **kwargs):
 def refresh_cache_after_service_updated(sender, instance, **kwargs):
     if instance.is_primary:
         cache.delete(FEATURED_COMPANIES)
+
+
+@receiver(post_save, sender=CompanyCategory, dispatch_uid='company_category_updated')
+def refresh_cache_sfter_category_updated(sender, instance, **kwargs):
+    cache.delete(NAVBAR_CATEGORIES)
+
+
+@receiver(post_delete, sender=CompanyCategory, dispatch_uid='company_category_deleted')
+def refresh_cache_after_category_deleted(sender, instance, **kwargs):
+    cache.delete(NAVBAR_CATEGORIES)
