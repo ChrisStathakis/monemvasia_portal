@@ -31,7 +31,7 @@ PRODUCTION = True
 
 
 
-ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com'] if  PRODUCTION else  ['*', ]
+ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', ] if  PRODUCTION else  ['*', ]
 
 
 if PRODUCTION:
