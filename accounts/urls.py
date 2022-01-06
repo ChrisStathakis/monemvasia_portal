@@ -10,10 +10,14 @@ from .action_views import (validate_category_creation_view, validate_link_creati
                            validate_login_form_view, validate_register_form_view,
                            validate_company_create_image_view, update_company_image_view, delete_company_image_view
                            )
+from .admin_view import ManageSubsView
 
 app_name = 'accounts'
 
 urlpatterns = [
+
+    path('admin/manage-subs/', ManageSubsView.as_view(), name='manageSubsView'),
+
     path('homepage/', homepage_view, name='homepage_view'),
     path('register/', login_or_register_view, name='register'),
     path('logout/', logout_request, name='logout'),

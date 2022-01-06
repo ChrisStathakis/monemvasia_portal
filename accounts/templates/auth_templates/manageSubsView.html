@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <h4>Subs</h4>
+                <table class="table table-bordered">
+                    <thead>
+                         <tr>
+                             <th>-</th>
+                             <th>Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for company in object_list %}
+                            <tr>
+                                <td></td>
+                                <td>{{ company }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

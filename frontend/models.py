@@ -20,7 +20,8 @@ class City(models.Model):
         return reverse('city_detail', kwargs={'slug': self.slug})
 
     def tag_image(self):
-        return self.image.url if self.image else None
+        return self.image.url if self.image else 'static/my_assets/mo_po.jpg'
+
 
 class Banner(models.Model):
     choices = (
