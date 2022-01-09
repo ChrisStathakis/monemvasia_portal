@@ -4,24 +4,41 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-8">
-                <h4>Subs</h4>
-                <table class="table table-bordered">
+            <div class="card">
+                <div class="card-header">
+                    ΔΙΑΧΕΙΡΗΣΗ ΣΥΝΔΡΟΜΩΝ
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
                     <thead>
                          <tr>
                              <th>-</th>
-                             <th>Company</th>
+                             <th>ΕΤΑΙΡΙΑ</th>
+                             <th>ΣΥΝΔΡΟΜΗ</th>
+                             <th>ΗΜΕΡΟΜΗΝΙΑ ΛΗΞΗΣ ΣΥΝΔΡΟΜΗΣ</th>
+                             <th>ΚΟΣΤΟΣ ΑΝΑ ΜΗΝΑ</th>
+                             <th>ΗΜΕΡΟΜΗΝΙΑ ΤΕΛΕΥΤΑΙΑ ΠΛΗΡΩΜΗΣ</th>
+                             <th>-</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for company in object_list %}
                             <tr>
-                                <td></td>
+                                <td>{{ company.id }}</td>
                                 <td>{{ company }}</td>
+                                <td>{{ company.get_priority_display }}</td>
+                                <td>{{ company.subscription_ends|date:'c' }} | {{ company.subscription_ends|timeuntil  }}</td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="" class="btn btn-warning"><i class="fa fa-edit"></i> </a> </td>
                             </tr>
                         {% endfor %}
                     </tbody>
 
                 </table>
+                </div>
+            </div>
+
             </div>
         </div>
     </div>

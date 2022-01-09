@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from frontend.models import City
@@ -36,6 +36,13 @@ def upload_services(instance, filename):
     return f'/companies/services/{instance.company.id}/{filename}'
 
 
+PAYMENT_METHODS = [
+    ('a', 'ΤΡΑΠΕΖΑ ΠΕΙΡΑΙΩΣ'),
+    ('b', 'ΕΘΝΙΚΗ ΤΡΑΠΕΖΑ'),
+    ('c', 'ΜΕΤΡΗΤΑ'),
+]
+
+
 class CompanyCategory(models.Model):
     title = models.CharField(max_length=220)
     image = models.ImageField(upload_to='companies/categories/', blank=True, null=True)
@@ -61,16 +68,15 @@ class CompanyCategory(models.Model):
 
 class Company(models.Model):
     PRIORITY_OPTIONS = (
-        ('1', 'ΠΡΟΧΩΡΗΜΕΝΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 100/ΜΗΝΑ'),
-        ('2', 'ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 40/ΜΗΝΑ'),
-        ('3', 'ΒΑΣΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 20/ΜΗΝΑ')
+        ('1', 'ΠΛΑΝΟ ΓΙΑ ΕΠΙΧΕΙΡΗΣΕΙΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 40/ΜΗΝΑ'),
+        ('2', 'ΠΛΑΝΟ ΓΙΑ ΥΠΗΡΕΣΙΕΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 30/ΜΗΝΑ'),
     )
-
+    admin_active = models.BooleanField(default=False, verbose_name='ΓΕΝΙΚΟΣ ΔΙΑΚΟΠΤΗΣ')
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
     featured = models.BooleanField(default=False)
-    first_choice = models.BooleanField(default=False)
+    first_choice = models.BooleanField(default=False, verbose_name='ΠΡΟΤΕΡΙΟΤΗΤΑ')
     category = models.ManyToManyField(CompanyCategory, null=True, blank=True, related_name='my_companies')
-    status = models.BooleanField(default=False)
+    status = models.BooleanField(default=False, verbose_name='ΚΑΤΑΣΤΑΣΗ')
     subscription_ends = models.DateField(null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_OPTIONS, default='3')
     item_support = models.BooleanField(default=False)
@@ -88,14 +94,21 @@ class Company(models.Model):
     objects = models.Manager()
 
     counter = models.IntegerField(default=0)
+    value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΥΠΟΛΟΙΠΟ')
 
     class Meta:
-        ordering = ['priority', ]
+        ordering = ['featured', 'first_choice', 'priority',]
         verbose_name_plural = '1. ΕΠΙΧΕΙΡΗΣΕΙΣ'
         
     def save(self, *args, **kwargs):
-        self.status = True if self.subscription_ends >= datetime.datetime.now().date() else False
+        if self.admin_active:
+            self.status = True if self.subscription_ends >= datetime.datetime.now().date() else False
+        else:
+            self.status = False
         self.item_support = True if self.max_items > 0 else False
+        orders = self.orders.aggregate(Sum('value'))['value__sum'] if self.orders.exists() else 0
+        payments = self.payments.aggregate(Sum('value'))['value__sum'] if self.payments.exists() else 0
+        self.value = orders - payments
         super(Company, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -122,7 +135,6 @@ class Company(models.Model):
 
     def rest_photos(self):
         return self.images.filter(background_img=False)
-
 
     @staticmethod
     def filter_data(request, qs):
@@ -165,7 +177,6 @@ class CompanyInformation(models.Model):
         return self.logo_image.url if self.logo_image else ''
 
 
-
 class CompanyImage(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='companies/images/')
@@ -179,8 +190,6 @@ class CompanyImage(models.Model):
 
     def get_delete_url(self):
         return reverse('accounts:delete_company_image', kwargs={'pk': self.pk})
-
-
 
 
 class CompanyService(models.Model):
@@ -203,7 +212,6 @@ class CompanyService(models.Model):
     def save(self, *args, **kwargs):
         self.subscribe = self.company.status
         super(CompanyService, self).save(*args, **kwargs)
-
 
     def __str__(self):
         return self.title
@@ -228,3 +236,45 @@ class CompanyService(models.Model):
         q = request.GET.get('q', None)
         qs = qs.filter(title__icontains=q) if q else qs
         return qs
+
+
+class CompanyPayment(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='payments', verbose_name='ΕΤΑΙΡΙΑ')
+    date = models.DateField(verbose_name='ΗΜΕΡΟΜΗΝΙΑ')
+    title = models.CharField(null=True, max_length=220, verbose_name='ΤΙΤΛΟΣ')
+    value = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='ΑΞΙΑ')
+    payment_method = models.CharField(max_length=1, default='a', choices=PAYMENT_METHODS)
+
+    def save(self, *args, **kwargs):
+        super(CompanyPayment, self).save(*args, **kwargs)
+        self.company.save()
+
+    class Meta:
+        verbose_name_plural = '1.2 ΠΛΗΡΩΜΕΣ'
+        verbose_name = 'ΠΛΗΡΩΜΗ'
+
+    def __str__(self):
+        return f'{self.company} | {self.date}'
+
+
+class CompanyOrder(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='orders', verbose_name='ΕΤΑΙΡΙΑ')
+    date = models.DateField(verbose_name='ΗΜΕΡΟΜΗΝΙΑ')
+    title = models.CharField(null=True, max_length=220, verbose_name='ΤΙΤΛΟΣ')
+    value = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='ΑΞΙΑ')
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.company.save()
+
+    class Meta:
+        verbose_name_plural = '1.1 ΤΙΜΟΛΟΓΙΑ'
+        verbose_name = 'ΤΙΜΟΛΟΓΙΟ'
+
+    def __str__(self):
+        return f'{self.company} | {self.date}'
+
+
+
+

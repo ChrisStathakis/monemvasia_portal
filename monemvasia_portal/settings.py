@@ -25,13 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('secretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 REAL_DB = True
 PRODUCTION = True
 
 
 
-ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', ] if  PRODUCTION else  ['*', ]
+ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', '127.0.0.1'] if  PRODUCTION else  ['*', ]
 
 '''
 if PRODUCTION:
@@ -222,7 +222,8 @@ SITE_EMAIL = 'lirageika@hotmail.gr'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
-REDIS_URL = config('REDIS_URL') if PRODUCTION else 'redis://127.0.0.1:6379/1'
+REDIS_URL = config('REDIS_URL') if REAL_DB else 'redis://127.0.0.1:6379/1'
+
 
 if PRODUCTION:
     CACHES = {
@@ -241,7 +242,6 @@ if PRODUCTION:
         }
     }
 else:
-
     CACHES = {
         'default': {
             'BACKEND': 'django_redis.cache.RedisCache',

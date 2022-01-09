@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage
+from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage, CompanyOrder, CompanyPayment
 
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -40,6 +40,17 @@ class CompanyInfoInline(admin.TabularInline):
     )
 
 
+@admin.register(CompanyOrder)
+class CompanyOrderAdmin(admin.ModelAdmin):
+    list_display = ['date', 'company', 'value']
+    list_filter = ['company', 'date']
+
+
+@admin.register(CompanyPayment)
+class CompanyPaymentrAdmin(admin.ModelAdmin):
+    list_display = ['date', 'company', 'payment_method', 'value']
+    list_filter = ['company', 'date', 'payment_method',]
+
 
 @admin.register(CompanyCategory)
 class CompanyCategoryAdmin(admin.ModelAdmin):
@@ -63,8 +74,8 @@ class CompanyInformation(admin.ModelAdmin):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_filter = ['status', 'business_type', 'featured', 'priority', 'category']
-    list_display = ['title', 'subscription_ends', 'priority', 'max_items', 'owner', 'featured', 'status']
-    readonly_fields = ['item_support', 'status', 'counter']
+    list_display = ['title', 'subscription_ends', 'owner', 'featured', 'value', 'status']
+    readonly_fields = ['item_support', 'status', 'counter', 'value']
     list_editable = ['subscription_ends', ]
     search_fields = ['title', ]
     inlines = [CompanyImageInline, ]
@@ -72,7 +83,8 @@ class CompanyAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Active and Subs', {
             'fields': (
-                ('status',  'item_support', 'first_choice', 'featured',),
+                ('admin_active', 'status'),
+                ('item_support', 'first_choice', 'featured',),
                 ('business_type', 'subscription_ends', 'priority',  'max_items'),
             )
         }),
