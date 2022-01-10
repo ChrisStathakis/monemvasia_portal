@@ -2,7 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
 from django.utils.text import slugify
 from django.core.cache import cache
-from .models import CompanyCategory, Company, CompanyInformation, CompanyImage, CompanyService
+from .models import CompanyCategory, Company, CompanyInformation, CompanyImage, CompanyService, CompanyOrder, CompanyPayment
 
 from monemvasia_portal.cache_keys import FEATURED_SERVICES, FEATURED_COMPANIES, NAVBAR_CATEGORIES
 
@@ -70,3 +70,9 @@ def refresh_cache_sfter_category_updated(sender, instance, **kwargs):
 @receiver(post_delete, sender=CompanyCategory, dispatch_uid='company_category_deleted')
 def refresh_cache_after_category_deleted(sender, instance, **kwargs):
     cache.delete(NAVBAR_CATEGORIES)
+
+
+@receiver(post_delete, sender=CompanyPayment)
+@receiver(post_delete, sender=CompanyOrder)
+def update_company_on_delete(sender, instance, **kwargs):
+    instance.company.save()
