@@ -47,7 +47,7 @@ class CompanyOrderAdmin(admin.ModelAdmin):
 
 
 @admin.register(CompanyPayment)
-class CompanyPaymentrAdmin(admin.ModelAdmin):
+class CompanyPaymentAdmin(admin.ModelAdmin):
     list_display = ['date', 'company', 'payment_method', 'value']
     list_filter = ['company', 'date', 'payment_method',]
 
@@ -61,7 +61,7 @@ class CompanyCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(CompanyService)
 class CompanyServiceAdmin(admin.ModelAdmin):
-    list_display = ['title', 'company', 'is_primary']
+    list_display = ['title', 'company', 'counter', 'is_primary']
     list_filter = ['company', 'is_primary']
     search_fields = ['title', 'company']
 
@@ -74,7 +74,7 @@ class CompanyInformation(admin.ModelAdmin):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_filter = ['status', 'business_type', 'featured', 'priority', 'category']
-    list_display = ['title', 'subscription_ends', 'owner', 'featured', 'value', 'status']
+    list_display = ['title', 'subscription_ends', 'owner', 'featured', 'value', 'counter', 'status']
     readonly_fields = ['item_support', 'status', 'counter', 'value']
     list_editable = ['subscription_ends', ]
     search_fields = ['title', ]
@@ -84,7 +84,7 @@ class CompanyAdmin(admin.ModelAdmin):
         ('Active and Subs', {
             'fields': (
                 ('admin_active', 'status'),
-                ('item_support', 'first_choice', 'featured',),
+                ('item_support', 'first_choice', 'featured', ),
                 ('business_type', 'subscription_ends', 'priority',  'max_items'),
             )
         }),

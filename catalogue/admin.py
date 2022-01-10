@@ -6,7 +6,7 @@ from .models import Product, Category
 
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin):
-    list_display = ['title', 'company', 'active']
+    list_display = ['title', 'company', 'counter', 'active']
     list_filter = ['active', 'company']
     list_select_related = ['company', ]
     search_fields = ['title', ]

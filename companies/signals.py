@@ -76,3 +76,11 @@ def refresh_cache_after_category_deleted(sender, instance, **kwargs):
 @receiver(post_delete, sender=CompanyOrder)
 def update_company_on_delete(sender, instance, **kwargs):
     instance.company.save()
+
+
+@receiver(post_save, sender=Company)
+def update_status_on_services_and_products(sender, instance, **kwargs):
+    services = instance.services.all()
+    products = instance.my_products.all()
+    services.update(active=instance.status)
+    products.update(active=instance.status)

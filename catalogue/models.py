@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.indexes import GinIndex
 
+import datetime
 from tinymce.models import HTMLField
 from .categories import Category
 from companies.models import Company
@@ -38,6 +39,7 @@ class Product(models.Model):
     final_price = models.DecimalField(default=0, decimal_places=2, max_digits=10, blank=True, verbose_name='Τιμή Πώλησης')
 
     vector_column = SearchVectorField(null=True, blank=True)
+    counter = models.IntegerField(default=0)
 
     objects = models.Manager()
     my_query = ProductManager()
@@ -51,6 +53,7 @@ class Product(models.Model):
         if not self.product_url:
             self.product_url = self.company.detail.website
         self.final_price = self.price_discount if self.price_discount > 0 else self.price
+        self.counter = self.hits.count()
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -80,3 +83,36 @@ class Product(models.Model):
         qs = qs.filter(category__slug__in=category_name) if category_name else qs
         
         return qs
+
+
+class ProductHitCounter(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='hits')
+    session = models.CharField(max_length=220)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.product.save()
+
+    def __str__(self):
+        return self.product
+
+    @staticmethod
+    def update_hit(request, product):
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+        session = request.session.session_key
+        qs = Product.objects.filter(product=product, session=session)
+        if qs.exists():
+            last_obj = qs.last()
+            diff = datetime.datetime.today() - last_obj.timestamp.replace(tzinfo=None)
+            if diff.days > 1:
+                ProductHitCounter.objects.create(
+                    product=product,
+                    session=session
+                )
+        else:
+            ProductHitCounter.objects.create(
+                product=product,
+                session=session
+            )

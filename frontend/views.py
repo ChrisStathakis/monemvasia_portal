@@ -4,7 +4,7 @@ from django.core.cache import cache
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from companies.models import Company, CompanyService, City, BUSINESS_TYPE, CompanyInformation
+from companies.models import Company, CompanyService, City, CompanyHitCounter, ServiceHitCounter
 from catalogue.forms import ProductForm
 from jobPostings.models import JobPost
 
@@ -77,6 +77,7 @@ class CompanyDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
+        CompanyHitCounter.update_hit(self.request, self.object)
         context['profile'] = self.object.detail
         context['back_url'] = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         context['page_title'] = f'{self.object}'
@@ -181,8 +182,6 @@ class ContactView(CreateView):
         form.save()
 
         return super(ContactView, self).form_valid(form)
-
-
 
 def link_page_view(request, slug):
     company = get_object_or_404(Company, slug=slug)

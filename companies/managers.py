@@ -35,7 +35,6 @@ class CompanyManager(models.Manager):
         return qs
 
 
-
 class ServiceManager(models.Manager):
 
     def subscribed(self):
@@ -47,11 +46,9 @@ class ServiceManager(models.Manager):
     def is_primary(self):
         return self.active().filter(is_primary=True)
 
-
     def filter_data(self, request):
         q = request.GET.get('q', None)
         qs = self.active()
         if q:
             qs = qs.filter(title__icontains=q)
-
         return qs

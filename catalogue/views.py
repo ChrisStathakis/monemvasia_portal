@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
-from .models import Product, Company, Category
+from .models import Product, Category, ProductHitCounter
 from .forms import ProductForm
 
 
@@ -45,6 +45,7 @@ class ProductUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductUpdateView, self).get_context_data(**kwargs)
+        ProductHitCounter.update_hit(self.request, self.object)
         context['page_title'] = f'ΕΠΕΞΕΡΓΑΣΙΑ {self.object}'
         context['back_url'] = self.get_success_url()
         context['delete_url'] = self.object.get_delete_url()

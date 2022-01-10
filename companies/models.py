@@ -109,6 +109,7 @@ class Company(models.Model):
         orders = self.orders.aggregate(Sum('value'))['value__sum'] if self.orders.exists() else 0
         payments = self.payments.aggregate(Sum('value'))['value__sum'] if self.payments.exists() else 0
         self.value = orders - payments
+        self.counter = self.hits.count()
         super(Company, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -144,6 +145,39 @@ class Company(models.Model):
                            Q(city__title__icontains=q)
                            )
         return qs
+
+
+class CompanyHitCounter(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='hits')
+    session = models.CharField(max_length=220)
+
+    def save(self, *args, **kwargs):
+        super(CompanyHitCounter, self).save(*args, **kwargs)
+        self.company.save()
+
+    def __str__(self):
+        return self.company
+
+    @staticmethod
+    def update_hit(request, company):
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+        session = request.session.session_key
+        qs = CompanyHitCounter.objects.filter(company=company, session=session)
+        if qs.exists():
+            last_obj = qs.last()
+            diff = datetime.datetime.today() - last_obj.timestamp.replace(tzinfo=None)
+            if diff.days > 1:
+                CompanyHitCounter.objects.create(
+                    company=company,
+                    session=session
+                )
+        else:
+            CompanyHitCounter.objects.create(
+                company=company,
+                session=session
+            )
 
 
 class CompanyInformation(models.Model):
@@ -201,7 +235,7 @@ class CompanyService(models.Model):
     title = models.CharField(max_length=250, verbose_name='ΤΙΤΛΟΣ')
     text = HTMLField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name='ΤΙΜΗ')
-
+    counter = models.IntegerField(default=0)
     objects = models.Manager()
     my_query = ServiceManager()
 
@@ -211,6 +245,7 @@ class CompanyService(models.Model):
 
     def save(self, *args, **kwargs):
         self.subscribe = self.company.status
+        self.counter = self.hits.all()
         super(CompanyService, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -237,6 +272,38 @@ class CompanyService(models.Model):
         qs = qs.filter(title__icontains=q) if q else qs
         return qs
 
+
+class ServiceHitCounter(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    service = models.ForeignKey(CompanyService, on_delete=models.CASCADE, related_name='hits')
+    session = models.CharField(max_length=220)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.service.save()
+
+    def __str__(self):
+        return self.service
+
+    @staticmethod
+    def update_hit(request, service):
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+        session = request.session.session_key
+        qs = CompanyHitCounter.objects.filter(service=service, session=session)
+        if qs.exists():
+            last_obj = qs.last()
+            diff = datetime.datetime.today() - last_obj.timestamp.replace(tzinfo=None)
+            if diff.days > 1:
+                CompanyHitCounter.objects.create(
+                    service=service,
+                    session=session
+                )
+        else:
+            CompanyHitCounter.objects.create(
+                service=service,
+                session=session
+            )
 
 class CompanyPayment(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='payments', verbose_name='ΕΤΑΙΡΙΑ')
