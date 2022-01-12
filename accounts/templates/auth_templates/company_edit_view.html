@@ -24,6 +24,60 @@
 
     <div class="container-fluid">
         <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΣΥΝΟΛΙΚΑ CLICKS {{ company.counter }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ΥΠΗΡΕΣΙΕΣ</th>
+                                    <th>Clicks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in company.services.all %}
+                                    <tr>
+                                        <td>{{ product }}</td>
+                                        <td>{{ product.counter }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>CLICKS ΑΝΑ ΠΡΟΪΟΝ</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ΠΡΟΪΟΝ</th>
+                                    <th>Clicks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in company.my_products.all %}
+                                    <tr>
+                                        <td>{{ product }}</td>
+                                        <td>{{ product.counter }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-xl-6 xl-100">
                 <div class="card">
                     <div class="card-header">
@@ -46,7 +100,7 @@
                                     </tr>
                                     <tr>
                                         <td>ΚΑΤΗΓΟΡΙΑ</td>
-                                        <td>{{ company.instagramcategories_set.all }}</td>
+                                        <td>{% for cat in company.instagramcategories_set.all %} {{ cat }} {% endfor %}</td>
                                     </tr>
                                     <tr>
                                         <td>ΠΛΑΝΟ</td>

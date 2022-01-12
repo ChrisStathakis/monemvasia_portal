@@ -219,7 +219,7 @@ LARGE_PLAN = 100
 PRIMARY_COMPANY = 10
 
 
-SITE_EMAIL = 'lirageika@hotmail.gr'
+SITE_EMAIL = 'monemvasia.org@gmail.com'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 

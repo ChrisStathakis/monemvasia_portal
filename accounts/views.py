@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
+from django.db.models import Sum
 
 from .forms import UserCreationCustomForm, LoginForm, ProfileForm, InstagramLinkForm, InstagramCategoriesForm
+from companies.models import CompanyService
 from .models import Profile, User, InstagramCategories, InstagramLink, Company
 from companies.forms import FrontEndCompanyInformationForm, CompanyServiceForm, CompanyImageForm
 from catalogue.forms import ProductForm
@@ -40,18 +42,21 @@ def dashboard_view(request):
         return render(request, 'auth_templates/deny_access.html')
     form = ProfileForm(request.POST or None, instance=profile)
     companies = user.companies.all()
+    total_companies_views, total_product_views, total_service_views = 0, 0, 0
     total_sub, total_products = 0, 0
+    products = Product.objects.filter(company__in=companies)
+    services = CompanyService.objects.filter(company__in=companies)
+    if products:
+        total_product_views = products.aggregate(Sum('counter'))['counter__sum']
+    if services:
+        total_service_views = services.aggregate(Sum('counter'))['counter__sum']
     for com in companies:
+        total_companies_views += com.counter
         total_sub += com.sub_value()
         total_products += com.my_products.all().count()
     return render(request,
                   'auth_templates/dashboard.html',
-                  context={
-                      'user': user,
-                      'form': form,
-                      'total_sub': total_sub,
-                      'total_products': total_products
-                  }
+                  context=locals()
                   )
 
 
@@ -112,6 +117,7 @@ def update_profile_view(request):
 
 @login_required
 def company_info_view(request, slug):
+    print('hittd')
     instance = get_object_or_404(Company, slug=slug)
     info = instance.detail
     if instance.owner != request.user:
