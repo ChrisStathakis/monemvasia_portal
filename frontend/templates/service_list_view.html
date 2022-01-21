@@ -130,5 +130,26 @@
         </div>
     </section>
     <!-- section End -->
+    <div id="result_container"></div>
 
+{% endblock %}
+
+{% block extra_js %}
+
+    <script>
+        $('.success_btn').click(() =>{
+            event.preventDefault();
+            const myBtn = $(this);
+            const url = myBtn.get('data-href');
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                url: url,
+
+                success: function(data){
+                    $('#result_container').html(data.result)
+            }
+            })
+        })
+    </script>
 {% endblock %}

@@ -233,10 +233,11 @@ class CompanyService(models.Model):
     image = models.ImageField(upload_to='companies/service/images/', verbose_name='ΕΙΚΟΝΑ', null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='services')
     title = models.CharField(max_length=250, verbose_name='ΤΙΤΛΟΣ')
-    text = HTMLField(verbose_name='ΠΕΡΙΓΡΑΦΗ')
+    text = models.TextField(verbose_name='ΠΕΡΙΓΡΑΦΗ', blank=True)
     price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name='ΤΙΜΗ')
     counter = models.IntegerField(default=0)
     objects = models.Manager()
+    slug = models.SlugField(blank=True, allow_unicode=True)
     my_query = ServiceManager()
 
     class Meta:
@@ -245,8 +246,8 @@ class CompanyService(models.Model):
 
     def save(self, *args, **kwargs):
         self.subscribe = self.company.status
-        self.counter = self.hits.all()
-        super(CompanyService, self).save(*args, **kwargs)
+        self.counter = self.hits.all().count()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

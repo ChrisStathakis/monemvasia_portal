@@ -61,7 +61,7 @@ class CompanyCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(CompanyService)
 class CompanyServiceAdmin(admin.ModelAdmin):
-    list_display = ['title', 'company', 'counter', 'is_primary']
+    list_display = ['title', 'company', 'counter', 'is_primary',]
     list_filter = ['company', 'is_primary']
     search_fields = ['title', 'company']
 

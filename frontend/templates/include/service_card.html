@@ -1,12 +1,12 @@
 <div class="product-box">
     <div class="img-wrapper">
         <div class="front">
-            <a href="{{ service.get_absolute_url }}"><img
+            <a data-href="{% url 'ajax_service_modal' service.slug %}" class="service_btn"><img
                     src="{{ service.tag_image }}"
                     class="img-fluid blur-up lazyload bg-img" alt=""></a>
         </div>
         <div class="back">
-            <a href="{{ service.get_absolute_url }}"><img
+            <a data-href="{% url 'ajax_service_modal' service.slug %}" class="service_btn"><img
                     src="{{ service.tag_image }}"
                     class="img-fluid blur-up lazyload bg-img" alt=""></a>
         </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="product-detail">
         <div class="rating">{{ service.company }}</div>
-        <a href="{{ service.get_absolute_url }}">
+        <a data-href="{% url 'ajax_service_modal' service.slug %}" class="service_btn">
             <h6>{{ service }}</h6>
         </a>
     </div>

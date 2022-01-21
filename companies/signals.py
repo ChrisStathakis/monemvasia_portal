@@ -16,6 +16,15 @@ def create_slug_for_category(sender, instance, **kwargs):
         instance.save()
 
 
+@receiver(post_save, sender=CompanyService, dispatch_uid='create_slug_for_service')
+def create_slug_for_service(sender, instance, **kwargs):
+    if not instance.slug:
+        new_slug = slugify(instance.title, allow_unicode=True)
+        qs_exists = CompanyCategory.objects.filter(slug=new_slug).exists()
+        instance.slug = new_slug if not qs_exists else f'{new_slug}-{instance.id}'
+        instance.save()
+
+
 @receiver(post_save, sender=Company)
 def create_slug_for_company(sender, instance, **kwargs):
     if not instance.slug:

@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('secretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-REAL_DB = True
-PRODUCTION = True
+DEBUG = True
+REAL_DB = False
+PRODUCTION = False
 
 ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', '127.0.0.1'] if PRODUCTION else ['*', ]
 
