@@ -69,6 +69,7 @@ class CompanyServiceAdmin(admin.ModelAdmin):
 @admin.register(CompanyInformation)
 class CompanyInformation(admin.ModelAdmin):
     list_filter = ['company']
+    list_display = ['company', 'is_visible']
 
 
 @admin.register(Company)

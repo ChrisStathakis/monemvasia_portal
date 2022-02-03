@@ -130,25 +130,28 @@
         </div>
     </section>
     <!-- section End -->
-    <div id="result_container"></div>
+    <div id="modal_area"></div>
 
 {% endblock %}
 
 {% block extra_js %}
 
-    <script>
-        $('.success_btn').click(() =>{
-            event.preventDefault();
-            const myBtn = $(this);
-            const url = myBtn.get('data-href');
+     <script type="text/javascript">
+        $('.service_btn').on('click',function (evt) {
+            evt.preventDefault();
+            $('#modal_area').empty();
+            const my_btn = $(this);
+            const url = my_btn.attr('data-href');
+            console.log('click', url);
             $.ajax({
-                method: 'POST',
+                method: 'GET',
                 dataType: 'json',
                 url: url,
 
-                success: function(data){
-                    $('#result_container').html(data.result)
-            }
+                success: function (data) {
+                    $('#modal_area').html(data.result);
+                    $('#productModal').modal('show');
+                }
             })
         })
     </script>

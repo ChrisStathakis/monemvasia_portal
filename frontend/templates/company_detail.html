@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="brand-logo">
-                                <a href="{{ company.get_absolute_url }}"><img width="120" height="160" src="{{ profile.tag_image }}"
+                                <a href="{{ company.get_absolute_url }}"><img width="120" height="160" src="{{ profile.tag_logo }}"
                                         class="img-fluid blur-up lazyload" alt="">
                                 </a>
                             </div>
@@ -152,14 +152,14 @@
     </section>
     <!-- about section end -->
 
-
+    {% if profile.show_products %}
     <!-- product start -->
     <section class="section-b-space bg-light bag-product ratio_square">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="title3">
-                        <h4>Multikart</h4>
+                        <h4>Δείτε</h4>
                         <h2 class="title-inner3">ΤΑ ΠΡΟΪΟΝΤΑ ΜΑΣ</h2>
                         <div class="line"></div>
                     </div>
@@ -175,15 +175,17 @@
         </div>
     </section>
     <!-- product end -->
+    {% endif %}
 
+    {% if profile.show_services %}
     <!-- product section start -->
     <section class="bag-product ratio_square section-b-space">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="title3">
-                        <h4>exclusive products</h4>
-                        <h2 class="title-inner3">ΥΠΗΡΕΣΙΕΣ {{ services.count }}</h2>
+                        <h4>ΔΕΙΤΕ ΤΙΣ</h4>
+                        <h2 class="title-inner3">ΥΠΗΡΕΣΙΕΣ</h2>
                         <div class="line"></div>
                     </div>
                 </div>
@@ -199,7 +201,7 @@
         </div>
     </section>
     <!-- product section end -->
-
+    {% endif %}
 
     <!-- lookbook section -->
     <section class="lookbook ratio_square lookbook-layout bg-light section-b-space">
@@ -291,6 +293,8 @@
         </div>
     </section>
     <!-- instagram section end -->
+
+    <div id="modal_area"></div>
 
 
     <!-- footer section start -->
@@ -419,105 +423,6 @@
 
 
 
-    <!-- Quick-view modal popup start-->
-    <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content quick-view-modal">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <div class="quick-view-img"><img src="../assets/images/pro3/1.jpg" alt=""
-                                    class="img-fluid blur-up lazyload"></div>
-                        </div>
-                        <div class="col-lg-6 rtl-text">
-                            <div class="product-right">
-                                <h2>Women Pink Shirt</h2>
-                                <h3>$32.96</h3>
-                                <ul class="color-variant">
-                                    <li class="bg-light0"></li>
-                                    <li class="bg-light1"></li>
-                                    <li class="bg-light2"></li>
-                                </ul>
-                                <div class="border-product">
-                                    <h6 class="product-title">product details</h6>
-                                    <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium</p>
-                                </div>
-                                <div class="product-description border-product">
-                                    <div class="size-box">
-                                        <ul>
-                                            <li class="active"><a href="javascript:void(0)">s</a></li>
-                                            <li><a href="javascript:void(0)">m</a></li>
-                                            <li><a href="javascript:void(0)">l</a></li>
-                                            <li><a href="javascript:void(0)">xl</a></li>
-                                        </ul>
-                                    </div>
-                                    <h6 class="product-title">quantity</h6>
-                                    <div class="qty-box">
-                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                        class="ti-angle-left"></i></button> </span>
-                                            <input type="text" name="quantity" class="form-control input-number"
-                                                value="1"> <span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                        class="ti-angle-right"></i></button></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-buttons"><a href="#" class="btn btn-solid">add to cart</a> <a
-                                        href="#" class="btn btn-solid">view detail</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick-view modal popup end-->
-
-
-
-
-
-    <!-- exit modal popup start-->
-    <div class="modal fade bd-example-modal-lg theme-modal exit-modal" id="exit_popup" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body modal1">
-                    <div class="container-fluid p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="modal-bg">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <div class="media">
-                                        <img src="../assets/images/stop.png"
-                                            class="stop img-fluid blur-up lazyload me-3" alt="">
-                                        <div class="media-body text-start align-self-center">
-                                            <div>
-                                                <h2>wait!</h2>
-                                                <h4>We want to give you
-                                                    <b>10% discount</b>
-                                                    <span>for your first order</span>
-                                                </h4>
-                                                <h5>Use discount code at checkout</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add to cart modal popup end-->
 
 
     <!-- tap to top -->
@@ -529,6 +434,47 @@
     <!-- tap to top end -->
 
 {% include 'include/js.html' %}
+
+<script type="text/javascript">
+    $('.service_btn').on('click',function (evt) {
+        evt.preventDefault();
+        $('#modal_area').empty();
+        const my_btn = $(this);
+        const url = my_btn.attr('data-href');
+        console.log('click', url);
+        $.ajax({
+            method: 'GET',
+            dataType: 'json',
+            url: url,
+
+            success: function (data) {
+                $('#modal_area').html(data.result);
+                $('#productModal').modal('show');
+            }
+        })
+    })
+</script>
+
+
+ <script type="text/javascript">
+     $('.btnModal').on('click',function (evt) {
+         evt.preventDefault();
+         $('#modal_area').empty();
+         const my_btn = $(this);
+         const url = my_btn.attr('data-href');
+
+         $.ajax({
+             method: 'GET',
+             dataType: 'json',
+             url: url,
+
+             success: function (data) {
+                 $('#modal_area').html(data.result);
+                 $('#productModal').modal('show');
+             }
+         })
+     })
+ </script>
 
 </body>
 

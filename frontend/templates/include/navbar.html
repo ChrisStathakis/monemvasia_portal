@@ -20,7 +20,7 @@
                             <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i>
                                 ΠΕΡΙΟΧΗ ΠΕΛΑΤΩΝ
                                 <ul class="onhover-show-div">
-                                   {% if request.user %}
+                                   {% if request.user.is_authenticated %}
                                         <li><a href="{% url 'accounts:homepage_view' %}">ΔΙΑΧΕΙΡΙΣΗ</a></li> 
                                     {% else %}
                                         <li><a href="{% url 'accounts:homepage_view' %}">ΣΥΝΔΕΣΗ</a></li>

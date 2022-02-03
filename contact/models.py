@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+from companies.models import PRIORITY_OPTIONS
 
 class Contact(models.Model):
     CHOICES = (
@@ -20,11 +21,7 @@ class Contact(models.Model):
 
 class BusinessContact(models.Model):
 
-    PRIORITY_OPTIONS = (
-        ('1', 'ΠΡΟΧΩΡΗΜΕΝΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 100/ΜΗΝΑ'),
-        ('2', 'ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 40/ΜΗΝΑ'),
-        ('3', 'ΒΑΣΙΚΟ ΠΛΑΝΟ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 20/ΜΗΝΑ')
-    )
+
     is_readed = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=200, verbose_name='ΟΝΟΜΑΤΕΠΩΝΥΜΟ')

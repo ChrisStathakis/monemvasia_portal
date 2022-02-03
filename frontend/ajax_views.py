@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from catalogue.models import Product
 from companies.models import CompanyService, ServiceHitCounter
 
+
 def ajax_product_modal_view(request, slug):
     obj = get_object_or_404(Product, slug=slug)
     data = dict()
@@ -19,6 +20,7 @@ def ajax_product_modal_view(request, slug):
 
 
 def ajax_service_modal_view(request, slug):
+    print('i am here!')
     obj = get_object_or_404(CompanyService, slug=slug)
     data = dict()
     ServiceHitCounter.update_hit(request, obj)
@@ -30,3 +32,4 @@ def ajax_service_modal_view(request, slug):
         }
 
     )
+    return JsonResponse(data)

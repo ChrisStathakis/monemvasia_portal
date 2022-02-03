@@ -26,8 +26,8 @@ SECRET_KEY = config('secretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-REAL_DB = False
-PRODUCTION = False
+REAL_DB = True
+PRODUCTION = True
 
 ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', '127.0.0.1'] if PRODUCTION else ['*', ]
 

@@ -42,6 +42,11 @@ PAYMENT_METHODS = [
     ('c', 'ΜΕΤΡΗΤΑ'),
 ]
 
+PRIORITY_OPTIONS = (
+        ('1', 'ΠΛΑΝΟ ΓΙΑ ΕΠΙΧΕΙΡΗΣΕΙΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 50/ΜΗΝΑ'),
+        ('2', 'ΠΛΑΝΟ ΓΙΑ ΥΠΗΡΕΣΙΕΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 35/ΜΗΝΑ'),
+    )
+
 
 class CompanyCategory(models.Model):
     title = models.CharField(max_length=220)
@@ -67,10 +72,7 @@ class CompanyCategory(models.Model):
 
 
 class Company(models.Model):
-    PRIORITY_OPTIONS = (
-        ('1', 'ΠΛΑΝΟ ΓΙΑ ΕΠΙΧΕΙΡΗΣΕΙΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 40/ΜΗΝΑ'),
-        ('2', 'ΠΛΑΝΟ ΓΙΑ ΥΠΗΡΕΣΙΕΣ: ΚΟΣΤΟΣ ΣΥΝΔΡΟΜΗΣ 30/ΜΗΝΑ'),
-    )
+
     admin_active = models.BooleanField(default=False, verbose_name='ΓΕΝΙΚΟΣ ΔΙΑΚΟΠΤΗΣ')
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
     featured = models.BooleanField(default=False)
@@ -183,7 +185,8 @@ class CompanyHitCounter(models.Model):
 class CompanyInformation(models.Model):
     is_visible = models.BooleanField(default=True)
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='detail')
-    logo_image = models.ImageField(blank=True, upload_to='companies/logos/')
+    logo_image = models.ImageField(blank=True, upload_to='companies/logos/', help_text='lOGO ΣΤΗΝ ΣΕΛΙΔΑ ΤΟΥ ΠΕΛΑΤΗ 120*40')
+    logo_site = models.ImageField(blank=True, null=True, upload_to='companies/logo_site/', help_text='LOGO ΣΤΗΝ ΔΙΚΗ ΜΑΣ ΣΕΛΙΔΑ 400*600')
     address = models.CharField(blank=True, verbose_name='ΔΙΕΥΘΥΝΣΗ', max_length=220)
     phone = models.CharField(max_length=20, blank=True, verbose_name='ΤΗΛΕΦΩΝΟ')
     cellphone = models.CharField(max_length=20, blank=True, verbose_name='ΚΙΝΗΤΟ')
@@ -208,7 +211,16 @@ class CompanyInformation(models.Model):
         return f'{self.address} | {self.company.city}'
 
     def tag_image(self):
-        return self.logo_image.url if self.logo_image else ''
+        return self.logo_site.url if self.logo_site else ' '
+
+    def tag_logo(self):
+        return self.logo_image.url if self.logo_image else ' '
+
+    def show_products(self):
+        return True if self.company.business_type in ['1', '4'] else False
+
+    def show_services(self):
+        return True if self.company.business_type in ['2', '3'] else False
 
 
 class CompanyImage(models.Model):
@@ -291,20 +303,21 @@ class ServiceHitCounter(models.Model):
         if not request.session.exists(request.session.session_key):
             request.session.create()
         session = request.session.session_key
-        qs = CompanyHitCounter.objects.filter(service=service, session=session)
+        qs = ServiceHitCounter.objects.filter(service=service, session=session)
         if qs.exists():
             last_obj = qs.last()
             diff = datetime.datetime.today() - last_obj.timestamp.replace(tzinfo=None)
             if diff.days > 1:
-                CompanyHitCounter.objects.create(
+                ServiceHitCounter.objects.create(
                     service=service,
                     session=session
                 )
         else:
-            CompanyHitCounter.objects.create(
+            ServiceHitCounter.objects.create(
                 service=service,
                 session=session
             )
+
 
 class CompanyPayment(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='payments', verbose_name='ΕΤΑΙΡΙΑ')
