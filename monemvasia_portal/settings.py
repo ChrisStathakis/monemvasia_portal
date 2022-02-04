@@ -237,7 +237,7 @@ if PRODUCTION:
                 'CLIENT_CLASS': 'django_redis.client.DefaultClient',
                 "PASSWORD": config("redis_password"),
                 'CONNECTION_POOL_KWARGS': {
-                    'ssl_cert_reqs': None
+                    # 'ssl_cert_reqs': None
                 },
             },
         }
