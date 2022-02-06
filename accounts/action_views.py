@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 from .forms import InstagramCategoriesForm, InstagramLinkForm, LoginForm
 from .models import InstagramCategories, InstagramLink
@@ -41,11 +42,12 @@ def validate_login_form_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            redirect('accounts:dashboard_view')
         else:
-            print('user fails')
+            messages.warning(request, 'Wrong credentials')
     else:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return redirect('accounts:dashboard_view')
+        messages.warning(request, 'We encoutered a problem. Please try again. ')
+    return redirect('accounts:register')
 
 
 @login_required

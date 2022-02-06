@@ -2,22 +2,25 @@
 
 {% block content %}
  <div role="main" class="main">
-     <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md">
-         <div class="container">
-             <div class="row">
-                 <div class="col-md-12 align-self-center p-static order-2 text-center">
-                     <h1 class="text-dark font-weight-bold text-8">{{ category }}</h1>
-                     <br />
-                 </div>
-                 <div class="col-md-12 align-self-center order-1">
-                     <ul class="breadcrumb d-block text-center">
-                         <li><a href="{% url 'homepage' %}">Αρχικη Σελιδα</a></li>
-                         <li class="active">{{ category }}</li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-     </section>
+     <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>{{ page_title }}</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'homepage' %}">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
      <div class="row" style="margin: 2%">
         <div class="col-6">
             <div class="card">
