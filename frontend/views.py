@@ -83,6 +83,7 @@ class CompanyDetailView(DetailView):
         context['page_title'] = f'{self.object}'
         context['products'] = Product.my_query.active().filter(company=self.object)
         context['services'] = CompanyService.my_query.active().filter(company=self.object)
+        context['photos'] = self.object.images.filter(background_img=False)
         return context
 
 
@@ -182,6 +183,7 @@ class ContactView(CreateView):
         form.save()
 
         return super(ContactView, self).form_valid(form)
+
 
 def link_page_view(request, slug):
     company = get_object_or_404(Company, slug=slug)
