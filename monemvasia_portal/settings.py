@@ -25,20 +25,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('secretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 REAL_DB = True
 PRODUCTION = True
 
 ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', '127.0.0.1'] if PRODUCTION else ['*', ]
 
-'''
+
 if PRODUCTION:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     ALLOWED_HOSTS = ['monemvasia.org', 'monemvasia-portal.herokuapp.com']
-'''
+
 
 
 
@@ -254,3 +254,20 @@ else:
             },
         }
     }
+
+
+# email configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'magkaschris15@gmail.com'
+EMAIL_HOST_PASSWORD = 'Adminadm1993_'
+
+
+if PRODUCTION:
+    EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+    SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+    SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+    SENDGRID_ECHO_TO_STDOUT = True
+    SITE_EMAIL = 'monemvasia.org@gmail.com'

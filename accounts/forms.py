@@ -43,7 +43,7 @@ class ProfileForm(BaseForm, forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude = ['permission_grand', ]
+        fields = ['name', 'phone', 'user']
 
 
 class InstagramCategoriesForm(BaseForm, forms.ModelForm):

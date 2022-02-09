@@ -3,6 +3,9 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login
 from django.db.models import Sum
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .forms import UserCreationCustomForm, LoginForm, ProfileForm, InstagramLinkForm, InstagramCategoriesForm
 from companies.models import CompanyService
@@ -15,7 +18,6 @@ from contact.forms import BusinessContactForm
 
 def homepage_view(request):
     user = request.user
-    print('here moth!', user, user.is_authenticated)
     if user.is_authenticated:
         return redirect('accounts:dashboard_view')
     return redirect('accounts:register')
@@ -180,3 +182,12 @@ def manage_instagram_links_view(request, slug):
     return render(request, 'auth_templates/instagram_manager.html', context=locals())
 
 
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'auth_templates/reset/forgot_password.html'
+    email_template_name = 'auth_templates/reset/password_reset_form.html'
+    subject_template_name = 'users/password_reset_subject'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('homepage')

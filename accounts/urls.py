@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, re_path
+from django.contrib.auth import views as auth_views
 
 
 from .views import (homepage_view, dashboard_view, logout_request, update_profile_view,
-                    manage_instagram_links_view, update_company_info_view, company_info_view, login_or_register_view
+                    manage_instagram_links_view, update_company_info_view, company_info_view, login_or_register_view,
+                    ResetPasswordView
+
                     )
 
 from .action_views import (validate_category_creation_view, validate_link_creation_view, edit_category_view,
@@ -43,7 +46,17 @@ urlpatterns = [
 
     path('action/validate-company-create-image/<str:slug>/', validate_company_create_image_view, name='create_company_image'),
     path('action/update-company-image/<int:pk>/', update_company_image_view, name='update_company_image'),
-    path('action/delete-company-image/<int:pk>/', delete_company_image_view, name='delete_company_image')
+    path('action/delete-company-image/<int:pk>/', delete_company_image_view, name='delete_company_image'),
+
+
+    # passwords resets etc
+    path('reset-password', ResetPasswordView.as_view(), name='reset_password'),
+    path('change-password/', auth_views.PasswordChangeView.as_view(template_name='auth_templates/change_password.html'),
+         name='change_password'),
+
+
+
+
 
 
 ]

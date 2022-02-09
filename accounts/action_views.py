@@ -22,7 +22,7 @@ def validate_register_form_view(request):
         new_user = register_form.save()
         send_mail(
             'ΑΙΤΗΣΗ ΕΓΓΡΑΦΗΣ monemvasia.org',
-            'ΣΑΣ ΕΥΧΑΡΙΣΤΟΥΜΕ ΓΙΑ ΤΗΝ ΠΡΟΤΙΜΗΣΗ. ΘΑ ΕΠΙΚΟΙΝΩΝΗΣΟΥΜΕ ΣΥΝΤΟΜΑ ΜΑΖΙ ΣΑΣ',
+            'Σας ευχαριστούμε για την εγγραφή σας, θα ελέγξουμε τα στοιχεία σας και θα επικοινωνήσουμε σύντομα μαζί σας',
             SITE_EMAIL,
             [new_user.email, SITE_EMAIL],
             fail_silently=True
@@ -42,7 +42,7 @@ def validate_login_form_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            redirect('accounts:dashboard_view')
+            return redirect('accounts:dashboard_view')
         else:
             messages.warning(request, 'Wrong credentials')
     else:
