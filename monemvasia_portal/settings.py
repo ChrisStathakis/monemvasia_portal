@@ -29,7 +29,7 @@ DEBUG = True
 REAL_DB = True
 PRODUCTION = True
 
-ALLOWED_HOSTS = ['www.monemvasia.org', 'monemvasia-portal.herokuapp.com', ] if PRODUCTION else ['*', ]
+ALLOWED_HOSTS = ['monemvasia-portal.herokuapp.com', 'monemvasia.org', 'www.monemvasia.org'] if PRODUCTION else ['*', ]
 
 
 if PRODUCTION:
