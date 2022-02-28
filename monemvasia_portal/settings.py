@@ -40,10 +40,6 @@ if PRODUCTION:
 
 
 
-
-
-
-
 # Application definition
 
 INSTALLED_APPS = [

@@ -219,25 +219,30 @@
                     <!--Google Maps-->
                 </div>
                 <div class="col-md-6">
-                    <div class="contact-right">
+                    <div class="">
                         <ul>
                             <li>
-                                <div class="contact-icon"><img src="{% static 'assets/images/icon/phone.png' %}"
-                                        alt="Generic placeholder image">
+                                <div class="contact-icon">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
                                     <h6>ΤΗΛΕΦΩΝΑ </h6>
                                 </div>
                                 <div class="media-body">
-                                    <p>{{ profile.cellphone }}</p>
-                                    <p>{{ profile.phone }}</p>
+                                    <p>{{ profile.cellphone|default_if_none:'-' }}</p>
+                                    <p>{{ profile.phone|default_if_none:'-' }}</p>
                                 </div>
                             </li>
+
+
+                        </ul>
+                        <ul>
                             <li>
-                                <div class="contact-icon"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <h6>ΔΙΕΥΘΥΝΣΗ</h6>
+                                <div class="contact-icon">
+                                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                                    <h6>ΔΙΕΥΘΥΝΣΗ </h6>
                                 </div>
                                 <div class="media-body">
-                                    <p>{{ profile.address }}</p>
-                                    <p>{{ company.city }}</p>
+                                    <p>{{ profile.address|default_if_none:'-' }} | {{ company.city|default_if_none:'-' }}</p>
+                                    <p>{{ company.city|default_if_none:'-' }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -249,9 +254,10 @@
                                 </div>
                                 <div class="media-body">
                                     <p>{{ profile.email }}</p>
-                                    <p><a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a> </p>
-                                    {% if profile.facebook_url %} <p><a href="{{ profile.facebook_url }}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> </p> {% endif %}
-                                    {% if profile.instagram_url %} <p><a href="{{ profile.instagram_url }}" target="_blank"><i class="fa fa-instagram"></i> </a> </p> {% endif %}
+                                    <hr>
+                                    <p><a style="text-decoration: none;color: #0a0a0a" href="{{ profile.website }}" target="_blank">{{ profile.website }}</a> </p>
+                                    {% if profile.facebook_url %} <a style="text-decoration: none;color: #0a0a0a" href="{{ profile.facebook_url }}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> {% endif %}
+                                    {% if profile.instagram_url %} <br><a style="text-decoration: none;color: #0a0a0a" href="{{ profile.instagram_url }}" target="_blank"><i class="fa fa-instagram"></i> Instagram </a>{% endif %}
                                 </div>
                             </li>
 

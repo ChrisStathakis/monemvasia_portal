@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c399419-d09a-4363-b0a6-a560521ec4d1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/companies/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/companies/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/templates/company_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/company_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monemvasia_portal/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/monemvasia_portal/settings.py" afterDir="false" />
     </list>
@@ -19,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
+            <state relative-caret-position="238">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding>
                 <element signature="e#318#342#0" expanded="true" />
               </folding>
@@ -60,11 +58,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="company_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="217" column="54" selection-start-line="217" selection-start-column="54" selection-end-line="217" selection-end-column="54" />
+            <state relative-caret-position="323">
+              <caret line="259" column="71" selection-start-line="259" selection-start-column="71" selection-end-line="259" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#p#1;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,8 +181,8 @@
         <option value="$PROJECT_DIR$/frontend/views.py" />
         <option value="$PROJECT_DIR$/frontend/templates/include/head.html" />
         <option value="$PROJECT_DIR$/companies/models.py" />
-        <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
         <option value="$PROJECT_DIR$/frontend/templates/company_detail.html" />
+        <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
       </list>
     </option>
   </component>
@@ -192,7 +195,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="976" />
@@ -306,7 +309,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -754,20 +757,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
+    <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
+        <state relative-caret-position="323">
+          <caret line="259" column="71" selection-start-line="259" selection-start-column="71" selection-end-line="259" selection-end-column="71" />
           <folding>
-            <element signature="e#318#342#0" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#p#1;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#1;n#li#0;n#ul#2;n#div#0;n#div#2;n#div#0;n#div#0;n#section#4;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/templates/company_detail.html">
+    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="217" column="54" selection-start-line="217" selection-start-column="54" selection-end-line="217" selection-end-column="54" />
+        <state relative-caret-position="238">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="e#318#342#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
