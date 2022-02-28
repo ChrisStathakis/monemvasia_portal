@@ -215,9 +215,7 @@
                 </div>
                 <div class="col-md-6">
                    <!--Google map-->
-                    <iframe src="{{ object.google_map_location }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
-
-                    </iframe>
+                    {{ object.google_map_location|safe }}
                     <!--Google Maps-->
                 </div>
                 <div class="col-md-6">
