@@ -99,6 +99,7 @@ class CompanyAdmin(admin.ModelAdmin):
         ('Page Detail', {
             'fields': (
                 ('service_title', 'google_map_location'),
+                'extra_css'
             )
         }),
         ('rest', {

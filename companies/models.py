@@ -88,6 +88,7 @@ class Company(models.Model):
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='companies')
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
     google_map_location = models.TextField()
+    extra_css = models.TextField(null=True, blank=True)
 
     # page_relates_fields
     service_title = models.CharField(max_length=220, default='ΥΠΗΡΕΣΙΕΣ')

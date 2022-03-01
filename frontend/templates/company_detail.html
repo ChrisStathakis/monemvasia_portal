@@ -14,6 +14,11 @@
 
     {% include 'include/css.html' %}
 
+    <style>
+        
+        {{ object.extra_css }}
+    </style>
+
 
 </head>
 
@@ -114,8 +119,8 @@
                             <div class="col">
                                 <div class="slider-contain px-padding">
                                     <div>
-                                        <h4 class="animated" data-animation-in="fadeInUp">{{ company.get_business_type_display }}</h4>
-                                        <h1 class="animated" data-animation-in="fadeInUp" data-delay-in="0.3">
+                                        <h4 class="animated headerr" data-animation-in="fadeInUp">{{ company.get_business_type_display }}</h4>
+                                        <h1 class="animated headerr" data-animation-in="fadeInUp" data-delay-in="0.3">
                                             {{ company }}</h1>
                                         {% if profile.website %}
                                             <a target="_blank" href="{{ profile.website }}" class="btn btn-solid animated"

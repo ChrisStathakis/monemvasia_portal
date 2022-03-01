@@ -219,7 +219,7 @@ SITE_EMAIL = 'monemvasia.org@gmail.com'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
-REDIS_URL = config('REDIS_URL') if REAL_DB else 'redis://127.0.0.1:6379/1'
+REDIS_URL = config('REDIS_URL') if PRODUCTION else 'redis://127.0.0.1:6379/1'
 
 
 if PRODUCTION:
