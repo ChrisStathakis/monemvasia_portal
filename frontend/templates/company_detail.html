@@ -453,25 +453,26 @@
 </script>
 
 
- <script type="text/javascript">
-     $('.btnModal').on('click',function (evt) {
-         evt.preventDefault();
-         $('#modal_area').empty();
-         const my_btn = $(this);
-         const url = my_btn.attr('data-href');
+<script>
+        $('.productBtn').click(function (evt) {
+            evt.preventDefault();
+            const btn = $(this);
+            const url = btn.attr('href');
+            $('#modal_area').empty();
 
-         $.ajax({
-             method: 'GET',
-             dataType: 'json',
-             url: url,
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                url: url,
 
-             success: function (data) {
-                 $('#modal_area').html(data.result);
-                 $('#productModal').modal('show');
-             }
-         })
-     })
- </script>
+                success: function (data) {
+                    $('#modal_area').html(data.result);
+                    $('#productModal').modal('show');
+
+                }
+            })
+        })
+    </script>
 
 </body>
 
