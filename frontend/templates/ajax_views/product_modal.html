@@ -14,25 +14,16 @@
                         <div class="col-lg-6 rtl-text">
                             <div class="product-right">
                                 <h2>{{ obj }}</h2>
-                                <h3>{{ obj.final_price }}</h3>
+                                <h3>{% if obj.price_discount %} <span style="color:red;text-decoration: line-through">{{ obj.price }}</span>  {% endif %}{{ obj.final_price }}</h3>
                                 <p>{{ obj.company }}</p>
                                 <div class="border-product">
-                                    <h6 class="product-title">ΠΕΡΟΓΡΑΦΗ</h6>
+                                    <h6 class="product-title">ΠΕΡΙΓΡΑΦΗ</h6>
                                     {{ obj.text|safe }}
                                 </div>
-                                <div class="product-description border-product">
-                                    <div class="size-box">
-                                        <ul>
-                                            {% for category in obj.category.all %}
-                                                <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
 
-                                    <br />
-                                </div>
                                 <div class="product-buttons">
-                                    <a href="{{ obj.company.get_absolute_url }}" class="btn btn-solid">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+                                    <a href="{{ obj.company.get_absolute_url }}" class="btn btn-solid">ΔΕΙΤΕ ΠΕΡΙΣΣΟΤΕΡΑ</a>
+                                    {% if obj.product_url %} <a target="_blank" href="{{ obj.product_url }}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> ΑΓΟΡΑ ΤΩΡΑ</a> {% endif %}
                             </div>
                         </div>
                     </div>

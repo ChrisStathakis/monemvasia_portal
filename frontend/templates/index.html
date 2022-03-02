@@ -184,7 +184,7 @@
     <!-- Tab product end -->
 
     {% endblock %}
-
+    <div id="modal_area"></div>
 
     {% comment %}
     <!-- instagram section -->
@@ -288,6 +288,27 @@
 
     {% include 'include/js.html' %}
     {% block extra_js %} {% endblock %}
+
+    <script>
+        $('.productBtn').click(function (evt) {
+            evt.preventDefault();
+            const btn = $(this);
+            const url = btn.attr('href');
+            $('#modal_area').empty();
+
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                url: url,
+
+                success: function (data) {
+                    $('#modal_area').html(data.result);
+                    $('#productModal').modal('show');
+
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

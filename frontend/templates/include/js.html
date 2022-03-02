@@ -44,3 +44,25 @@
         $('#messageModal').modal('show');
     });
 </script>
+
+
+<script src="{% static 'my_assets/cookie.js' %}" data-cfasync="false"></script>
+
+<script src="{% static 'my_assets/cookie.js' %}" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "content": {
+      "message": "Το www.monemvasia.org χρησιμοποιεί cookies. Εάν συνεχίσετε στο site μας, αποδέχεστε τα cookies που χρησιμοποιουμε",
+      "link": "Μαθετε Περισσότερα",
+      "href": "{% url 'privacy' %}"
+  }
+});
+</script>

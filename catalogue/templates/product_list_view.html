@@ -100,28 +100,10 @@
         </div>
     </section>
     <!-- section End -->
-    <div id="modal_area"></div>
+
 
 {% endblock %}
 
 {% block extra_js %}
-    <script type="text/javascript">
-        $('.btnModal').on('click',function (evt) {
-            evt.preventDefault();
-            $('#modal_area').empty();
-            const my_btn = $(this);
-            const url = my_btn.attr('data-href');
-            console.log('click', url);
-            $.ajax({
-                method: 'GET',
-                dataType: 'json',
-                url: url,
 
-                success: function (data) {
-                    $('#modal_area').html(data.result);
-                    $('#productModal').modal('show');
-                }
-            })
-        })
-    </script>
 {% endblock %}

@@ -20,7 +20,7 @@ class CategoryDetailView(ListView):
 
     def get_queryset(self):
         childrens = self.category.children.all()
-        return Product.objects.filter(active=True, category__in=childrens)
+        return Product.objects.filter(active=True, category__in=childrens).distinct()
 
     def get_context_data(self,  **kwargs):
         context = super(CategoryDetailView, self).get_context_data(**kwargs)

@@ -10,6 +10,7 @@ from .action_views import (create_new_item_view, create_new_service_view, valida
                            )
 
 from .ajax_views import ajax_product_modal_view, ajax_service_modal_view
+from .footer_views import cookies_policy_view
 
 from catalogue.views import CategoryDetailView
 
@@ -45,6 +46,9 @@ urlpatterns = [
 
     # ajax
     path('ajax/product-modal/<str:slug>/', ajax_product_modal_view, name='ajax_product_modal'),
-    path('ajax/service-modal/<str:slug>/', ajax_service_modal_view, name='ajax_service_modal')
+    path('ajax/service-modal/<str:slug>/', ajax_service_modal_view, name='ajax_service_modal'),
+
+
+    path('privacy', cookies_policy_view, name='privacy'),
 
 ]

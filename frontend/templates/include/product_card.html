@@ -9,14 +9,14 @@
         </div>
         {% endcomment %}
         <div class="front">
-            <a href="{{ product.get_absolute_url }}">
+            <a class="productBtn" href="{% url 'ajax_product_modal' product.slug %}">
                 <img
                     src="{{ product.tag_image }}"
-                    class="img-fluid blur-up lazyload bg-img" alt="">
+                    class="img-fluid blur-up lazyload bg-img " alt="">
             </a>
         </div>
         <div class="back">
-            <a href="{{ product.get_absolute_url }}"><img
+            <a class="productBtn" href="{% url 'ajax_product_modal' product.slug %}"><img
                     src="{{ product.tag_image }}"
                     class="img-fluid blur-up lazyload bg-img" alt="">
             </a>
@@ -29,7 +29,7 @@
         <div class="rating">
             {{ product.company }}
         </div>
-        <a class="btnModal" data-href="{{ product.get_modal_url }}">
+        <a class="productBtn" href="{% url 'ajax_product_modal' product.slug %}">
             <h6>{{ product }}</h6>
         </a>
         <h4>{{ product.tag_final_value }}</h4>
