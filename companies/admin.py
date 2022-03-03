@@ -55,7 +55,7 @@ class CompanyPaymentAdmin(admin.ModelAdmin):
 
 @admin.register(CompanyCategory)
 class CompanyCategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ['name', 'parent']
+    list_display = ['title', 'parent']
     list_filter = ['parent', ]
     list_select_related = ['parent', ]
 

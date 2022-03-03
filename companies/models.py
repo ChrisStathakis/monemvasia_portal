@@ -241,7 +241,7 @@ class CompanyImage(models.Model):
         return reverse('accounts:delete_company_image', kwargs={'pk': self.pk})
 
 
-class CompanyCategory(MPTTModel):
+class ServiceCategory(MPTTModel):
     is_featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=120, verbose_name='Τίτλος')
@@ -258,11 +258,11 @@ class CompanyCategory(MPTTModel):
 
     class Meta:
         app_label = 'catalogue'
-        verbose_name_plural = '3. Κατηγορίες Site'
+        verbose_name_plural = '1. Κατηγορίες Service'
 
     def save(self, *args, **kwargs):
         new_slug = slugify(self.name, allow_unicode=True)
-        qs_exists = CompanyCategory.objects.filter(slug=new_slug)
+        qs_exists = ServiceCategory.objects.filter(slug=new_slug)
         self.slug = f'{new_slug}-{self.id}' if qs_exists.exists() else new_slug
         super().save()
 
@@ -310,7 +310,7 @@ class CompanyService(models.Model):
     counter = models.IntegerField(default=0)
     objects = models.Manager()
     slug = models.SlugField(blank=True, allow_unicode=True)
-    category = models.ManyToManyField(CompanyCategory, blank=True, null=True, related_name='category_services')
+    category = models.ManyToManyField(ServiceCategory, blank=True, null=True, related_name='category_services')
     my_query = ServiceManager()
 
     class Meta:
