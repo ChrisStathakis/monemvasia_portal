@@ -53,6 +53,9 @@ class Category(MPTTModel):
     def tag_active(self):
         return 'Is Active' if self.active else 'No active'
 
+    def is_parent(self):
+        return False if self.product_set.exists() else True
+
     def get_absolute_url(self):
         return reverse('product_category', kwargs={'slug': self.slug})
 

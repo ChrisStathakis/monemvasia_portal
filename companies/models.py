@@ -2,13 +2,15 @@ from django.db import models
 from django.db.models import Q, Sum
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
-from frontend.models import City
-
-
-from tinymce.models import HTMLField
-from .managers import CompanyManager, ServiceManager
 
 import datetime
+from tinymce.models import HTMLField
+from django.utils.text import slugify
+from mptt.models import MPTTModel, TreeForeignKey
+
+from .managers import CompanyManager, ServiceManager
+from frontend.models import City
+
 
 User = get_user_model()
 
@@ -239,6 +241,63 @@ class CompanyImage(models.Model):
         return reverse('accounts:delete_company_image', kwargs={'pk': self.pk})
 
 
+class CompanyCategory(MPTTModel):
+    is_featured = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
+    name = models.CharField(max_length=120, verbose_name='Τίτλος')
+
+    content = models.TextField(blank=True, null=True, verbose_name='Σχόλια')
+    timestamp = models.DateField(auto_now=True)
+    meta_description = models.CharField(max_length=300, blank=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='children', verbose_name='Κατηγορία')
+
+    slug = models.SlugField(blank=True, null=True, allow_unicode=True)
+
+    objects = models.Manager()
+
+    class Meta:
+        app_label = 'catalogue'
+        verbose_name_plural = '3. Κατηγορίες Site'
+
+    def save(self, *args, **kwargs):
+        new_slug = slugify(self.name, allow_unicode=True)
+        qs_exists = CompanyCategory.objects.filter(slug=new_slug)
+        self.slug = f'{new_slug}-{self.id}' if qs_exists.exists() else new_slug
+        super().save()
+
+    def __str__(self):
+        full_path = [self.name]
+        k = self.parent
+        while k is not None:
+            full_path.append(k.name)
+            k = k.parent
+        return ' -> '.join(full_path[::-1])
+
+    def front_name(self):
+        full_path = [f'- {self.name}']
+        k = self.parent
+        while k is not None:
+            space_sym = "&nbsp" * 4
+            full_path.append(space_sym)
+            k = k.parent
+        return ''.join(full_path[::-1])
+
+    def tag_active(self):
+        return 'Is Active' if self.active else 'No active'
+
+    def is_parent(self):
+        return False if self.category_services.exists() else True
+
+    def get_absolute_url(self):
+        return reverse('product_category', kwargs={'slug': self.slug})
+
+    def get_childrens(self):
+        childrens = self.children.filter(active=True).order_by('order')
+        return childrens
+
+
+
 class CompanyService(models.Model):
     active = models.BooleanField(default=True)
     subscribe = models.BooleanField(default=True)
@@ -251,6 +310,7 @@ class CompanyService(models.Model):
     counter = models.IntegerField(default=0)
     objects = models.Manager()
     slug = models.SlugField(blank=True, allow_unicode=True)
+    category = models.ManyToManyField(CompanyCategory, blank=True, null=True, related_name='category_services')
     my_query = ServiceManager()
 
     class Meta:

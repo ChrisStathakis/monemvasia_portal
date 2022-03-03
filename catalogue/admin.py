@@ -13,7 +13,7 @@ class ProductAdmin(ImportExportModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(DraggableMPTTAdmin):
+class CategoryAdmin(ImportExportModelAdmin, DraggableMPTTAdmin):
     list_display = ['tree_actions', 'indented_title', 'name', 'parent', 'is_featured', 'active']
     list_filter = ['is_featured', 'active', 'parent']
     list_select_related = ['parent', ]

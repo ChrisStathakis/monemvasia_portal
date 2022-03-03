@@ -1,4 +1,5 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 
 from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage, CompanyOrder, CompanyPayment
 
@@ -41,7 +42,7 @@ class CompanyInfoInline(admin.TabularInline):
 
 
 @admin.register(CompanyOrder)
-class CompanyOrderAdmin(admin.ModelAdmin):
+class CompanyOrderAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['date', 'company', 'value']
     list_filter = ['company', 'date']
 
@@ -53,27 +54,27 @@ class CompanyPaymentAdmin(admin.ModelAdmin):
 
 
 @admin.register(CompanyCategory)
-class CompanyCategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'parent']
+class CompanyCategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ['name', 'parent']
     list_filter = ['parent', ]
     list_select_related = ['parent', ]
 
 
 @admin.register(CompanyService)
-class CompanyServiceAdmin(admin.ModelAdmin):
+class CompanyServiceAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['title', 'company', 'counter', 'is_primary',]
     list_filter = ['company', 'is_primary']
     search_fields = ['title', 'company']
 
 
 @admin.register(CompanyInformation)
-class CompanyInformation(admin.ModelAdmin):
+class CompanyInformation(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ['company']
     list_display = ['company', 'is_visible']
 
 
 @admin.register(Company)
-class CompanyAdmin(admin.ModelAdmin):
+class CompanyAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ['status', 'business_type', 'featured', 'priority', 'category']
     list_display = ['title', 'subscription_ends', 'owner', 'featured', 'value', 'counter', 'status']
     readonly_fields = ['item_support', 'status', 'counter', 'value']
