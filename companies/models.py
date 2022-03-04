@@ -63,8 +63,15 @@ class CompanyCategory(models.Model):
     def __str__(self):
         return self.title
 
+    def is_parent(self):
+        return True if self.have_childrens() else False
+
     def get_absolute_url(self):
-        return reverse('category', kwargs={'slug': self.slug})
+        print('here!', self.is_parent())
+        if self.is_parent():
+            return reverse('category_parent_list_view', kwargs={'slug': self.slug})
+        else:
+            return reverse('category', kwargs={'slug': self.slug})
 
     def have_childrens(self):
         return self.childrens.exists()

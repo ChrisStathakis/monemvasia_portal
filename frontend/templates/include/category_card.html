@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="product-box">
+    <div class="img-wrapper">
+        {% comment %}
+        <div class="lable-block">
+            <span class="lable3">new</span>
+            <span class="lable4">on sale</span>
+        </div>
+        {% endcomment %}
+        <div class="front">
+            <a  href="{{ category.get_absolute_url }}">
+                <img
+                    src="{{ category.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img " alt="">
+            </a>
+        </div>
+        <div class="back">
+            <a  href="{{ category.get_absolute_url }}"><img
+                    src="{{ category.tag_image }}"
+                    class="img-fluid blur-up lazyload bg-img" alt="">
+            </a>
+        </div>
+        <div class="cart-info cart-wrap">
+
+        </div>
+    </div>
+    <div class="product-detail">
+        <div class="rating">
+
+        </div>
+        <a  href="{{ category.get_absolute_url }}">
+            <h6>{{ category }}</h6>
+        </a>
+
+
+    </div>
+</div>

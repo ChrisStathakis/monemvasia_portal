@@ -1,8 +1,8 @@
-{% extends 'index.html' %} {% load  static %} {% load frontend_tags %}
+{% extends 'index.html' %}
 
 {% block content %}
 
-    <!-- breadcrumb start -->
+      <!-- breadcrumb start -->
     <div class="breadcrumb-section">
         <div class="container">
             <div class="row">
@@ -29,28 +29,6 @@
         <div class="collection-wrapper">
             <div class="container">
                 <div class="row">
-                    {% comment %}
-                    <div class="col-sm-3 collection-filter">
-
-                        <!-- side-bar colleps block stat -->
-                        <div class="collection-filter-block">
-                            <!-- brand filter start -->
-                            <div class="collection-mobile-back">
-                                <span class="filter-back"><i class="fa fa-angle-left"
-                                        aria-hidden="true"></i> back</span>
-                            </div>
-                            <a href="{{ request.path }}" class="btn btn-warning">ΚΑΘΑΡΙΣΜΟΣ ΦΙΛΤΡΩΝ</a>
-                            {% include 'my_filters/homepage.html' %}
-
-
-                        </div>
-                        <!-- silde-bar colleps block end here -->
-                        <!-- side-bar single product slider start -->
-                        {% include 'include/favorite_companies.html' %}
-                        <!-- side-bar single product slider end -->
-
-                    </div>
-                    {% endcomment %}
                     <div class="collection-content col">
                         <div class="page-main-content">
                             <div class="row">
@@ -60,16 +38,14 @@
                                             <img src="{{ category.tag_image }}"
                                                 class="img-fluid blur-up lazyload" alt=""></a>
                                         <div class="top-banner-content small-section">
-                                            <h4>ΔΕΙΤΕ ΤΙΣ ΕΠΙΧΕΙΡΗΣΕΙΣ</h4>
+                                            <h4>ΔΕΙΤΕ ΤΙΣ ΚΑΤΗΓΟΡΙΕΣ</h4>
                                         </div>
                                     </div>
                                     <div class="collection-product-wrapper">
                                         <div class="product-top-filter">
                                             <div class="row">
                                                 <div class="col-xl-12">
-                                                    <div class="filter-main-btn"><span
-                                                            class="filter-btn btn btn-theme"><i class="fa fa-filter"
-                                                                aria-hidden="true"></i> Filter</span></div>
+
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -87,10 +63,10 @@
                                         </div>
                                         <div class="product-wrapper-grid">
                                             <div class="row margin-res">
-                                                {% for company in object_list %}
-                                                <div class="col-xl-3 col-6 col-grid-box">
-                                                    {% include 'include/company_card.html' %}
-                                                </div>
+                                                {% for category in object_list %}
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+                                                        {% include 'include/category_card.html' %}
+                                                    </div>
                                                 {% endfor %}
 
                                             </div>
@@ -143,8 +119,3 @@
     <!-- section End -->
 
 {% endblock %}
-
-
-
-
-

@@ -57,6 +57,8 @@ class Category(MPTTModel):
         return False if self.product_set.exists() else True
 
     def get_absolute_url(self):
+        if self.is_parent():
+            return reverse('category_parent_list_view', kwargs={'slug': self.slug})
         return reverse('product_category', kwargs={'slug': self.slug})
 
     def get_childrens(self):

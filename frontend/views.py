@@ -87,6 +87,28 @@ class CompanyDetailView(DetailView):
         return context
 
 
+class CategoryParentListView(ListView):
+    model = CompanyCategory
+    template_name = 'company_category_list_view.html'
+    paginate_by = 32
+
+    def dispatch(self, request, *args, **kwargs):
+        slug = self.kwargs['slug']
+        category = get_object_or_404(CompanyCategory, slug=slug)
+        self.category = category
+        self.slug = slug
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return CompanyCategory.objects.filter(parent=self.category)
+
+    def get_context_data(self,  **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'ΚΑΤΗΓΟΡΙΕΣ'
+
+        return context
+
+
 class CategoryListView(ListView):
     model = Company
     template_name = 'company_list_view.html'
