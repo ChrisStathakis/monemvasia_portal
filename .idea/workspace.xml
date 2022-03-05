@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c399419-d09a-4363-b0a6-a560521ec4d1" name="Default" comment="" />
+    <list default="true" id="5c399419-d09a-4363-b0a6-a560521ec4d1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/company_list_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/company_list_view.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +20,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catalogue/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="867">
               <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
             </state>
           </provider>
@@ -26,8 +29,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/companies/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="952">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -38,7 +41,7 @@
       <file leaf-file-name="categories.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catalogue/categories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="935">
               <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
             </state>
           </provider>
@@ -47,7 +50,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="1649">
               <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
               <folding>
                 <element signature="e#0#79#0" expanded="true" />
@@ -56,14 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company_list_view.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="company_list_view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/templates/company_list_view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="469">
+              <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -72,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/templates/company_category_list_view.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1054">
-              <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+              <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
               <folding>
                 <element signature="e#318#342#0" expanded="true" />
               </folding>
@@ -101,7 +101,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="204">
               <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -210,8 +210,8 @@
         <option value="$PROJECT_DIR$/companies/models.py" />
         <option value="$PROJECT_DIR$/frontend/templates/company_category_list_view.html" />
         <option value="$PROJECT_DIR$/frontend/templates/include/category_card.html" />
-        <option value="$PROJECT_DIR$/frontend/templates/company_list_view.html" />
         <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
+        <option value="$PROJECT_DIR$/frontend/templates/company_list_view.html" />
       </list>
     </option>
   </component>
@@ -335,7 +335,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -343,8 +344,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32943678" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3060574" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10625" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3060574" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10625" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -647,9 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,7 +671,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="204">
           <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -683,22 +681,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/catalogue/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="867">
           <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catalogue/categories.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="935">
           <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/companies/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="952">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -722,13 +720,13 @@
     <entry file="file://$PROJECT_DIR$/frontend/templates/company_category_list_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
-          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="1649">
           <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
           <folding>
             <element signature="e#0#79#0" expanded="true" />
@@ -736,23 +734,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/templates/company_list_view.html">
+    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+        <state relative-caret-position="221">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" />
+            <element signature="e#318#342#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
+    <entry file="file://$PROJECT_DIR$/frontend/templates/company_list_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding>
-            <element signature="e#318#342#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="469">
+          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
         </state>
       </provider>
     </entry>
