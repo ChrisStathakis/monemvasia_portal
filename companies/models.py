@@ -7,6 +7,7 @@ import datetime
 from tinymce.models import HTMLField
 from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
+from tinymce.models import HTMLField
 
 from .managers import CompanyManager, ServiceManager
 from frontend.models import City
@@ -50,15 +51,51 @@ PRIORITY_OPTIONS = (
     )
 
 
+class CategoryForCompany(MPTTModel):
+    name = models.CharField(max_length=220)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='childrens', verbose_name='Κατηγορία')
+    image = models.ImageField(upload_to='companies/categories/', blank=True, null=True)
+    big_image = models.ImageField(upload_to='companies/catalogue/upload-big-images/', blank=True, null=True)
+    text = HTMLField(blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True, allow_unicode=True)
+
+    class Meta:
+        verbose_name_plural = '5. ΚΑΤΗΓΟΡΙΕΣ ΕΤΑΙΡΙΩΝ'
+        verbose_name = 'ΚΑΤΗΓΟΡΙΑ ΕΤΑΙΡΙΑΣ'
+
+    def front_name(self):
+        full_path = [f'- {self.name}']
+        k = self.parent
+        while k is not None:
+            space_sym = "&nbsp" * 4
+            full_path.append(space_sym)
+            k = k.parent
+        return ''.join(full_path[::-1])
+
+    def is_parent(self):
+        return False if self.childrens.exists() else True
+
+    def get_absolute_url(self):
+        return reverse('product_category', kwargs={'slug': self.slug})
+
+    def get_childrens(self):
+        childrens = self.childrens.filter(active=True).order_by('order')
+        return childrens
+
+
 class CompanyCategory(models.Model):
     title = models.CharField(max_length=220)
     image = models.ImageField(upload_to='companies/categories/', blank=True, null=True)
+    big_image = models.ImageField(upload_to='companies/catalogue/upload-big-images/', blank=True, null=True)
+    text = HTMLField(blank=True, null=True)
     slug = models.SlugField(blank=True, null=True, allow_unicode=True)
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL, related_name='childrens')
 
     class Meta:
         verbose_name_plural = '5. ΚΑΤΗΓΟΡΙΕΣ ΕΤΑΙΡΙΩΝ'
         verbose_name = 'ΚΑΤΗΓΟΡΙΑ ΕΤΑΙΡΙΑΣ'
+        ordering = ['parent', ]
 
     def __str__(self):
         return self.title
@@ -67,7 +104,6 @@ class CompanyCategory(models.Model):
         return True if self.have_childrens() else False
 
     def get_absolute_url(self):
-        print('here!', self.is_parent())
         if self.is_parent():
             return reverse('category_parent_list_view', kwargs={'slug': self.slug})
         else:
@@ -81,12 +117,12 @@ class CompanyCategory(models.Model):
 
 
 class Company(models.Model):
-
     admin_active = models.BooleanField(default=False, verbose_name='ΓΕΝΙΚΟΣ ΔΙΑΚΟΠΤΗΣ')
     business_type = models.CharField(choices=BUSINESS_TYPE, default='1', max_length=1)
     featured = models.BooleanField(default=False)
     first_choice = models.BooleanField(default=False, verbose_name='ΠΡΟΤΕΡΙΟΤΗΤΑ')
     category = models.ManyToManyField(CompanyCategory, null=True, blank=True, related_name='my_companies')
+    categories = models.ManyToManyField(CategoryForCompany, null=True, blank=True, related_name='company')
     status = models.BooleanField(default=False, verbose_name='ΚΑΤΑΣΤΑΣΗ')
     subscription_ends = models.DateField(null=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_OPTIONS, default='3')
