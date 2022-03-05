@@ -11,7 +11,7 @@ from .action_views import (create_new_item_view, create_new_service_view, valida
                            )
 
 from .ajax_views import ajax_product_modal_view, ajax_service_modal_view
-from .footer_views import cookies_policy_view
+from .footer_views import cookies_policy_view, term_of_use_view
 
 from catalogue.views import CategoryDetailView
 
@@ -52,5 +52,6 @@ urlpatterns = [
 
 
     path('privacy', cookies_policy_view, name='privacy'),
+    path('term-of-use', term_of_use_view, name='term_of_use')
 
 ]
