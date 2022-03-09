@@ -6,7 +6,21 @@ from .models import Profile, InstagramCategories, InstagramLink
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_filter = ['permission_grand', ]
-    list_display = ['user', 'name', 'taxes_id', 'permission_grand']
+     = [
+        'permission_grand',
+        'name',
+        'user',
+        'taxes_id',
+        'phone'
+
+    ]
+    λισ = [
+        'permission_grand',
+        'name',
+        'user',
+        'taxes_id',
+        'phone'
+    ]
 
 
 @admin.register(InstagramCategories)

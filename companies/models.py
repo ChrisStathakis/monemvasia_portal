@@ -95,7 +95,7 @@ class CompanyCategory(models.Model):
     class Meta:
         verbose_name_plural = '5. ΚΑΤΗΓΟΡΙΕΣ ΕΤΑΙΡΙΩΝ'
         verbose_name = 'ΚΑΤΗΓΟΡΙΑ ΕΤΑΙΡΙΑΣ'
-        ordering = ['parent', ]
+
 
     def __str__(self):
         return self.title

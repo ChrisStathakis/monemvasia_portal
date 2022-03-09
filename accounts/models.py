@@ -8,11 +8,11 @@ from companies.models import Company
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    taxes_id = models.CharField(unique=True, max_length=20)
-    name = models.CharField(max_length=200, blank=True)
-    phone = models.CharField(max_length=50)
+    taxes_id = models.CharField(unique=True, max_length=20, verbose_name='ΑΦΜ')
+    name = models.CharField(max_length=200, blank=True, verbose_name='ΟΝΟΜΑΤΕΠΩΝΥΜΟ')
+    phone = models.CharField(max_length=50, blank=True, verbose_name='ΤΗΛΕΦΩΝΟ')
     notes = models.TextField(blank=True)
-    permission_grand = models.BooleanField(default=False)
+    permission_grand = models.BooleanField(default=False, verbose_name='ΕΠΙΒΑΙΒΑΙΩΣΗ')
     monthly_cost = models.DecimalField(max_digits=15, decimal_places=2, default=0)
 
     def __str__(self):

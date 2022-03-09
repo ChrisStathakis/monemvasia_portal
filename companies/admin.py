@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from mptt.admin import DraggableMPTTAdmin
-from .models import Company, CategoryForCompany, CompanyService, CompanyInformation, CompanyImage, CompanyOrder, CompanyPayment
+from .models import Company, CompanyCategory, CompanyService, CompanyInformation, CompanyImage, CompanyOrder, CompanyPayment
 
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -53,9 +53,9 @@ class CompanyPaymentAdmin(admin.ModelAdmin):
     list_filter = ['company', 'date', 'payment_method',]
 
 
-@admin.register(CategoryForCompany)
-class CompanyCategoryAdmin(ImportExportModelAdmin, DraggableMPTTAdmin):
-    list_display = ['indented_title', 'name', 'image', 'big_image', 'parent']
+@admin.register(CompanyCategory)
+class CompanyCategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ['title', 'image', 'big_image', 'parent']
     list_filter = ['parent', ]
     list_select_related = ['parent', ]
 
