@@ -115,6 +115,9 @@ class CompanyCategory(models.Model):
     def tag_image(self):
         return self.image.url if self.image else ''
 
+    def tag_big_image(self):
+        return self.big_image.url if self.big_image else ''
+
 
 class Company(models.Model):
     admin_active = models.BooleanField(default=False, verbose_name='ΓΕΝΙΚΟΣ ΔΙΑΚΟΠΤΗΣ')

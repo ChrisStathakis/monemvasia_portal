@@ -8,7 +8,7 @@ from .managers import BannerManager
 
 class City(models.Model):
     active = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='cities/', help_text='1370*385')
+    image = models.ImageField(upload_to='cities/', help_text='1920*800')
     title = models.CharField(unique=True, max_length=220)
     slug = models.SlugField(blank=True, allow_unicode=True)
     text = HTMLField(blank=True, null=True)

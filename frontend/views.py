@@ -166,6 +166,7 @@ class CityDetailView(ListView):
         context = super(CityDetailView, self).get_context_data(**kwargs)
         context['page_title'] = self.city
         context['company_category_filter'] = True
+        context['city'] = self.city
         context['my_categories'] = CompanyCategory.objects.filter(parent__isnull=True)
 
         return context
