@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c399419-d09a-4363-b0a6-a560521ec4d1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/static/my_assets/test_city.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/companies/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/companies/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/city_detail_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/city_detail_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/company_category_list_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/company_category_list_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monemvasia_portal/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/monemvasia_portal/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="1931" />
+    <option name="totalTimeSeconds" value="2132" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -29,8 +22,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="158" column="54" lean-forward="true" selection-start-line="158" selection-start-column="54" selection-end-line="158" selection-end-column="54" />
+            <state relative-caret-position="2414">
+              <caret line="158" column="54" selection-start-line="158" selection-start-column="54" selection-end-line="158" selection-end-column="54" />
               <folding>
                 <element signature="e#0#79#0" expanded="true" />
               </folding>
@@ -38,11 +31,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="city_detail_view.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="city_detail_view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/templates/city_detail_view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="578">
               <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <folding>
+                <element signature="e#318#342#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,10 +160,10 @@
         <option value="$PROJECT_DIR$/frontend/templates/company_list_view.html" />
         <option value="$PROJECT_DIR$/companies/models.py" />
         <option value="$PROJECT_DIR$/frontend/templates/company_category_list_view.html" />
-        <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
         <option value="$PROJECT_DIR$/frontend/models.py" />
         <option value="$PROJECT_DIR$/frontend/views.py" />
         <option value="$PROJECT_DIR$/frontend/templates/city_detail_view.html" />
+        <option value="$PROJECT_DIR$/monemvasia_portal/settings.py" />
       </list>
     </option>
   </component>
@@ -181,6 +186,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,13 +197,12 @@
             <path>
               <item name="monemvasia_portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="monemvasia_portal" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="monemvasia_portal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,25 +310,25 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.102604166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="manage.py@monemvasia_portal" order="12" weight="0.3177471" />
       <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31137088" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,9 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -652,16 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="56" column="67" selection-start-line="56" selection-start-column="67" selection-end-line="56" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-          <folding>
-            <element signature="e#318#342#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -705,8 +697,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="158" column="54" lean-forward="true" selection-start-line="158" selection-start-column="54" selection-end-line="158" selection-end-column="54" />
+        <state relative-caret-position="2414">
+          <caret line="158" column="54" selection-start-line="158" selection-start-column="54" selection-end-line="158" selection-end-column="54" />
           <folding>
             <element signature="e#0#79#0" expanded="true" />
           </folding>
@@ -715,8 +707,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/templates/city_detail_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="578">
           <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/monemvasia_portal/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="e#318#342#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
