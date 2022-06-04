@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('secretKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 REAL_DB = True
 PRODUCTION = True
 
@@ -267,3 +267,7 @@ if PRODUCTION:
     SENDGRID_SANDBOX_MODE_IN_DEBUG = False
     SENDGRID_ECHO_TO_STDOUT = True
     SITE_EMAIL = 'monemvasia.org@gmail.com'
+
+
+
+ADMINS = [('Christos', 'christosstath10@gmail.com'), ]
